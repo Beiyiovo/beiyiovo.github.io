@@ -29,8 +29,12 @@
     modal.setAttribute('aria-hidden', 'false');
     d.body.classList.add('vm-open');
 
-    var ratio = card.getAttribute('data-ratio');
-    video.style.aspectRatio = ratio || '16 / 9';
+    var ratio = card.getAttribute('data-ratio') || '16/9';
+    var parts = ratio.split('/');
+    var r = (parseFloat(parts[0]) || 16) / (parseFloat(parts[1]) || 9);
+    video.style.aspectRatio = ratio;
+    video.style.width = 'min(100%, calc(72vh * ' + r.toFixed(4) + '))';
+    video.style.height = 'auto';
     video.src = src;
     var p2 = video.play();
     if (p2 && p2.catch) p2.catch(function () { /* 用户可手动点播放 */ });

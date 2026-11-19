@@ -17,7 +17,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#05070c">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-sc-vf.woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/main.css?v=15">
+<link rel="stylesheet" href="assets/css/main.css?v=16">
 <script>document.documentElement.classList.add('js');try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
 </head>
 <body>
@@ -51,51 +51,69 @@
     <div class="hero-bg" aria-hidden="true"><span class="glow g1"></span><span class="glow g2"></span></div>
     <div class="container sh-grid">
       <div class="sh-copy">
-        <p class="kicker reveal"><span class="k-dot"></span><span data-i18n data-en="Shorts — one clip, for now">短片 · 目前只有一支</span></p>
-        <h1 class="reveal" data-delay="0.04s" data-i18n data-en='One clip so far.<br><span class="grad-text">It is a screen recording.</span>'>目前只有一支，<br><span class="grad-text">是录屏，不是演的。</span></h1>
-        <p class="lead reveal" data-delay="0.1s" data-i18n data-en="I have been meaning to make short films for a while. Three scripts are written; none is shot. So this page only holds what actually exists: 92 seconds, from an empty repo to a running app, nothing cut.">拍片这件事想做挺久了，本子写了三个，一个都还没拍。所以这里只放真实存在的东西：92 秒，从空仓库到应用跑通，中间没有剪。</p>
+        <p class="kicker reveal"><span class="k-dot"></span><span data-i18n data-en="Shorts — two clips, one concept film">短片 · 两支</span></p>
+        <h1 class="reveal" data-delay="0.04s" data-i18n data-en='One generated.<br><span class="grad-text">One recorded.</span>'>一支是生成的，<br><span class="grad-text">一支是录的。</span></h1>
+        <p class="lead reveal" data-delay="0.1s" data-i18n data-en="The 30-second one below is generated: I wrote the beats, the model shot the frames, I cut it, captioned it and signed it. The 92-second one underneath is a plain screen recording — nothing staged.">下面这 30 秒是生成的：我定分镜，模型出画面，我剪、我上字幕、我署名。再往下那 92 秒是纯录屏，没有演的成分。</p>
         <div class="cta-row reveal" data-delay="0.16s">
-          <a class="btn primary" href="#screening"><span data-i18n data-en="Watch the only one">看这一支</span><i>↓</i></a>
+          <a class="btn primary" href="#screening"><span data-i18n data-en="Watch both">看这两支</span><i>↓</i></a>
           <a class="btn ghost" href="lab.html" data-i18n data-en="Back to the lab">回到 AI 实验室</a>
         </div>
-        <p class="sh-note reveal" data-delay="0.2s" data-i18n data-en="No “coming soon” on this page. If it is not shot, it is not listed as a film.">这一页不放「即将上线」——没拍就是没拍，不占位。</p>
+        <p class="sh-note reveal" data-delay="0.2s" data-i18n data-en="Every frame here is either recorded or generated — and labelled as such.">这里的每一帧，要么是录的，要么是生成的——都标清楚了。</p>
       </div>
 
-      <article class="vcard featured reveal" data-delay="0.12s" data-src="assets/media/sf-demo.mp4" data-dur="01:32">
-        <button class="vcard-hit" type="button" aria-label="播放：92 秒 AI 结对开发实录">
-          <img src="assets/media/sf-cover.jpg" alt="视频封面：SmartFridge 应用界面（基于真机截图重制）" loading="lazy">
+      <article class="vcard featured reveal" data-delay="0.12s" data-src="assets/media/interview-30.mp4" data-dur="00:33" data-ratio="2/3">
+        <button class="vcard-hit" type="button" aria-label="播放：面试第 7 场 · 30 秒概念片">
+          <img src="assets/media/interview-30.jpg" alt="概念片封面：面试桌前的男生，百叶窗光斑" loading="lazy">
           <span class="vplay" aria-hidden="true"><i></i></span>
-          <span class="vdur">01:32</span>
-          <span class="vep">EP.01</span>
+          <span class="vdur">00:33</span>
+          <span class="vep">EP.02</span>
         </button>
         <div class="vmeta">
-          <h3 data-i18n data-en="92 seconds: one complete AI pairing session">92 秒：一次完整的 AI 结对开发</h3>
-          <p data-i18n data-en="An unedited screen recording — from an empty repo to a running app, with nothing cut out.">未剪辑的录屏：从空仓库到应用跑通，中间没有剪掉任何一步。</p>
-          <div class="tags"><span class="tag">Claude Code</span><span class="tag">Android</span><span class="tag" data-i18n data-en="No cuts">无剪辑</span></div>
+          <h3 data-i18n data-en="Interview No.7 — a 30-second concept film">面试第 7 场 · 30 秒概念片</h3>
+          <p data-i18n data-en="No dialogue. Generated frames, four captions, one title card. The joke is in the silence, not in the acting.">没有台词。生成画面 + 四条字幕 + 一张片尾卡；笑点在停顿里，不在表演上。</p>
+          <div class="tags"><span class="tag" data-i18n data-en="Generated">AI 生成</span><span class="tag" data-i18n data-en="No dialogue">无台词</span><span class="tag">2:3</span></div>
         </div>
       </article>
     </div>
   </section>
 
-  <!-- ============ 01 本子 ============ -->
+  <!-- ============ 01 另一支 ============ -->
   <section class="sec" id="screening">
     <div class="container">
       <div class="sec-head reveal">
-        <p class="kicker"><b>01</b><span data-i18n data-en="Scripts, unshot">三个本子 · 未拍</span></p>
-        <h2 data-i18n data-en="Three scripts, still on paper.">三个本子，还写在纸上。</h2>
+        <p class="kicker"><b>01</b><span data-i18n data-en="The other one">另一支 · 92 秒</span></p>
+        <h2 data-i18n data-en="A screen recording. Nothing staged.">一支录屏，没有演的成分。</h2>
+        <p class="sub" data-i18n data-en="From an empty repo to a running app, recorded in one take. This is the version of “making things” I can actually prove.">从空仓库到应用跑通，一镜到底录下来。这才是我能拿出证据的「做东西」。</p>
+      </div>
+
+      <div class="vwall">
+        <article class="vcard reveal" data-src="assets/media/sf-demo.mp4" data-dur="01:32">
+          <button class="vcard-hit" type="button" aria-label="播放：92 秒 AI 结对开发实录">
+            <img src="assets/media/sf-cover.jpg" alt="视频封面：SmartFridge 应用界面（基于真机截图重制）" loading="lazy">
+            <span class="vplay" aria-hidden="true"><i></i></span>
+            <span class="vdur">01:32</span>
+            <span class="vep">EP.01</span>
+          </button>
+          <div class="vmeta">
+            <h3 data-i18n data-en="92 seconds: one complete AI pairing session">92 秒：一次完整的 AI 结对开发</h3>
+            <p data-i18n data-en="An unedited screen recording — from an empty repo to a running app, with nothing cut out.">未剪辑的录屏：从空仓库到应用跑通，中间没有剪掉任何一步。</p>
+            <div class="tags"><span class="tag">Claude Code</span><span class="tag">Android</span><span class="tag" data-i18n data-en="No cuts">无剪辑</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 本子 ============ -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker"><b>02</b><span data-i18n data-en="Scripts, unshot">两个本子 · 未拍</span></p>
+        <h2 data-i18n data-en="Two scripts, still on paper.">还有两个本子，写在纸上。</h2>
         <p class="sub" data-i18n data-en="Written down while they were fresh. No schedule, no promise — just the ideas, kept in public.">趁记得清楚先记下来。没有排期，也不算承诺，就是把想法摊在这儿。</p>
       </div>
 
       <div class="slate">
-        <div class="slate-item reveal">
-          <span class="slate-ep">EP.02</span>
-          <div class="slate-main">
-            <h3 data-i18n data-en="Interview No.7 — “So what was the hard part?”">《面试第 7 场》·「你这项目难点在哪？」</h3>
-            <p data-i18n data-en="He starts confidently, talks faster and faster, stalls on the third point, then opens his laptop and shows the site.">他自信开讲，越讲越快，卡在第三点；最后掏出电脑，打开作品集。</p>
-          </div>
-          <span class="slate-meta">60 s</span>
-          <span class="slate-state" data-i18n data-en="Script only">只有剧本</span>
-        </div>
         <div class="slate-item reveal">
           <span class="slate-ep">EP.03</span>
           <div class="slate-main">
@@ -122,7 +140,7 @@
   <section class="sec">
     <div class="container">
       <div class="sec-head reveal">
-        <p class="kicker"><b>02</b><span data-i18n data-en="If I ever shoot them">真要拍的话</span></p>
+        <p class="kicker"><b>03</b><span data-i18n data-en="How it was made">怎么做的</span></p>
         <h2 data-i18n data-en="Model draws. Human writes.">模型画，人写。</h2>
         <p class="sub" data-i18n data-en="Same rule as everywhere else on this site: generative models handle pixels, code handles type, and a human signs off.">和站内其他东西同一条规矩：生成模型管画面，程序管文字，上线前人来签字。</p>
       </div>
@@ -183,9 +201,9 @@
   </div>
 </footer>
 
-<script src="assets/vendor/gsap/gsap.min.js?v=15"></script>
-<script src="assets/vendor/gsap/ScrollTrigger.min.js?v=15"></script>
-<script src="assets/js/app.js?v=15"></script>
-<script src="assets/js/shorts.js?v=15"></script>
+<script src="assets/vendor/gsap/gsap.min.js?v=16"></script>
+<script src="assets/vendor/gsap/ScrollTrigger.min.js?v=16"></script>
+<script src="assets/js/app.js?v=16"></script>
+<script src="assets/js/shorts.js?v=16"></script>
 </body>
 </html>

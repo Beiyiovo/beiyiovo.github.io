@@ -2471,3 +2471,15 @@ body.vm-open { overflow: hidden; }
 }
 .pcard.featured .pcard-media.photo { min-height: 340px; }
 
+
+/* 播放器：尺寸交给 JS 按视频比例算 */
+.vm-frame video {
+  width: auto;
+  max-width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+}
+
+/* 竖屏播放：外框贴合视频，标题居中做说明 */
+.vm-frame { width: fit-content; margin: 0 auto; }
+.vm-meta { max-width: 720px; margin: 16px auto 0; text-align: center; }
