@@ -1,19 +1,21 @@
 /* ============================================================
-   个人作品集 · app.js（R1 骨架版，零依赖）
-   双语切换 / 滚动进场 / 数字滚动 / 移动端菜单 / 灯箱 / 页脚年份
+   个人作品集 · app.js（R3）
+   双语切换 / GSAP 逐页动效（IO 兜底）/ 数字滚动 / 进度条 / 灯箱
+   ?static=1 → 跳过全部动效（QA 截图与降级口径）
    ============================================================ */
 (function () {
   'use strict';
   var d = document;
   var root = d.documentElement;
   var KEY = 'site-lang';
+  var STATIC = location.search.indexOf('static=1') > -1;
+  var reduced = false;
+  try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  var hasGsap = !STATIC && !reduced && !!(window.gsap && window.ScrollTrigger);
 
   /* ---------- 双语 ---------- */
-  // 启动时把元素内的中文内容缓存为 data-zh（页面默认写中文，英文写在 data-en）
   d.querySelectorAll('[data-i18n]').forEach(function (el) {
-    if (el.getAttribute('data-zh') === null) {
-      el.setAttribute('data-zh', el.innerHTML);
-    }
+    if (el.getAttribute('data-zh') === null) el.setAttribute('data-zh', el.innerHTML);
   });
 
   function apply(lang) {
@@ -40,27 +42,77 @@
     });
   });
 
-  /* ---------- 滚动进场 ---------- */
-  var io = null;
-  if ('IntersectionObserver' in window) {
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          en.target.classList.add('in');
-          io.unobserve(en.target);
-        }
-      });
-    }, { threshold: 0.12 });
+  /* ---------- 进场动效 ---------- */
+  if (hasGsap) {
+    gsap.registerPlugin(ScrollTrigger);
+    var revealEls = Array.prototype.slice.call(d.querySelectorAll('.reveal'));
+    revealEls.forEach(function (el) { el.classList.remove('reveal'); });
+
+    // 时间线：整组 stagger
+    d.querySelectorAll('.timeline').forEach(function (tl) {
+      var items = tl.querySelectorAll('.tl-item');
+      if (items.length) {
+        gsap.from(items, { opacity: 0, x: -28, duration: 0.7, stagger: 0.13, ease: 'power3.out',
+          scrollTrigger: { trigger: tl, start: 'top 82%', once: true } });
+      }
+    });
+
+    // 其余 reveal 元素：逐个进场，保留 data-delay 节奏
+    revealEls.forEach(function (el) {
+      if (el.closest('.timeline')) return;
+      gsap.from(el, { opacity: 0, y: 24, duration: 0.75, delay: parseFloat(el.dataset.delay || 0), ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
+    });
+
+    // 首页数据区：随滚动轻微上浮（scrub）
+    var stats = d.querySelector('.stats');
+    if (stats) {
+      gsap.to(stats.querySelectorAll('.stat'), { y: function (i) { return -(6 + i * 5); }, ease: 'none',
+        scrollTrigger: { trigger: stats, start: 'top 92%', end: 'bottom 45%', scrub: 0.5 } });
+    }
+
+    // 章节转场：分隔线扫入
+    d.querySelectorAll('.sec').forEach(function (sec, i) {
+      if (i === 0) return;
+      gsap.to(sec, { '--sw': 1, ease: 'none',
+        scrollTrigger: { trigger: sec, start: 'top 96%', end: 'top 58%', scrub: 0.5 } });
+    });
+
+    // 项目封面视差
+    d.querySelectorAll('.p-cover').forEach(function (img) {
+      var wrap = img.closest('.p-cover-wrap') || img;
+      gsap.fromTo(img, { yPercent: -3 }, { yPercent: 4, ease: 'none',
+        scrollTrigger: { trigger: wrap, start: 'top bottom', end: 'bottom top', scrub: true } });
+    });
+
+    // 画廊逐张入场
+    d.querySelectorAll('.gallery figure').forEach(function (fig, i2) {
+      gsap.from(fig, { y: 26, opacity: 0, duration: 0.7, delay: (i2 % 4) * 0.07, ease: 'power2.out',
+        scrollTrigger: { trigger: fig, start: 'top 94%', once: true } });
+    });
+
+    window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+  } else {
+    var io = null;
+    if (!STATIC && 'IntersectionObserver' in window) {
+      io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12 });
+    }
+    d.querySelectorAll('.reveal').forEach(function (el) {
+      if (STATIC) { el.classList.add('in'); return; }
+      if (el.dataset.delay) el.style.transitionDelay = el.dataset.delay;
+      if (io) io.observe(el); else el.classList.add('in');
+    });
   }
-  d.querySelectorAll('.reveal').forEach(function (el) {
-    if (el.dataset.delay) el.style.transitionDelay = el.dataset.delay;
-    if (io) io.observe(el); else el.classList.add('in');
-  });
 
   /* ---------- 数字滚动 ---------- */
-  var reduced = false;
-  try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
-  if (!reduced && 'IntersectionObserver' in window) {
+  var counters = d.querySelectorAll('[data-count]');
+  if (STATIC || reduced || !('IntersectionObserver' in window)) {
+    counters.forEach(function (el) { el.textContent = el.dataset.count; });
+  } else {
     var co = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
@@ -79,10 +131,7 @@
         requestAnimationFrame(step);
       });
     }, { threshold: 0.4 });
-    d.querySelectorAll('[data-count]').forEach(function (el) {
-      el.textContent = '0';
-      co.observe(el);
-    });
+    counters.forEach(function (el) { el.textContent = '0'; co.observe(el); });
   }
 
   /* ---------- 移动端菜单 ---------- */
@@ -130,22 +179,4 @@
   }
   d.addEventListener('scroll', updBar, { passive: true });
   updBar();
-
-  /* ---------- GSAP 增强（自托管；未加载时自动跳过） ---------- */
-  if (window.gsap && window.ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
-    d.querySelectorAll('.p-cover').forEach(function (img) {
-      var wrap = img.closest('.p-cover-wrap') || img;
-      gsap.fromTo(img, { yPercent: -3 }, {
-        yPercent: 4, ease: 'none',
-        scrollTrigger: { trigger: wrap, start: 'top bottom', end: 'bottom top', scrub: true }
-      });
-    });
-    d.querySelectorAll('.gallery figure').forEach(function (fig, i) {
-      gsap.from(fig, {
-        y: 26, opacity: 0, duration: 0.7, delay: (i % 4) * 0.07, ease: 'power2.out',
-        scrollTrigger: { trigger: fig, start: 'top 94%', once: true }
-      });
-    });
-  }
 })();

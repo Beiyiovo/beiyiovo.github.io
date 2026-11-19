@@ -11,9 +11,10 @@
 <meta property="og:description" content="HX711 称重复核 ±0.1 g（指标 ±2 g）、红外对射滴速、DS18B20 测温、OLED 中文界面、黄/红两级声光报警、Android 客户端。">
 <meta property="og:image" content="https://beiyiovo.github.io/assets/media/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://beiyiovo.github.io/projects/infusion-monitor.html">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/css/main.css?v=2">
-<script>try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/main.css?v=3">
+<script>document.documentElement.classList.add('js');try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
 </head>
 <body>
 
@@ -35,7 +36,7 @@
   <section class="p-hero container">
     <p class="crumb"><a href="../index.html" data-i18n data-en="Home">首页</a> / <a href="../index.html#projects" data-i18n data-en="Projects">项目</a> / <span data-i18n data-en="Infusion monitor">输液监测装置</span></p>
     <h1 data-i18n data-en="Infusion Status WiFi Monitor (commissioned)">输液状态无线监测装置（受托开发）</h1>
-    <p class="lead" data-i18n data-en="A three-parameter IV infusion monitor: liquid temperature (DS18B20 waterproof probe), remaining volume (1 kg load cell + 24-bit HX711) and drop rate (infrared beam-break interrupt), with a Chinese OLED UI, two-level audible/visual alerts, and an Android client connected over the device AP.">三参数输液监测装置：液体温度（DS18B20 防水探头）、剩余药量（1 kg 悬臂梁 + 24 位 HX711）、滴速（红外对射 + 外部中断）；OLED 中文界面 + 黄/红两级声光报警，经设备 AP 直连 Android 客户端远程查看。</p>
+    <p class="lead" data-i18n data-en="Three sensing chains — weight, temperature, drop rate — with two-level alerts and a live Android client; calibration re-checked to ±0.1 g, twenty times tighter than spec.">称重、测温、滴速三路传感，黄红两级报警，App 实时可看；标定复核做到 ±0.1 g——比指标严二十倍。</p>
     <div class="meta-chips">
       <span class="tag">2026.10 – 至今</span>
       <span class="tag" data-i18n data-en="Commissioned build · implementation lead">受托开发 · 实现主力</span>
@@ -61,7 +62,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Overview</p>
-        <h2 data-i18n data-en="What it does">它做了什么</h2>
+        <h2 data-i18n data-en="The device">这台装置</h2>
       </div>
       <ul class="checks reveal">
         <li data-i18n data-en="Weighing chain calibrated with certified weights: SCALE = 741.6 counts/g, linearity 0.14%, five-point re-check max deviation ±0.1 g — against a ±2 g spec, a 20× margin.">称重链路用标准砝码组标定：SCALE = 741.6 counts/g、线性度 0.14%、五点复核最大偏差 ±0.1 g——对照 ±2 g 指标余量 20 倍。</li>
@@ -78,7 +79,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Hardware</p>
-        <h2 data-i18n data-en="Hardware decisions">硬件方案与选型</h2>
+        <h2 data-i18n data-en="Trade-offs">选型的取舍</h2>
       </div>
       <p class="reveal" data-i18n data-en="Load cell range was chosen backwards from accuracy: at 0.05%FS, a 5 kg cell resolves ~2.5 g — which would eat the entire ±2 g budget. A 1 kg cell resolves ~0.5 g, leaving real headroom. The OLED needed 4.7 kΩ pull-ups on I2C and the buzzer had to move to 3.3 V supply before the board was stable.">量程从精度反推：0.05%FS 下 5 kg 传感器分辨率约 2.5 g——会把 ±2 g 指标吃光；1 kg 传感器分辨率约 0.5 g，留出真实余量，因此定 1 kg。调试中还发现 OLED 的 I2C 需要 4.7 kΩ 上拉、蜂鸣器须改 3.3 V 供电，整机才稳定。</p>
       <figure class="reveal">
@@ -93,7 +94,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Demo</p>
-        <h2 data-i18n data-en="App and OLED">App 与 OLED 界面</h2>
+        <h2 data-i18n data-en="App &amp; screen">App 与屏幕</h2>
       </div>
       <div class="gallery phone reveal">
         <figure>
@@ -114,7 +115,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Implementation</p>
-        <h2 data-i18n data-en="Key engineering">关键实现</h2>
+        <h2 data-i18n data-en="How it works">怎么实现的</h2>
       </div>
       <div class="impl-grid">
         <div class="impl reveal">
@@ -142,7 +143,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Results</p>
-        <h2 data-i18n data-en="Spec compliance">指标达成</h2>
+        <h2 data-i18n data-en="Numbers">数字</h2>
       </div>
       <table class="data reveal">
         <thead>
@@ -170,7 +171,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Debug log</p>
-        <h2 data-i18n data-en="Hard bugs, honest retros">踩坑与复盘</h2>
+        <h2 data-i18n data-en="War stories">踩过的坑</h2>
       </div>
       <div class="dbg reveal">
         <strong data-i18n data-en="Full-screen OLED refresh starved the main loop">OLED 整屏刷新饿死主循环</strong>
@@ -200,7 +201,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Source</p>
-        <h2 data-i18n data-en="Open source">开源仓库</h2>
+        <h2 data-i18n data-en="Repos">仓库</h2>
       </div>
       <div class="repos reveal">
         <a class="repo-card" href="https://github.com/Beiyiovo/stm32-infusion-monitor" target="_blank" rel="noopener">
@@ -223,7 +224,7 @@
       <span class="logo-mark">L</span>
       <strong>Zhenxiong Lai · 赖振雄</strong>
     </div>
-    <p data-i18n data-en="Embedded / IoT full-stack portfolio. Every number on this site is traceable to real project records.">嵌入式 / IoT 全栈作品集。本站所有数据均可溯源至真实项目记录。</p>
+    <p data-i18n data-en="Every number on this site has a paper trail.">每个数字，都能在项目记录里找到出处。</p>
     <div class="footer-links">
       <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub</a>
       <a href="../index.html" data-i18n data-en="Home">首页</a>
@@ -232,8 +233,8 @@
   </div>
 </footer>
 
-<script src="../assets/vendor/gsap/gsap.min.js?v=2"></script>
-<script src="../assets/vendor/gsap/ScrollTrigger.min.js?v=2"></script>
-<script src="../assets/js/app.js?v=2"></script>
+<script src="../assets/vendor/gsap/gsap.min.js?v=3"></script>
+<script src="../assets/vendor/gsap/ScrollTrigger.min.js?v=3"></script>
+<script src="../assets/js/app.js?v=3"></script>
 </body>
 </html>

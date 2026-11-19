@@ -11,9 +11,10 @@
 <meta property="og:description" content="内嵌 MQTT Broker、一机一密接入、告警防抖与工单状态机、通义千问根因诊断；45 单测、69% 行覆盖、本机压测约 4450 条/秒。">
 <meta property="og:image" content="https://beiyiovo.github.io/assets/media/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://beiyiovo.github.io/projects/iot-llm-platform.html">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/css/main.css?v=2">
-<script>try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/main.css?v=3">
+<script>document.documentElement.classList.add('js');try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
 </head>
 <body>
 
@@ -35,7 +36,7 @@
   <section class="p-hero container">
     <p class="crumb"><a href="../index.html" data-i18n data-en="Home">首页</a> / <a href="../index.html#projects" data-i18n data-en="Projects">项目</a> / <span data-i18n data-en="IoT + LLM platform">IoT 智能诊断平台</span></p>
     <h1 data-i18n data-en="IoT Access and AI Diagnosis Platform">IoT 设备接入与智能诊断平台</h1>
-    <p class="lead" data-i18n data-en="An open-source backend platform that lets devices in over embedded MQTT, stores telemetry properly, raises debounced alerts with a ticket workflow, and uses an LLM for root-cause diagnosis — with a deterministic fallback when the model is slow.">一个开源后端平台：设备经内嵌 MQTT Broker 接入、遥测按窄表规范落库、告警防抖后进入工单流转，再用大模型做根因诊断——模型超时会自动降级到本地规则，诊断永远有结果。</p>
+    <p class="lead" data-i18n data-en="MQTT embedded straight into Spring Boot — no EMQX, no Docker; debounced alerts, ticketed follow-ups, and LLM diagnosis that degrades gracefully.">MQTT 直接内嵌进 Spring Boot——不装 EMQX、不碰 Docker；告警防抖、工单留痕，大模型诊断超时自动降级。</p>
     <div class="meta-chips">
       <span class="tag">2026.11</span>
       <span class="tag" data-i18n data-en="Role: solo, open source">角色：独立开发 · 开源</span>
@@ -57,7 +58,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Overview</p>
-        <h2 data-i18n data-en="What it does">它做了什么</h2>
+        <h2 data-i18n data-en="The platform">这个平台</h2>
       </div>
       <ul class="checks reveal">
         <li data-i18n data-en="Embedded Moquette as the MQTT broker — no EMQX, no Docker, a plain Spring Boot app is the whole server.">内嵌 Moquette 作 MQTT Broker——免装 EMQX、免 Docker，一个普通 Spring Boot 应用就是整个服务端。</li>
@@ -74,7 +75,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Implementation</p>
-        <h2 data-i18n data-en="Key engineering">关键实现</h2>
+        <h2 data-i18n data-en="How it works">怎么实现的</h2>
       </div>
       <div class="impl-grid">
         <div class="impl reveal">
@@ -102,7 +103,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Demo</p>
-        <h2 data-i18n data-en="Screens">界面一览</h2>
+        <h2 data-i18n data-en="Views">界面</h2>
       </div>
       <div class="gallery reveal">
         <figure>
@@ -126,7 +127,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Results</p>
-        <h2 data-i18n data-en="Numbers">量化结果</h2>
+        <h2 data-i18n data-en="Numbers">数字</h2>
       </div>
       <table class="data reveal">
         <thead>
@@ -151,7 +152,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Source</p>
-        <h2 data-i18n data-en="Open source">开源仓库</h2>
+        <h2 data-i18n data-en="Repos">仓库</h2>
       </div>
       <div class="repos reveal">
         <a class="repo-card" href="https://github.com/Beiyiovo/iot-llm-platform" target="_blank" rel="noopener">
@@ -174,7 +175,7 @@
       <span class="logo-mark">L</span>
       <strong>Zhenxiong Lai · 赖振雄</strong>
     </div>
-    <p data-i18n data-en="Embedded / IoT full-stack portfolio. Every number on this site is traceable to real project records.">嵌入式 / IoT 全栈作品集。本站所有数据均可溯源至真实项目记录。</p>
+    <p data-i18n data-en="Every number on this site has a paper trail.">每个数字，都能在项目记录里找到出处。</p>
     <div class="footer-links">
       <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub</a>
       <a href="../index.html" data-i18n data-en="Home">首页</a>
@@ -183,8 +184,8 @@
   </div>
 </footer>
 
-<script src="../assets/vendor/gsap/gsap.min.js?v=2"></script>
-<script src="../assets/vendor/gsap/ScrollTrigger.min.js?v=2"></script>
-<script src="../assets/js/app.js?v=2"></script>
+<script src="../assets/vendor/gsap/gsap.min.js?v=3"></script>
+<script src="../assets/vendor/gsap/ScrollTrigger.min.js?v=3"></script>
+<script src="../assets/js/app.js?v=3"></script>
 </body>
 </html>

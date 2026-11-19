@@ -11,9 +11,10 @@
 <meta property="og:description" content="自制 PCB、CRC-8 帧协议（37/37 单测）、本地直连与云中转双链路、Android 与微信小程序双端。心率实测 MAE 0.95 bpm。">
 <meta property="og:image" content="https://beiyiovo.github.io/assets/media/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://beiyiovo.github.io/projects/health-assistant.html">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/css/main.css?v=2">
-<script>try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/main.css?v=3">
+<script>document.documentElement.classList.add('js');try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
 </head>
 <body>
 
@@ -35,7 +36,7 @@
   <section class="p-hero container">
     <p class="crumb"><a href="../index.html" data-i18n data-en="Home">首页</a> / <a href="../index.html#projects" data-i18n data-en="Projects">项目</a> / <span data-i18n data-en="Health monitor">健康监测终端</span></p>
     <h1 data-i18n data-en="Four-parameter Health Monitor + WeChat Mini Program">四参数生理监测终端 + 微信小程序</h1>
-    <p class="lead" data-i18n data-en="A complete three-end IoT loop built and verified on real hardware: custom PCB around an STM32F103C8T6, dual-link uplink via ESP32-C3 (local AP direct + cloud relay), and two hand-written clients — an Android app and a WeChat mini program — with live curves, history and alerts.">一个在真实硬件上跑通的「三端 IoT 闭环」：以 STM32F103C8T6 为核心的自制 PCB，经 ESP32-C3 走「本地 AP 直连 + 巴法云中转」双链路上报，Android 与微信小程序两套客户端全部手写——实时曲线、历史数据与阈值告警一应俱全。</p>
+    <p class="lead" data-i18n data-en="Heart rate, SpO2, temperature, steps — measured accurately, transmitted reliably: one custom carrier board, a dual-link uplink, two clients written from scratch.">心率、血氧、体温、步数——测得准，更要传得稳：一块自制底板，一条双链路，两个从零手写的客户端。</p>
     <div class="meta-chips">
       <span class="tag">2026.09 – 2026.11</span>
       <span class="tag" data-i18n data-en="Role: solo build">角色：独立开发</span>
@@ -59,7 +60,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Overview</p>
-        <h2 data-i18n data-en="What it does">它做了什么</h2>
+        <h2 data-i18n data-en="The device">这台设备</h2>
       </div>
       <p class="reveal" data-i18n data-en="The device samples heart rate and SpO2 (MAX30102), body temperature (DS18B20) and steps (MPU6050), renders a Chinese UI on a 128×64 OLED, and raises threshold alerts with a buzzer and LED. An ESP32-C3 carries the data over two independent links. Everything on this page was measured on the actual device.">设备实时采集心率血氧（MAX30102）、体温（DS18B20）与步数（MPU6050），在 128×64 OLED 上渲染中文界面，并通过蜂鸣器与 LED 做阈值报警；数据经 ESP32-C3 走两条独立链路上报。本页所有数据均来自真机实测。</p>
       <ul class="checks reveal" data-delay="0.1s">
@@ -144,7 +145,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Demo</p>
-        <h2 data-i18n data-en="Real device and apps">真机与客户端</h2>
+        <h2 data-i18n data-en="Hardware &amp; UI">实物与界面</h2>
       </div>
       <div class="gallery reveal">
         <figure>
@@ -177,7 +178,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Implementation</p>
-        <h2 data-i18n data-en="Key engineering">关键实现</h2>
+        <h2 data-i18n data-en="How it works">怎么实现的</h2>
       </div>
       <div class="impl-grid">
         <div class="impl reveal">
@@ -209,7 +210,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Results</p>
-        <h2 data-i18n data-en="Measured results">实测指标</h2>
+        <h2 data-i18n data-en="Numbers">数字</h2>
       </div>
       <table class="data reveal">
         <thead>
@@ -238,7 +239,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Debug log</p>
-        <h2 data-i18n data-en="Hard bugs, honest retros">踩坑与复盘</h2>
+        <h2 data-i18n data-en="War stories">踩过的坑</h2>
       </div>
       <div class="dbg reveal">
         <strong data-i18n data-en="I2C bus kept failing">I2C 总线反复初始化失败</strong>
@@ -269,7 +270,7 @@
     <div class="container">
       <div class="sec-head reveal">
         <p class="kicker">Source</p>
-        <h2 data-i18n data-en="Open source">开源仓库</h2>
+        <h2 data-i18n data-en="Repos">仓库</h2>
       </div>
       <div class="repos reveal">
         <a class="repo-card" href="https://github.com/Beiyiovo/stm32-health-monitor" target="_blank" rel="noopener">
@@ -300,7 +301,7 @@
       <span class="logo-mark">L</span>
       <strong>Zhenxiong Lai · 赖振雄</strong>
     </div>
-    <p data-i18n data-en="Embedded / IoT full-stack portfolio. Every number on this site is traceable to real project records.">嵌入式 / IoT 全栈作品集。本站所有数据均可溯源至真实项目记录。</p>
+    <p data-i18n data-en="Every number on this site has a paper trail.">每个数字，都能在项目记录里找到出处。</p>
     <div class="footer-links">
       <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub</a>
       <a href="../index.html" data-i18n data-en="Home">首页</a>
@@ -309,9 +310,9 @@
   </div>
 </footer>
 
-<script src="../assets/vendor/gsap/gsap.min.js?v=2"></script>
-<script src="../assets/vendor/gsap/ScrollTrigger.min.js?v=2"></script>
-<script src="../assets/js/app.js?v=2"></script>
-<script src="../assets/js/flow-anim.js?v=2"></script>
+<script src="../assets/vendor/gsap/gsap.min.js?v=3"></script>
+<script src="../assets/vendor/gsap/ScrollTrigger.min.js?v=3"></script>
+<script src="../assets/js/app.js?v=3"></script>
+<script src="../assets/js/flow-anim.js?v=3"></script>
 </body>
 </html>

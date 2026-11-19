@@ -34,6 +34,12 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
+/* 细腻噪点，去掉「生成感」 */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none;
+  opacity: 0.05; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
 ::selection { background: rgba(91, 157, 255, 0.35); }
 
@@ -100,12 +106,13 @@ img { max-width: 100%; }
 
 .hero-inner { position: relative; max-width: 860px; }
 .kicker {
-  color: var(--acc-2); letter-spacing: 0.22em; font-size: 0.78rem;
-  font-weight: 600; text-transform: uppercase; margin-bottom: 18px;
+  color: var(--acc-2); font-family: Georgia, "Times New Roman", serif;
+  font-style: italic; font-size: 0.95rem; letter-spacing: 0.08em;
+  margin-bottom: 18px;
 }
 h1 {
-  font-size: clamp(2.3rem, 6vw, 3.9rem);
-  line-height: 1.12; letter-spacing: -0.02em; font-weight: 700;
+  font-size: clamp(2.5rem, 6.2vw, 4.4rem);
+  line-height: 1.08; letter-spacing: -0.02em; font-weight: 700;
 }
 .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .lead { color: var(--muted); font-size: 1.12rem; margin-top: 20px; max-width: 640px; }
@@ -124,15 +131,15 @@ h1 {
 
 /* ---------- 数据条 ---------- */
 .stats {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px 22px;
   margin-top: 64px; position: relative;
 }
 .stat {
-  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 20px 18px; transition: 0.25s;
+  background: transparent; border: 0; border-top: 1px solid var(--line);
+  border-radius: 0; padding: 18px 4px 4px; transition: border-color 0.25s;
 }
-.stat:hover { border-color: var(--line-strong); transform: translateY(-3px); }
-.stat .num { font-family: var(--mono); font-size: 1.85rem; font-weight: 700; color: var(--acc-2); }
+.stat:hover { border-top-color: var(--acc); }
+.stat .num { font-family: var(--mono); font-size: 2.15rem; font-weight: 700; color: var(--acc-2); }
 .stat .num small { font-size: 1rem; color: var(--muted); }
 .stat .lbl { color: var(--muted); font-size: 0.85rem; margin-top: 6px; }
 
@@ -155,7 +162,8 @@ h1 {
   box-shadow: 0 18px 44px rgba(3, 8, 18, 0.6), 0 0 0 1px rgba(91, 157, 255, 0.15);
   text-decoration: none;
 }
-.pcard-cover { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; display: block; background: var(--bg-2); }
+.pcard-cover { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; display: block; background: var(--bg-2); transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.pcard:hover .pcard-cover { transform: scale(1.045); }
 .pcard-body { padding: 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .tag {
@@ -316,8 +324,10 @@ table.data tr:hover td { background: rgba(91, 157, 255, 0.05); }
 .lightbox img { max-width: 92vw; max-height: 90vh; border-radius: 10px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7); }
 
 /* ---------- 进场动画 ---------- */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
-.reveal.in { opacity: 1; transform: none; }
+/* ---------- 进场动画（仅在有 JS 时隐藏，无 JS/爬虫直接可见） ---------- */
+.js .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.js .reveal.in { opacity: 1; transform: none; }
+html.static .reveal, html.static .js .reveal { opacity: 1 !important; transform: none !important; }
 
 /* ---------- 页面切换（View Transitions） ---------- */
 @view-transition { navigation: auto; }
@@ -428,6 +438,14 @@ table.data tr:hover td { background: rgba(91, 157, 255, 0.05); }
 .flow-crc.flash { animation: crcflash 0.5s ease; }
 @keyframes crcflash { 0% { color: #e9eef6; } 100% { color: #7ee787; } }
 .flow-cap { color: var(--muted); font-size: 0.82rem; margin-top: 12px; text-align: center; }
+
+/* ---------- 章节转场：分隔线扫入（GSAP 驱动 --sw） ---------- */
+.sec { position: relative; }
+.sec + .sec::before {
+  content: ""; position: absolute; top: -1px; left: 0; width: 100%; height: 1px;
+  background: var(--grad); opacity: 0.45;
+  transform: scaleX(var(--sw, 0)); transform-origin: 0 50%;
+}
 
 /* ---------- 404 ---------- */
 .e404 { min-height: 62vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 24px; }
