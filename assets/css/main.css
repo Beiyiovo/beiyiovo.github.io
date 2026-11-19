@@ -2200,3 +2200,15 @@ section[id], div[id] { scroll-margin-top: 96px; }
   appearance: none;
 }
 .cc-mail .cc-txt b, .cc-mail .cc-txt i { text-align: left; }
+
+/* 移动端：叙事面板与列表重复，收起；菜单入场 */
+@media (max-width: 900px) {
+  .trace-reader { display: none; }
+  .nav-links.open { animation: menuIn 0.34s var(--ease) both; }
+  @keyframes menuIn { from { opacity: 0; transform: translateY(-10px); } }
+}
+
+/* 移动端覆盖桌面端固定宽度（后置规则优先，需提高特异性） */
+@media (max-width: 900px) {
+  .trace-nodes .tr-node { width: auto; }
+}
