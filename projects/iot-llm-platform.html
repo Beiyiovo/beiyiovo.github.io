@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IoT 设备接入与智能诊断平台 · 赖振雄的作品集</title>
+<meta name="description" content="Java 21 + Spring Boot 3 开源平台：内嵌 MQTT Broker、一机一密接入、遥测窄表与设备影子、告警防抖与工单状态机、通义千问根因诊断；45 单测、69% 行覆盖、本机压测约 4450 条/秒。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Zhenxiong Lai · 赖振雄">
+<meta property="og:title" content="IoT 设备接入与智能诊断平台 · 赖振雄的作品集">
+<meta property="og:description" content="内嵌 MQTT Broker、一机一密接入、告警防抖与工单状态机、通义千问根因诊断；45 单测、69% 行覆盖、本机压测约 4450 条/秒。">
+<meta property="og:image" content="https://beiyiovo.github.io/assets/media/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/main.css?v=2">
+<script>try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="../index.html"><span class="logo-mark">L</span><span class="logo-text" data-i18n data-en="Zhenxiong Lai">赖振雄</span></a>
+    <nav class="nav-links" id="menu">
+      <a href="../index.html" data-i18n data-en="Home">首页</a>
+      <a href="../index.html#projects" class="active" data-i18n data-en="Projects">项目</a>
+      <a href="../about.html" data-i18n data-en="About">关于</a>
+      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub</a>
+      <button class="lang-switch" type="button" aria-label="Switch language">EN</button>
+    </nav>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+  <section class="p-hero container">
+    <p class="crumb"><a href="../index.html" data-i18n data-en="Home">首页</a> / <a href="../index.html#projects" data-i18n data-en="Projects">项目</a> / <span data-i18n data-en="IoT + LLM platform">IoT 智能诊断平台</span></p>
+    <h1 data-i18n data-en="IoT Access and AI Diagnosis Platform">IoT 设备接入与智能诊断平台</h1>
+    <p class="lead" data-i18n data-en="An open-source backend platform that lets devices in over embedded MQTT, stores telemetry properly, raises debounced alerts with a ticket workflow, and uses an LLM for root-cause diagnosis — with a deterministic fallback when the model is slow.">一个开源后端平台：设备经内嵌 MQTT Broker 接入、遥测按窄表规范落库、告警防抖后进入工单流转，再用大模型做根因诊断——模型超时会自动降级到本地规则，诊断永远有结果。</p>
+    <div class="meta-chips">
+      <span class="tag">2026.11</span>
+      <span class="tag" data-i18n data-en="Role: solo, open source">角色：独立开发 · 开源</span>
+      <span class="tag">Java 21</span><span class="tag">Spring Boot 3</span><span class="tag">MyBatis-Plus</span><span class="tag">MySQL</span>
+      <span class="tag">MQTT · Moquette</span><span class="tag" data-i18n data-en="Tongyi Qianwen (DashScope)">通义千问（DashScope）</span><span class="tag">GitHub Actions</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn primary" href="https://github.com/Beiyiovo/iot-llm-platform" target="_blank" rel="noopener">github.com/Beiyiovo/iot-llm-platform ↗</a>
+    </div>
+  </section>
+
+  <div class="p-cover-wrap container reveal">
+    <img class="p-cover" src="../assets/media/iot-dashboard.jpg" alt="平台仪表盘">
+    <p class="figcap" data-i18n data-en="Platform dashboard: device overview and telemetry at a glance">平台仪表盘：设备总览与遥测数据</p>
+  </div>
+
+  <!-- 概述 -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">Overview</p>
+        <h2 data-i18n data-en="What it does">它做了什么</h2>
+      </div>
+      <ul class="checks reveal">
+        <li data-i18n data-en="Embedded Moquette as the MQTT broker — no EMQX, no Docker, a plain Spring Boot app is the whole server.">内嵌 Moquette 作 MQTT Broker——免装 EMQX、免 Docker，一个普通 Spring Boot 应用就是整个服务端。</li>
+        <li data-i18n data-en="Per-device credentials: deviceKey + secret, one key per device, with topic-ownership checks so no device can publish to another device's topics.">一机一密：deviceKey + secret，每台设备独立凭据，并做主题归属校验——设备无法越权发布到别人的主题。</li>
+        <li data-i18n data-en="Telemetry lands in a narrow table indexed by (device_id, metric, ts); the latest value of every metric is mirrored into a device-shadow cache for instant reads.">遥测按 (device_id, metric, ts) 联合索引落窄表；每项指标的最新值同步进设备影子缓存，读取零延迟。</li>
+        <li data-i18n data-en="Alert engine with consecutive-N-points debounce (no flapping on a single bad sample) plus a ticket state machine: TRIGGERED → ACKED → CLOSED.">告警引擎用「连续 N 点越限」防抖（单点坏值不误报），配工单状态机：TRIGGERED → ACKED → CLOSED。</li>
+        <li data-i18n data-en="Tongyi Qianwen root-cause diagnosis with per-device-type knowledge bases; a 12 s timeout degrades to local rule-based diagnosis, so the feature never hangs.">接通义千问做根因诊断、按设备类型切换知识库；12 秒超时自动降级本地规则诊断——该功能永远不会卡死。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 关键实现 -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">Implementation</p>
+        <h2 data-i18n data-en="Key engineering">关键实现</h2>
+      </div>
+      <div class="impl-grid">
+        <div class="impl reveal">
+          <h3 data-i18n data-en="Ingestion under load">高负载下的接入</h3>
+          <p data-i18n data-en="Ingestion runs on a dedicated thread pool so slow storage never blocks the broker; the shadow cache absorbs latest-value reads so dashboards never hit the narrow table directly.">上报走独立线程池，存储慢不会阻塞 Broker；仪表盘读最新值全部走设备影子缓存，不打窄表。</p>
+        </div>
+        <div class="impl reveal" data-delay="0.08s">
+          <h3 data-i18n data-en="Alert quality">告警质量</h3>
+          <p data-i18n data-en="Debounce window with N-consecutive-point threshold tuned per metric type; every trigger opens a ticket with the raw evidence attached, and the state machine keeps humans honest about ACK and closure.">按指标类型调校「连续 N 点越限」的防抖窗口；每次触发生成工单并附带原始证据，状态机保证确认与关闭的动作留痕。</p>
+        </div>
+        <div class="impl reveal" data-delay="0.16s">
+          <h3 data-i18n data-en="LLM diagnosis, safely">大模型诊断的安全接法</h3>
+          <p data-i18n data-en="Diagnosis is prompt-scoped per device type, output is structured, and the call is bounded by a 12 s timeout. On timeout or error the system falls back to deterministic local rules — the platform treats the LLM as an accelerator, not a dependency.">诊断提示词按设备类型隔离、输出结构化，调用被 12 秒超时硬约束；超时或异常即降级到确定性的本地规则——平台把大模型当加速器，而不是依赖项。</p>
+        </div>
+        <div class="impl reveal" data-delay="0.24s">
+          <h3 data-i18n data-en="Tested like production">按生产标准测试</h3>
+          <p data-i18n data-en="45 JUnit 5 tests covering debounce boundaries, the ticket state machine and diagnosis degradation (69% line coverage on core classes), run automatically by GitHub Actions on every push.">45 个 JUnit 5 用例覆盖防抖边界、工单状态机与诊断降级（核心业务类行覆盖 69%），GitHub Actions 每次推送自动执行。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 演示 -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">Demo</p>
+        <h2 data-i18n data-en="Screens">界面一览</h2>
+      </div>
+      <div class="gallery reveal">
+        <figure>
+          <img src="../assets/media/iot-dashboard.jpg" alt="仪表盘" loading="lazy">
+          <figcaption data-i18n data-en="Dashboard — devices, latest values and alerts">仪表盘：设备、最新值与告警</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/media/iot-ai.jpg" alt="AI 诊断" loading="lazy">
+          <figcaption data-i18n data-en="AI root-cause diagnosis with rule-based fallback">AI 根因诊断（含规则降级）</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/media/iot-api.jpg" alt="API 文档" loading="lazy">
+          <figcaption data-i18n data-en="API documentation">API 文档</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 指标 -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">Results</p>
+        <h2 data-i18n data-en="Numbers">量化结果</h2>
+      </div>
+      <table class="data reveal">
+        <thead>
+          <tr>
+            <th data-i18n data-en="Item">项目</th>
+            <th data-i18n data-en="Value">数值</th>
+            <th data-i18n data-en="Notes">说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-i18n data-en="Unit tests">单元测试</td><td>45 个（JUnit 5）</td><td data-i18n data-en="debounce boundaries / ticket state machine / diagnosis degradation">防抖边界 / 工单状态机 / 诊断降级</td></tr>
+          <tr><td data-i18n data-en="Core line coverage">核心行覆盖</td><td>69%</td><td data-i18n data-en="core business classes">核心业务类</td></tr>
+          <tr><td data-i18n data-en="Throughput (local stress test)">吞吐（本机压测）</td><td>≈4,450 条/秒</td><td data-i18n data-en="6 concurrent senders, 9,000 points — local machine, not a server benchmark">6 并发 9000 点，本机压测口径，非服务器基准</td></tr>
+          <tr><td data-i18n data-en="CI">持续集成</td><td>GitHub Actions</td><td data-i18n data-en="tests run on every push">每次推送自动跑测试</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 仓库 -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">Source</p>
+        <h2 data-i18n data-en="Open source">开源仓库</h2>
+      </div>
+      <div class="repos reveal">
+        <a class="repo-card" href="https://github.com/Beiyiovo/iot-llm-platform" target="_blank" rel="noopener">
+          <span class="name">iot-llm-platform</span>
+          <p data-i18n data-en="Platform source, SQL schema, docs, Dockerfile and CI workflow.">平台源码、SQL 结构、文档、Dockerfile 与 CI 工作流。</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="p-nav container">
+    <a href="infusion-monitor.html"><span class="dir">← <span data-i18n data-en="Previous">上一个</span></span><span data-i18n data-en="Infusion Status Monitor">输液状态无线监测装置</span></a>
+    <a class="next" href="smart-fridge.html"><span class="dir"><span data-i18n data-en="Next">下一个</span> →</span>SmartFridge <span data-i18n data-en="Smart Fridge App">智能冰箱 App</span></a>
+  </nav>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span class="logo-mark">L</span>
+      <strong>Zhenxiong Lai · 赖振雄</strong>
+    </div>
+    <p data-i18n data-en="Embedded / IoT full-stack portfolio. Every number on this site is traceable to real project records.">嵌入式 / IoT 全栈作品集。本站所有数据均可溯源至真实项目记录。</p>
+    <div class="footer-links">
+      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub</a>
+      <a href="../index.html" data-i18n data-en="Home">首页</a>
+    </div>
+    <p class="fine">© <span class="year">2026</span> 赖振雄 · Built with plain HTML/CSS/JS · <span data-i18n data-en="Deployed on GitHub Pages">托管于 GitHub Pages</span></p>
+  </div>
+</footer>
+
+<script src="../assets/vendor/gsap/gsap.min.js?v=2"></script>
+<script src="../assets/vendor/gsap/ScrollTrigger.min.js?v=2"></script>
+<script src="../assets/js/app.js?v=2"></script>
+</body>
+</html>

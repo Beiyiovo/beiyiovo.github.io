@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>四参数生理监测终端 + 微信小程序 · 赖振雄的作品集</title>
+<meta name="description" content="STM32F103C8T6 + ESP32-C3 的多参数健康监测设备：自制 PCB、CRC-8 帧协议（37/37 单测）、本地直连与云中转双链路、Android 与微信小程序双端。心率实测 MAE 0.95 bpm。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Zhenxiong Lai · 赖振雄">
+<meta property="og:title" content="四参数生理监测终端 + 微信小程序 · 赖振雄的作品集">
+<meta property="og:description" content="自制 PCB、CRC-8 帧协议（37/37 单测）、本地直连与云中转双链路、Android 与微信小程序双端。心率实测 MAE 0.95 bpm。">
+<meta property="og:image" content="https://beiyiovo.github.io/assets/media/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/main.css?v=2">
+<script>try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="../index.html"><span class="logo-mark">L</span><span class="logo-text" data-i18n data-en="Zhenxiong Lai">赖振雄</span></a>
+    <nav class="nav-links" id="menu">
+      <a href="../index.html" data-i18n data-en="Home">首页</a>
+      <a href="../index.html#projects" class="active" data-i18n data-en="Projects">项目</a>
+      <a href="../about.html" data-i18n data-en="About">关于</a>
+      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub</a>
+      <button class="lang-switch" type="button" aria-label="Switch language">EN</button>
+    </nav>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+  <section class="p-hero container">
+    <p class="crumb"><a href="../index.html" data-i18n data-en="Home">首页</a> / <a href="../index.html#projects" data-i18n data-en="Projects">项目</a> / <span data-i18n data-en="Health monitor">健康监测终端</span></p>
+    <h1 data-i18n data-en="Four-parameter Health Monitor + WeChat Mini Program">四参数生理监测终端 + 微信小程序</h1>
+    <p class="lead" data-i18n data-en="A complete three-end IoT loop built and verified on real hardware: custom PCB around an STM32F103C8T6, dual-link uplink via ESP32-C3 (local AP direct + cloud relay), and two hand-written clients — an Android app and a WeChat mini program — with live curves, history and alerts.">一个在真实硬件上跑通的「三端 IoT 闭环」：以 STM32F103C8T6 为核心的自制 PCB，经 ESP32-C3 走「本地 AP 直连 + 巴法云中转」双链路上报，Android 与微信小程序两套客户端全部手写——实时曲线、历史数据与阈值告警一应俱全。</p>
+    <div class="meta-chips">
+      <span class="tag">2026.09 – 2026.11</span>
+      <span class="tag" data-i18n data-en="Role: solo build">角色：独立开发</span>
+      <span class="tag">STM32F103C8T6</span><span class="tag">ESP32-C3</span><span class="tag">MAX30102 / DS18B20 / MPU6050</span>
+      <span class="tag">Android · Java</span><span class="tag" data-i18n data-en="WeChat Mini Program">微信小程序</span><span class="tag" data-i18n data-en="Bemfa cloud relay">巴法云中转</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn ghost" href="https://github.com/Beiyiovo/stm32-health-monitor" target="_blank" rel="noopener">stm32-health-monitor ↗</a>
+      <a class="btn ghost" href="https://github.com/Beiyiovo/health-helper-miniprogram" target="_blank" rel="noopener">health-helper-miniprogram ↗</a>
+      <a class="btn ghost" href="https://github.com/Beiyiovo/stm32-serial-flash" target="_blank" rel="noopener">stm32-serial-flash ↗</a>
+    </div>
+  </section>
+
+  <div class="p-cover-wrap container reveal">
+    <img class="p-cover" src="../assets/media/p1-device.jpg" alt="整机实物照片">
+    <p class="figcap" data-i18n data-en="The finished device — custom PCB carrier board, OLED Chinese UI, ESP32-C3 on board (real photo)">整机实物：自制 PCB 底板 + OLED 中文界面 + 板载 ESP32-C3（真机拍摄）</p>
+  </div>
+
+  <!-- 概述 -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">Overview</p>
+        <h2 data-i18n data-en="What it does">它做了什么</h2>
+      </div>
+      <p class="reveal" data-i18n data-en="The device samples heart rate and SpO2 (MAX30102), body temperature (DS18B20) and steps (MPU6050), renders a Chinese UI on a 128×64 OLED, and raises threshold alerts with a buzzer and LED. An ESP32-C3 carries the data over two independent links. Everything on this page was measured on the actual device.">设备实时采集心率血氧（MAX30102）、体温（DS18B20）与步数（MPU6050），在 128×64 OLED 上渲染中文界面，并通过蜂鸣器与 LED 做阈值报警；数据经 ESP32-C3 走两条独立链路上报。本页所有数据均来自真机实测。</p>
+      <ul class="checks reveal" data-delay="0.1s">
+        <li data-i18n data-en="Custom PCB carrier board hosting the MCU and 5 modules; firmware fits in ~29 KB of the 32 KB flash — including a custom Chinese font library.">自制 PCB 底板承载主控与 5 个模块；固件约 29 KB / 32 KB 上限——还塞下了自建中文字库。</li>
+        <li data-i18n data-en="Dual-link uplink: local AP + TCP direct (2 s/frame) and Bemfa cloud relay (6 s/frame), switchable in one tap on both clients.">双链路上报：本地 AP+TCP 直连（2 秒/帧）与巴法云中转（6 秒/帧），两端客户端均可一键切换。</li>
+        <li data-i18n data-en="Two clients written from scratch: Android (MPAndroidChart, SQLite history, foreground service) and a native WeChat mini program (Canvas 2D dual-axis charts, day-keyed storage with downsampling).">两套客户端独立手写：Android（MPAndroidChart 双轴曲线、SQLite 历史库、前台服务）与原生微信小程序（Canvas 2D 自绘双 Y 轴、按天分键存储与降采样）。</li>
+        <li data-i18n data-en="8 extension features beyond the assignment brief — including sleep detection (MPU6050 motion + heart-rate baseline) with zero hardware changes.">8 项任务书之外的扩展功能——包括零硬件改动的睡眠检测（MPU6050 体动 + 心率基线双判据）。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 架构 -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">Architecture</p>
+        <h2 data-i18n data-en="System architecture">系统架构</h2>
+      </div>
+      <figure class="reveal">
+        <img src="../assets/media/p1-block.png" alt="系统总体框图">
+        <figcaption data-i18n data-en="System block diagram: sensors → STM32 (sampling + algorithms) → ESP32-C3 → dual links → Android / mini program / cloud">系统总体框图：传感器 → STM32（采集与算法）→ ESP32-C3 → 双链路 → Android / 小程序 / 云端</figcaption>
+      </figure>
+      <p class="reveal" data-i18n data-en="Data path: the STM32 samples all sensors, applies the PPG algorithm, and emits a CRC-8-checked text frame. The ESP32-C3 either serves it over its own AP as a TCP server (192.168.4.1:8266) or publishes it to a Bemfa cloud topic. Clients parse the same protocol and render live curves; event frames carry absolute timestamps computed from device uptime, so backfilled frames after a disconnect never reorder history.">数据链路：STM32 采集全部传感器、运行 PPG 算法，输出带 CRC-8 校验的文本帧；ESP32-C3 既可作为 AP 内的 TCP 服务端（192.168.4.1:8266）直连手机，也可把数据发布到巴法云主题。客户端以同一套协议解析并渲染实时曲线；事件帧用「手机时间 −（开机秒数 − 事件秒数）」换算绝对时间，断线补发的数据也不会打乱历史时序。</p>
+
+<div class="flow mode-local" id="flowAnim">
+  <svg viewBox="0 0 1160 420" role="img" aria-label="三端数据链路流程动画">
+    <defs>
+      <linearGradient id="flowGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#5b9dff"/><stop offset="1" stop-color="#38e0c8"/>
+      </linearGradient>
+      <radialGradient id="dotGrad"><stop offset="0" stop-color="#bfeaff"/><stop offset="1" stop-color="#38e0c8"/></radialGradient>
+    </defs>
+    <path class="n-path" d="M210,77 C258,77 252,135 300,135"/>
+    <path class="n-path" d="M210,155 C255,155 255,170 300,170"/>
+    <path class="n-path" d="M210,233 C258,233 252,205 300,205"/>
+    <path class="n-path" d="M500,170 L590,170"/>
+    <path class="n-path only-local" d="M770,140 C830,112 830,70 880,70"/>
+    <path class="n-path only-cloud" d="M770,200 C830,228 830,335 880,335"/>
+    <circle class="dot" r="5" fill="url(#dotGrad)"><animateMotion dur="1.8s" repeatCount="indefinite" path="M210,77 C258,77 252,135 300,135"/></circle>
+    <circle class="dot" r="5" fill="url(#dotGrad)"><animateMotion dur="1.8s" begin="0.6s" repeatCount="indefinite" path="M210,155 C255,155 255,170 300,170"/></circle>
+    <circle class="dot" r="5" fill="url(#dotGrad)"><animateMotion dur="1.8s" begin="1.2s" repeatCount="indefinite" path="M210,233 C258,233 252,205 300,205"/></circle>
+    <circle class="dot" r="6" fill="url(#dotGrad)"><animateMotion dur="1.6s" repeatCount="indefinite" path="M500,170 L590,170"/></circle>
+    <circle class="dot only-local" r="6" fill="url(#dotGrad)"><animateMotion dur="2s" repeatCount="indefinite" path="M770,140 C830,112 830,70 880,70"/></circle>
+    <circle class="dot only-local" r="6" fill="url(#dotGrad)"><animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M770,140 C830,112 830,70 880,70"/></circle>
+    <circle class="dot only-cloud" r="6" fill="url(#dotGrad)"><animateMotion dur="6s" repeatCount="indefinite" path="M770,200 C830,228 830,335 880,335"/></circle>
+    <rect class="n-rect" x="30" y="48" width="180" height="58" rx="12"/>
+    <text class="n-title" x="120" y="73" text-anchor="middle">MAX30102</text>
+    <text class="n-sub" x="120" y="92" text-anchor="middle">心率血氧 · 软件 I2C</text>
+    <rect class="n-rect" x="30" y="126" width="180" height="58" rx="12"/>
+    <text class="n-title" x="120" y="151" text-anchor="middle">DS18B20</text>
+    <text class="n-sub" x="120" y="170" text-anchor="middle">体温 · 单总线</text>
+    <rect class="n-rect" x="30" y="204" width="180" height="58" rx="12"/>
+    <text class="n-title" x="120" y="229" text-anchor="middle">MPU6050</text>
+    <text class="n-sub" x="120" y="248" text-anchor="middle">计步 · 体动</text>
+    <rect class="n-rect" x="300" y="110" width="200" height="120" rx="14"/>
+    <text class="n-title" x="400" y="148" text-anchor="middle">STM32F103C8T6</text>
+    <text class="n-sub" x="400" y="170" text-anchor="middle">采集 · PPG 算法</text>
+    <text class="n-sub" x="400" y="188" text-anchor="middle">OLED 中文 UI · 阈值报警</text>
+    <rect class="n-rect" x="590" y="110" width="180" height="120" rx="14"/>
+    <text class="n-title" x="680" y="148" text-anchor="middle">ESP32-C3</text>
+    <text class="n-sub" x="680" y="170" text-anchor="middle">AT 固件 · 双链路</text>
+    <text class="n-sub" x="680" y="188" text-anchor="middle">AP :8266 / 云发布</text>
+    <rect class="n-rect" x="880" y="30" width="250" height="80" rx="14"/>
+    <text class="n-title" x="1005" y="62" text-anchor="middle">Android App</text>
+    <text class="n-sub" x="1005" y="84" text-anchor="middle">本地 AP 直连 · TCP :8266 · 2 秒/帧</text>
+    <rect class="n-rect" x="880" y="300" width="250" height="80" rx="14"/>
+    <text class="n-title" x="1005" y="332" text-anchor="middle">巴法云 → 小程序</text>
+    <text class="n-sub" x="1005" y="354" text-anchor="middle">主题发布 · 6 秒/帧 · 远程查看</text>
+  </svg>
+  <div class="flow-controls">
+    <button class="flow-btn active" type="button" data-mode="local" data-i18n data-en="Local AP direct · 2 s/frame">本地 AP 直连 · 2 秒/帧</button>
+    <button class="flow-btn" type="button" data-mode="cloud" data-i18n data-en="Cloud relay · 6 s/frame">云中转 · 6 秒/帧</button>
+  </div>
+  <div class="flow-ticker"><code id="flowFrame">$HR=76,SPO2=97,TEMP=25.3,STEP=4,SLEEP=0,SDUR=0,UP=3600*XX</code><span class="flow-crc" id="flowCrc">CRC ✓</span></div>
+  <p class="flow-cap" data-i18n data-en="Interactive demo — frame values update live, and the trailing byte is a real CRC-8/SMBUS checksum computed in your browser (the same algorithm as the three ends).">可交互演示：帧数值实时刷新，末尾校验字节由浏览器实时计算 CRC-8/SMBUS（与三端固件/App/小程序同一算法）。</p>
+</div>
+    </div>
+  </section>
+
+  <!-- 演示 -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">Demo</p>
+        <h2 data-i18n data-en="Real device and apps">真机与客户端</h2>
+      </div>
+      <div class="gallery reveal">
+        <figure>
+          <img src="../assets/media/p1-system.jpg" alt="OLED 系统信息页" loading="lazy">
+          <figcaption data-i18n data-en="OLED system-info page (real photo, toggled by KEY3)">OLED 系统信息页实拍（KEY3 键切换）</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/media/p1-measure.jpg" alt="测量过程" loading="lazy">
+          <figcaption data-i18n data-en="Measuring SpO2 — MAX30102 in action">实测过程：手指按压 MAX30102 测量血氧</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/media/p1-app-main.png" alt="App 主界面" loading="lazy">
+          <figcaption data-i18n data-en="Android app: four metric cards + dual-axis live trend (last 60 samples)">Android App：四参数卡片 + 双轴实时趋势（最近 60 采样）</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/media/p1-app-history.png" alt="App 历史页" loading="lazy">
+          <figcaption data-i18n data-en="History page: multi-day trends and alert records">历史页：多日趋势与告警记录</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/media/p1-pcb.jpg" alt="PCB" loading="lazy">
+          <figcaption data-i18n data-en="PCB layout">PCB 布局</figcaption>
+        </figure>
+      </div>
+      <div class="note" data-i18n data-en="TODO: four real-device mini-program screenshots are queued for the next shoot; everything above is real project material, and the frames / CRC-8 in the interactive demo below are computed live in your browser.">待补：微信小程序 4 页真机截图（已列入拍摄清单）；本页图与下方流程动画均为真实项目素材，动画中的帧与 CRC-8 校验由浏览器实时计算。</div>
+    </div>
+  </section>
+
+  <!-- 关键实现 -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">Implementation</p>
+        <h2 data-i18n data-en="Key engineering">关键实现</h2>
+      </div>
+      <div class="impl-grid">
+        <div class="impl reveal">
+          <h3 data-i18n data-en="CRC-8 text frame protocol">CRC-8 文本帧协议</h3>
+          <p data-i18n data-en='One protocol shared by firmware, app and mini program: <code>$HR=76,SPO2=97,TEMP=25.3,STEP=4,SLEEP=0,SDUR=0,UP=3600*XX</code>. CRC-8/SMBUS (poly 0x07, check value 0xF4) with 9 fault-tolerance rules: any key order, missing fields inherit last value, half-frame caching, corrupted CRC drops the whole line. The parser is covered by 37/37 passing Node unit tests.'>固件、App、小程序共用同一协议：<code>$HR=76,SPO2=97,TEMP=25.3,STEP=4,SLEEP=0,SDUR=0,UP=3600*XX</code>。CRC-8/SMBUS（poly 0x07，标准校验向量 0xF4），配 9 条容错规则：键序任意、缺字段沿用上次值、半帧粘包缓存、CRC 不匹配整行丢弃。解析层由 Node 单测覆盖，37/37 全过。</p>
+        </div>
+        <div class="impl reveal" data-delay="0.08s">
+          <h3 data-i18n data-en="PPG signal chain">PPG 信号链路</h3>
+          <p data-i18n data-en="MAX30102 over bit-banged I2C at ~25 kHz. Three peak-detection strategies (peak / valley / Hamming-window smoothing) were compared over four tuning iterations to kill ±18 bpm jitter and dicrotic-wave double counts before settling the final chain.">MAX30102 走软件模拟 I2C（约 25 kHz）。心率提取对比了三种方案（找峰 / 找谷 / 汉明窗平滑），经 4 轮迭代消除 ±18 bpm 波动与重搏波重复计数后定稿。</p>
+        </div>
+        <div class="impl reveal" data-delay="0.16s">
+          <h3 data-i18n data-en="Dual-link transport">双链路传输</h3>
+          <p data-i18n data-en="ESP32-C3 AT firmware: local AP + TCP server for 2 s/frame direct mode; Bemfa cloud topic publish for 6 s/frame remote mode. Event frames (<code>$EVT=1,T=1800*XX</code>) carry uptime, letting clients reconstruct absolute timestamps — backfilled frames never scramble history.">ESP32-C3 AT 固件：本地 AP + TCP 服务端实现 2 秒/帧直连；巴法云主题发布实现 6 秒/帧远程。事件帧（<code>$EVT=1,T=1800*XX</code>）携带开机秒数，客户端可还原绝对时间——断线补发不乱时序。</p>
+        </div>
+        <div class="impl reveal" data-delay="0.24s">
+          <h3 data-i18n data-en="Engineering method">工程方法</h3>
+          <p data-i18n data-en="24 step-by-step verification projects (one peripheral per project, so failures isolate to a single variable); a self-built serial oscilloscope to watch I2C ACKs; and a one-click serial-ISP flash tool (auto baud-rate handshake) open-sourced as stm32-serial-flash.">24 个分步验证工程（每工程只验一个外设，故障定位锁定单变量）；自研串口「软件示波器」直接看 I2C ACK；一键串口 ISP 烧录工具（波特率自适应握手）开源为 stm32-serial-flash。</p>
+        </div>
+      </div>
+      <figure class="reveal">
+        <img src="../assets/media/p1-algo.png" alt="心率三算法对比" style="max-width:720px;display:block;margin:0 auto;">
+        <figcaption data-i18n data-en="Heart-rate algorithm comparison: peak finding vs valley finding vs Hamming window">心率三算法对比：找峰 / 找谷 / 汉明窗</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 指标 -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">Results</p>
+        <h2 data-i18n data-en="Measured results">实测指标</h2>
+      </div>
+      <table class="data reveal">
+        <thead>
+          <tr>
+            <th data-i18n data-en="Metric">指标</th>
+            <th data-i18n data-en="Measured">实测</th>
+            <th data-i18n data-en="Spec">验收要求</th>
+            <th data-i18n data-en="Result">结果</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-i18n data-en="Heart rate MAE (20 trials)">心率 MAE（20 组）</td><td>0.95 bpm</td><td>≤ ±10 bpm</td><td class="ok">PASS</td></tr>
+          <tr><td data-i18n data-en="SpO2 MAE (10 trials)">血氧 MAE（10 组）</td><td>0.40 %</td><td>≤ ±5 %</td><td class="ok">PASS</td></tr>
+          <tr><td data-i18n data-en="Body temperature max error (11 trials)">体温最大偏差（11 组）</td><td>0.5 ℃</td><td>≤ ±1 ℃</td><td class="ok">PASS</td></tr>
+          <tr><td data-i18n data-en="Step counting max error (15 trials)">计步最大偏差（15 组）</td><td>15.0 %</td><td>≤ 15 %</td><td class="ok">PASS</td></tr>
+          <tr><td data-i18n data-en="Firmware footprint (incl. Chinese font)">固件体积（含中文字库）</td><td>≈29 KB / 32 KB</td><td data-i18n data-en="Must fit 32 KB flash">不超 32 KB</td><td class="ok">PASS</td></tr>
+          <tr><td data-i18n data-en="Frame rate">帧率</td><td data-i18n data-en="Local 2 s · cloud 6 s">本地 2 秒/帧 · 云端 6 秒/帧</td><td>—</td><td class="ok">PASS</td></tr>
+        </tbody>
+      </table>
+      <p class="fine" data-i18n data-en="Data source: sensor test record sheets (20 HR / 10 SpO2 / 11 temperature / 15 step trials, Nov 2026) and the three-end integration handover document.">数据出处：传感器测试记录表（心率 20 组 / 血氧 10 组 / 体温 11 组 / 计步 15 组，2026.11）与三端联调交接文档。</p>
+    </div>
+  </section>
+
+  <!-- 踩坑复盘 -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">Debug log</p>
+        <h2 data-i18n data-en="Hard bugs, honest retros">踩坑与复盘</h2>
+      </div>
+      <div class="dbg reveal">
+        <strong data-i18n data-en="I2C bus kept failing">I2C 总线反复初始化失败</strong>
+        <span class="step"><b class="t1" data-i18n data-en="Symptom">现象</b>：<span data-i18n data-en="sensors re-init in loops, ACK missing.">传感器循环重启、ACK 缺失。</span></span>
+        <span class="step"><b class="t2" data-i18n data-en="Root cause">根因</b>：<span data-i18n data-en="breadboard parasitic capacitance slows the rising edge.">面包板分布电容拖慢上升沿。</span></span>
+        <span class="step"><b class="t3" data-i18n data-en="Fix">修复</b>：<span data-i18n data-en="switch to bit-banged I2C at 25 kHz + 4.7 kΩ external pull-ups; verified by watching ACKs with my own serial sampling tool.">软件模拟 I2C 降速至 25kHz + 4.7kΩ 外部上拉；用自写串口采样工具看 ACK 确认。</span></span>
+      </div>
+      <div class="dbg reveal">
+        <strong data-i18n data-en="Mini program could not connect">小程序连不上设备</strong>
+        <span class="step"><b class="t2" data-i18n data-en="Root cause">根因</b>：<span data-i18n data-en="WeChat forbids TCP ports 8000–8100.">微信平台禁用 8000–8100 端口段。</span></span>
+        <span class="step"><b class="t3" data-i18n data-en="Fix">修复</b>：<span data-i18n data-en="moved the ESP32 TCP server to port 8266 (AT+CIPSERVER) and synced the constant on both clients in one pass.">ESP32 TCP 服务端口 8080 → 8266（AT+CIPSERVER），两端常量一次同步。</span></span>
+      </div>
+      <div class="dbg reveal">
+        <strong data-i18n data-en="Cloud link unstable">云端链路不稳</strong>
+        <span class="step"><b class="t2" data-i18n data-en="Root cause">根因</b>：<span data-i18n data-en="multi-connection AT sequence (CIPMUX=1) failed to publish in this environment.">多连接 AT 序列（CIPMUX=1）在该环境下发布失败。</span></span>
+        <span class="step"><b class="t3" data-i18n data-en="Fix">修复</b>：<span data-i18n data-en="switched the whole cloud path to the single-connection sequence (CIPMUX=0) proven by a standalone test project.">云端链路整体切换单连接序列（CIPMUX=0），与独立测试工程验证过的写法一致。</span></span>
+      </div>
+      <div class="dbg reveal">
+        <strong data-i18n data-en="AP setup rejected">热点配置被拒</strong>
+        <span class="step"><b class="t2" data-i18n data-en="Root cause">根因</b>：<span data-i18n data-en="leftover ESP32 state rejected CWMODE without retry.">ESP32 残留状态拒绝 CWMODE 且无重试。</span></span>
+        <span class="step"><b class="t3" data-i18n data-en="Fix">修复</b>：<span data-i18n data-en="added retry and stale-state cleanup; hotspot and cloud now both come up reliably.">加重试与残留状态清理；热点与云端双链路稳定建立。</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 仓库 -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">Source</p>
+        <h2 data-i18n data-en="Open source">开源仓库</h2>
+      </div>
+      <div class="repos reveal">
+        <a class="repo-card" href="https://github.com/Beiyiovo/stm32-health-monitor" target="_blank" rel="noopener">
+          <span class="name">stm32-health-monitor</span>
+          <p data-i18n data-en="Firmware (24 staged builds) and hardware docs for this project.">本项目固件（24 个分步工程）与硬件文档。</p>
+        </a>
+        <a class="repo-card" href="https://github.com/Beiyiovo/health-helper-miniprogram" target="_blank" rel="noopener">
+          <span class="name">health-helper-miniprogram</span>
+          <p data-i18n data-en="WeChat mini program + protocol parser + 37 unit tests.">微信小程序 + 协议解析层 + 37 个单元测试。</p>
+        </a>
+        <a class="repo-card" href="https://github.com/Beiyiovo/stm32-serial-flash" target="_blank" rel="noopener">
+          <span class="name">stm32-serial-flash</span>
+          <p data-i18n data-en="One-click serial ISP flash tool with auto baud-rate handshake.">一键串口 ISP 烧录工具（波特率自适应握手）。</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="p-nav container">
+    <a href="smart-fridge.html"><span class="dir">← <span data-i18n data-en="Previous">上一个</span></span><span data-i18n data-en="SmartFridge App">智能冰箱 App</span></a>
+    <a class="next" href="infusion-monitor.html"><span class="dir"><span data-i18n data-en="Next">下一个</span> →</span><span data-i18n data-en="Infusion Status Monitor">输液状态无线监测装置</span></a>
+  </nav>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span class="logo-mark">L</span>
+      <strong>Zhenxiong Lai · 赖振雄</strong>
+    </div>
+    <p data-i18n data-en="Embedded / IoT full-stack portfolio. Every number on this site is traceable to real project records.">嵌入式 / IoT 全栈作品集。本站所有数据均可溯源至真实项目记录。</p>
+    <div class="footer-links">
+      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub</a>
+      <a href="../index.html" data-i18n data-en="Home">首页</a>
+    </div>
+    <p class="fine">© <span class="year">2026</span> 赖振雄 · Built with plain HTML/CSS/JS · <span data-i18n data-en="Deployed on GitHub Pages">托管于 GitHub Pages</span></p>
+  </div>
+</footer>
+
+<script src="../assets/vendor/gsap/gsap.min.js?v=2"></script>
+<script src="../assets/vendor/gsap/ScrollTrigger.min.js?v=2"></script>
+<script src="../assets/js/app.js?v=2"></script>
+<script src="../assets/js/flow-anim.js?v=2"></script>
+</body>
+</html>

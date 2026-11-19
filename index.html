@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>赖振雄 · 嵌入式 / IoT 全栈作品集</title>
+<meta name="description" content="赖振雄的个人作品集：四参数健康监测终端、IoT+LLM 开源平台、输液监测装置、智能冰箱 App。从电路与固件到云端与 App，所有数据可溯源。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Zhenxiong Lai · 赖振雄">
+<meta property="og:title" content="赖振雄 · 嵌入式 / IoT 全栈作品集">
+<meta property="og:description" content="真实项目 · 可核验数据 · STM32 / ESP32 / Spring Boot / 小程序。四参数健康监测终端、IoT+LLM 平台、输液监测装置、智能冰箱 App。">
+<meta property="og:image" content="https://beiyiovo.github.io/assets/media/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/main.css?v=2">
+<script>try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="index.html"><span class="logo-mark">L</span><span class="logo-text" data-i18n data-en="Zhenxiong Lai">赖振雄</span></a>
+    <nav class="nav-links" id="menu">
+      <a href="index.html" class="active" data-i18n data-en="Home">首页</a>
+      <a href="#projects" data-i18n data-en="Projects">项目</a>
+      <a href="about.html" data-i18n data-en="About">关于</a>
+      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub</a>
+      <button class="lang-switch" type="button" aria-label="Switch language">EN</button>
+    </nav>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
+    <div class="container hero-grid">
+      <div class="hero-inner">
+      <p class="kicker reveal">Portfolio · Embedded / IoT · Class of 2027</p>
+      <h1 class="reveal" data-delay="0.05s" data-i18n data-en='Hi, I am <span class="grad-text">Zhenxiong Lai</span>.<br>I build IoT systems that actually run.'>你好，我是<span class="grad-text">赖振雄</span>。<br>我做真正能跑起来的 IoT 系统。</h1>
+      <p class="lead reveal" data-delay="0.12s" data-i18n data-en="IoT Engineering, Guilin University of Information Technology (2023 – 2027). From schematics, PCB and firmware to cloud pipelines and apps — I turn ideas into working devices, and back every claim with measurable, traceable data.">桂林信息科技学院 · 物联网工程（2023 – 2027）。从电路板、固件，到云端链路与双端 App——我把想法做成真正能跑的设备，并且让每一个数字都可核验、可溯源。</p>
+      <div class="cta-row reveal" data-delay="0.18s">
+        <a class="btn primary" href="#projects" data-i18n data-en="Browse projects">浏览项目</a>
+        <a class="btn ghost" href="about.html" data-i18n data-en="About me">关于我</a>
+        <a class="btn ghost" href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+
+      <div class="stats reveal" data-delay="0.24s">
+        <div class="stat">
+          <div class="num"><span data-count="37">37</span><small>/37</small></div>
+          <div class="lbl" data-i18n data-en="Protocol unit tests passed (CRC-8 frame parser)">协议单元测试全过（CRC-8 帧解析）</div>
+        </div>
+        <div class="stat">
+          <div class="num"><span data-count="0.95" data-dec="2">0.95</span><small> bpm</small></div>
+          <div class="lbl" data-i18n data-en="Heart-rate MAE in real-device tests (20 trials)">心率实测 MAE（真机 20 组）</div>
+        </div>
+        <div class="stat">
+          <div class="num">±<span data-count="0.1" data-dec="1">0.1</span><small> g</small></div>
+          <div class="lbl" data-i18n data-en="Weighing re-check max deviation (spec: ±2 g)">称重复核最大偏差（指标 ±2 g）</div>
+        </div>
+        <div class="stat">
+          <div class="num"><span data-count="69">69</span><small>%</small></div>
+          <div class="lbl" data-i18n data-en="Core line coverage with 45 JUnit tests">核心业务行覆盖率（45 个单测）</div>
+        </div>
+      </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hv-photo"><img src="assets/media/p1-device.jpg" alt="整机实物照片"></div>
+        <div class="hv-phone"><img src="assets/media/p1-app-main.png" alt="Android App 实机截图"></div>
+        <div class="hv-chip" data-i18n data-en="Real-device link: local 2 s/frame · cloud 6 s/frame">实机联动：本地 2 秒/帧 · 云端 6 秒/帧</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 项目 -->
+  <section class="sec" id="projects">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">Projects</p>
+        <h2 data-i18n data-en="Selected work">精选项目</h2>
+        <p class="sub" data-i18n data-en="Four projects across hardware, firmware, cloud and apps. Every number on this site is traceable to real project records.">覆盖硬件、固件、云端与 App 端的四个项目。本站所有数据均可溯源至真实项目记录。</p>
+      </div>
+      <div class="cards">
+        <a class="pcard reveal" href="projects/health-assistant.html">
+          <img class="pcard-cover" src="assets/media/p1-device.jpg" alt="整机实物照片" loading="lazy">
+          <div class="pcard-body">
+            <div class="tags"><span class="tag">STM32F103</span><span class="tag">ESP32-C3</span><span class="tag">Android</span><span class="tag">微信小程序</span></div>
+            <h3 data-i18n data-en="Four-parameter Health Monitor + Mini Program">四参数生理监测终端 + 微信小程序</h3>
+            <p data-i18n data-en="A full three-end IoT loop: custom PCB, firmware, dual-link uplink (local AP + cloud relay), and two hand-written clients with live curves and alerts.">三端 IoT 闭环：自制 PCB → 固件 → 本地直连 + 云中转双链路 → App 与小程序实时曲线与告警。</p>
+            <span class="more" data-i18n data-en="Read the breakdown">查看完整拆解</span>
+          </div>
+        </a>
+        <a class="pcard reveal" data-delay="0.08s" href="projects/iot-llm-platform.html">
+          <img class="pcard-cover" src="assets/media/iot-dashboard.jpg" alt="IoT 平台仪表盘" loading="lazy">
+          <div class="pcard-body">
+            <div class="tags"><span class="tag">Java 21</span><span class="tag">Spring Boot 3</span><span class="tag">MQTT</span><span class="tag">LLM</span></div>
+            <h3 data-i18n data-en="IoT Access and AI Diagnosis Platform">IoT 设备接入与智能诊断平台</h3>
+            <p data-i18n data-en="Open-source platform: MQTT broker with per-device keys, alert debounce and ticket state machine, LLM root-cause diagnosis. 45 tests, 69% coverage.">开源平台：MQTT 一机一密接入、告警防抖与工单状态机、通义千问根因诊断；45 单测、69% 行覆盖。</p>
+            <span class="more" data-i18n data-en="Read the breakdown">查看完整拆解</span>
+          </div>
+        </a>
+        <a class="pcard reveal" data-delay="0.16s" href="projects/infusion-monitor.html">
+          <img class="pcard-cover" src="assets/media/p2-schematic.jpg" alt="输液监测装置接线原理图" loading="lazy">
+          <div class="pcard-body">
+            <div class="tags"><span class="tag">STM32</span><span class="tag">HX711 称重</span><span class="tag">红外滴速</span><span class="tag">Android</span></div>
+            <h3 data-i18n data-en="Infusion Status Monitor (commissioned)">输液状态无线监测装置（受托开发）</h3>
+            <p data-i18n data-en="Temperature, remaining volume and drop-rate monitoring; weighing re-checked to ±0.1 g against a ±2 g spec; two-level audible and visual alerts.">温度·剩余药量·滴速三参数监测，称重复核 ±0.1 g（指标 ±2 g），黄/红两级声光报警。</p>
+            <span class="more" data-i18n data-en="Read the breakdown">查看完整拆解</span>
+          </div>
+        </a>
+        <a class="pcard reveal" data-delay="0.24s" href="projects/smart-fridge.html">
+          <img class="pcard-cover" src="assets/media/sf-cover.jpg" alt="SmartFridge App" loading="lazy">
+          <div class="pcard-body">
+            <div class="tags"><span class="tag">Android</span><span class="tag">Java</span><span class="tag">VibeCoding</span></div>
+            <h3 data-i18n data-en="SmartFridge — Food Management App">SmartFridge 智能冰箱 App</h3>
+            <p data-i18n data-en="Food-inventory Android app built acceptance-first, with a 90-second AI-pairing development recording.">食材管理 Android 应用，验收文档驱动开发，附 90 秒 AI 结对开发实录视频。</p>
+            <span class="more" data-i18n data-en="Read the breakdown">查看完整拆解</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 技能 -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">Skills</p>
+        <h2 data-i18n data-en="Toolbox">技术栈</h2>
+      </div>
+      <div class="chips reveal">
+        <span class="chip">C</span><span class="chip">Python</span><span class="chip">Java 21</span><span class="chip">SQL</span>
+        <span class="chip">STM32F103 · Cortex-M3</span><span class="chip">ESP32-C3 · RISC-V</span>
+        <span class="chip" data-i18n data-en="Bit-banged I2C">软件模拟 I2C</span><span class="chip">UART / 1-Wire</span>
+        <span class="chip">Keil MDK</span><span class="chip" data-i18n data-en="EasyEDA (schematic / PCB)">立创 EDA</span>
+        <span class="chip">Spring Boot 3</span><span class="chip">MySQL</span><span class="chip">MQTT</span>
+        <span class="chip">Android (Java)</span><span class="chip" data-i18n data-en="WeChat Mini Program">微信小程序</span>
+        <span class="chip">SQLite</span><span class="chip">Git / GitHub Actions</span><span class="chip">Wireshark</span>
+        <span class="chip" data-i18n data-en="Embedded Linux (Buildroot)">嵌入式 Linux（Buildroot）</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 时间线 -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">Timeline</p>
+        <h2 data-i18n data-en="Milestones">里程碑</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <span class="tl-date">2023.09</span>
+          <h3 data-i18n data-en="Enrolled — IoT Engineering, GUIT">入学 · 桂林信息科技学院 · 物联网工程</h3>
+        </div>
+        <div class="tl-item reveal">
+          <span class="tl-date">2024.01 – 2024.11</span>
+          <h3 data-i18n data-en="Low-power sensor nodes and production-line test scripts">低功耗传感节点与产线测试脚本</h3>
+          <p data-i18n data-en="Python/PySerial automated test scripts; MQTT packet verification with Wireshark.">Python/PySerial 自动化测试脚本；Wireshark 核对 MQTT 上行报文。</p>
+        </div>
+        <div class="tl-item reveal">
+          <span class="tl-date">2025.06</span>
+          <h3 data-i18n data-en="CET-4 · 453">CET-4 · 453 分</h3>
+        </div>
+        <div class="tl-item reveal">
+          <span class="tl-date">2025.06 – 2026.02</span>
+          <h3 data-i18n data-en="Multi-protocol IoT edge gateway (course practicum)">多协议物联网边缘网关（课程实训）</h3>
+          <p data-i18n data-en="ESP8266 / ZigBee CC2530 access and power design on embedded Linux.">ESP8266 / ZigBee CC2530 接入与供电设计（嵌入式 Linux）。</p>
+        </div>
+        <div class="tl-item reveal">
+          <span class="tl-date">2026.07</span>
+          <h3 data-i18n data-en="Java developer intern — Dihua Computer (4 weeks)">江西迪华 · Java 开发实习（4 周）</h3>
+          <p data-i18n data-en="Delivered an OA leave-management system solo (Spring Boot 3 + MyBatis + MySQL); fixed 5 defect classes; 15 test cases.">独立交付 OA 请假系统（Spring Boot 3 + MyBatis + MySQL）；修 5 类缺陷；15 条用例。</p>
+        </div>
+        <div class="tl-item reveal">
+          <span class="tl-date">2026.09 – 2026.11</span>
+          <h3 data-i18n data-en="Graduation project — Four-parameter health monitor">毕业设计 · 四参数生理监测终端</h3>
+          <p data-i18n data-en="Hardware, firmware, cloud link, Android app and WeChat mini program — all built and verified on real devices.">硬件 → 固件 → 云端 → Android + 小程序，全部实机跑通并实测验证。</p>
+        </div>
+        <div class="tl-item reveal">
+          <span class="tl-date">2026.10</span>
+          <h3 data-i18n data-en="Commissioned build — Infusion status monitor">受托开发 · 输液状态无线监测装置</h3>
+        </div>
+        <div class="tl-item reveal">
+          <span class="tl-date">2026.11</span>
+          <h3 data-i18n data-en="Open-sourced iot-llm-platform; mini program full-stack; ACA (Alibaba Cloud LLM Engineer)">iot-llm-platform 开源 · 小程序全栈 · 阿里云大模型工程师 ACA</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span class="logo-mark">L</span>
+      <strong>Zhenxiong Lai · 赖振雄</strong>
+    </div>
+    <p data-i18n data-en="Embedded / IoT full-stack portfolio. Every number on this site is traceable to real project records.">嵌入式 / IoT 全栈作品集。本站所有数据均可溯源至真实项目记录。</p>
+    <div class="footer-links">
+      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub</a>
+      <a href="about.html" data-i18n data-en="About me">关于我</a>
+    </div>
+    <p class="fine">© <span class="year">2026</span> 赖振雄 · Built with plain HTML/CSS/JS · <span data-i18n data-en="Deployed on GitHub Pages">托管于 GitHub Pages</span></p>
+  </div>
+</footer>
+
+<script src="assets/vendor/gsap/gsap.min.js?v=2"></script>
+<script src="assets/vendor/gsap/ScrollTrigger.min.js?v=2"></script>
+<script src="assets/js/app.js?v=2"></script>
+</body>
+</html>
