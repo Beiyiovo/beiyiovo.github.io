@@ -2427,3 +2427,25 @@ body.vm-open { overflow: hidden; }
   gap: 30px 26px;
   margin-top: 34px;
 }
+
+/* 播放器适配竖屏/横屏：让视频按自身比例显示，不硬套 16:9 */
+.vm-frame {
+  display: flex;
+  justify-content: center;
+  background: #06090f;
+}
+.vm-frame video {
+  width: auto;
+  max-width: 100%;
+  max-height: 72vh;
+  aspect-ratio: auto;
+  background: #000;
+}
+
+/* 播放器：默认 16:9，竖屏可用 data-ratio 覆盖 */
+.vm-frame video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 72vh;
+  object-fit: contain;
+}

@@ -17,7 +17,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#05070c">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-sc-vf.woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/main.css?v=9">
+<link rel="stylesheet" href="assets/css/main.css?v=10">
 <script>document.documentElement.classList.add('js');try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
 </head>
 <body>
@@ -120,14 +120,15 @@
 
   <!--
     ┌─ 新片上线怎么加 ─────────────────────────────────────────────┐
-    │ 1. 把 mp4 放进 assets/media/（建议 720p、H.264、单支 ≤10 MB）  │
+    │ 1. 把 mp4 放进 assets/media/（建议 720p、H.264、单支 ≤20 MB）  │
     │ 2. 截一张 16:9 封面（1600×900 左右），命名同视频               │
     │ 3. 复制下面这段，改成自己的文件名 / 时长 / 标题 / 描述         │
+    │    竖屏视频把 data-ratio 改成 "9/16"                          │
     │ 4. 把这段放进一个新的 <div class="vwall"> … </div> 里          │
     └──────────────────────────────────────────────────────────────┘
 
   <div class="vwall">
-    <article class="vcard" data-src="assets/media/你的视频.mp4" data-dur="00:45">
+    <article class="vcard" data-src="assets/media/你的视频.mp4" data-dur="00:45" data-ratio="16/9">
       <button class="vcard-hit" type="button" aria-label="播放：视频标题">
         <img src="assets/media/你的封面.jpg" alt="视频封面" loading="lazy">
         <span class="vplay" aria-hidden="true"><i></i></span>
@@ -208,9 +209,9 @@
   </div>
 </footer>
 
-<script src="assets/vendor/gsap/gsap.min.js?v=9"></script>
-<script src="assets/vendor/gsap/ScrollTrigger.min.js?v=9"></script>
-<script src="assets/js/app.js?v=9"></script>
-<script src="assets/js/shorts.js?v=9"></script>
+<script src="assets/vendor/gsap/gsap.min.js?v=10"></script>
+<script src="assets/vendor/gsap/ScrollTrigger.min.js?v=10"></script>
+<script src="assets/js/app.js?v=10"></script>
+<script src="assets/js/shorts.js?v=10"></script>
 </body>
 </html>

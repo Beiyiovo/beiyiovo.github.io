@@ -29,6 +29,8 @@
     modal.setAttribute('aria-hidden', 'false');
     d.body.classList.add('vm-open');
 
+    var ratio = card.getAttribute('data-ratio');
+    video.style.aspectRatio = ratio || '16 / 9';
     video.src = src;
     var p2 = video.play();
     if (p2 && p2.catch) p2.catch(function () { /* 用户可手动点播放 */ });
