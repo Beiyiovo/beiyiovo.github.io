@@ -4,18 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>四参数生理监测终端 + 微信小程序 · 赖振雄的作品集</title>
-<meta name="description" content="STM32F103C8T6 + ESP32-C3 的多参数健康监测设备：自制 PCB、CRC-8 帧协议（37/37 单测）、本地直连与云中转双链路、Android 与微信小程序双端。心率实测 MAE 0.95 bpm。">
+<meta name="description" content="STM32F103C8T6 + ESP32-C3 的多参数生理监测设备：自制 PCB、CRC-8 帧协议（37/37 单测）、本地直连与云中转双链路、Android 与微信小程序双端。心率实测 MAE 0.95 bpm。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zhenxiong Lai · 赖振雄">
 <meta property="og:title" content="四参数生理监测终端 + 微信小程序 · 赖振雄的作品集">
 <meta property="og:description" content="自制 PCB、CRC-8 帧协议（37/37 单测）、本地直连与云中转双链路、Android 与微信小程序双端。心率实测 MAE 0.95 bpm。">
 <meta property="og:image" content="https://beiyiovo.github.io/assets/media/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://beiyiovo.github.io/assets/media/og.jpg">
 <link rel="canonical" href="https://beiyiovo.github.io/projects/health-assistant.html">
+<meta property="og:url" content="https://beiyiovo.github.io/projects/health-assistant.html">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#070b12">
 <link rel="preload" as="image" href="../assets/media/p1-device.jpg">
-<link rel="stylesheet" href="../assets/css/main.css?v=4">
+<link rel="stylesheet" href="../assets/css/main.css?v=5">
 <script>document.documentElement.classList.add('js');try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
 </head>
 <body>
@@ -83,10 +85,14 @@
         <h2 data-i18n data-en="System architecture">系统架构</h2>
       </div>
       <figure class="reveal">
-        <img src="../assets/media/p1-block.png" alt="系统总体框图">
+        <img src="../assets/media/p1-block.png" alt="系统总体框图" loading="lazy">
         <figcaption data-i18n data-en="System block diagram: sensors → STM32 (sampling + algorithms) → ESP32-C3 → dual links → Android / mini program / cloud">系统总体框图：传感器 → STM32（采集与算法）→ ESP32-C3 → 双链路 → Android / 小程序 / 云端</figcaption>
       </figure>
-      <p class="reveal" data-i18n data-en="Data path: the STM32 samples all sensors, applies the PPG algorithm, and emits a CRC-8-checked text frame. The ESP32-C3 either serves it over its own AP as a TCP server (192.168.4.1:8266) or publishes it to a Bemfa cloud topic. Clients parse the same protocol and render live curves; event frames carry absolute timestamps computed from device uptime, so backfilled frames after a disconnect never reorder history.">数据链路：STM32 采集全部传感器、运行 PPG 算法，输出带 CRC-8 校验的文本帧；ESP32-C3 既可作为 AP 内的 TCP 服务端（192.168.4.1:8266）直连手机，也可把数据发布到巴法云主题。客户端以同一套协议解析并渲染实时曲线；事件帧用「手机时间 −（开机秒数 − 事件秒数）」换算绝对时间，断线补发的数据也不会打乱历史时序。</p>
+      <figure>
+        <img src="../assets/media/p1-flow.png" alt="主流程图" loading="lazy">
+        <figcaption data-i18n data-en="Main flow: init → sample → algorithm → upload → alert">主流程图：初始化 → 采样 → 算法 → 上报 → 报警</figcaption>
+      </figure>
+      <p class="reveal" data-i18n data-en="Data path: the STM32 samples all sensors, applies the PPG algorithm, and emits a CRC-8-checked text frame. The ESP32-C3 either serves it over its own AP as a TCP server (192.168.4.1:8266) or publishes it to a Bemfa cloud topic. Clients parse the same protocol and render live curves; event frames carry device uptime, from which clients compute absolute timestamps, so backfilled frames after a disconnect never reorder history.">数据链路：STM32 采集全部传感器、运行 PPG 算法，输出带 CRC-8 校验的文本帧；ESP32-C3 既可作为 AP 内的 TCP 服务端（192.168.4.1:8266）直连手机，也可把数据发布到巴法云主题。客户端以同一套协议解析并渲染实时曲线；事件帧用「手机时间 −（开机秒数 − 事件秒数）」换算绝对时间，断线补发的数据也不会打乱历史时序。</p>
 
 <div class="flow mode-local" id="flowAnim">
   <svg viewBox="0 0 1160 420" role="img" aria-label="三端数据链路流程动画">
@@ -111,34 +117,34 @@
     <circle class="dot only-cloud" r="6" fill="url(#dotGrad)"><animateMotion dur="6s" repeatCount="indefinite" path="M770,200 C830,228 830,335 880,335"/></circle>
     <rect class="n-rect" x="30" y="48" width="180" height="58" rx="12"/>
     <text class="n-title" x="120" y="73" text-anchor="middle">MAX30102</text>
-    <text class="n-sub" x="120" y="92" text-anchor="middle">心率血氧 · 软件 I2C</text>
+    <text class="n-sub" x="120" y="92" text-anchor="middle" data-i18n data-en="HR/SpO2 · bit-banged I2C">心率血氧 · 软件 I2C</text>
     <rect class="n-rect" x="30" y="126" width="180" height="58" rx="12"/>
     <text class="n-title" x="120" y="151" text-anchor="middle">DS18B20</text>
-    <text class="n-sub" x="120" y="170" text-anchor="middle">体温 · 单总线</text>
+    <text class="n-sub" x="120" y="170" text-anchor="middle" data-i18n data-en="Temp · 1-Wire">体温 · 单总线</text>
     <rect class="n-rect" x="30" y="204" width="180" height="58" rx="12"/>
     <text class="n-title" x="120" y="229" text-anchor="middle">MPU6050</text>
-    <text class="n-sub" x="120" y="248" text-anchor="middle">计步 · 体动</text>
+    <text class="n-sub" x="120" y="248" text-anchor="middle" data-i18n data-en="Steps · motion">计步 · 体动</text>
     <rect class="n-rect" x="300" y="110" width="200" height="120" rx="14"/>
     <text class="n-title" x="400" y="148" text-anchor="middle">STM32F103C8T6</text>
-    <text class="n-sub" x="400" y="170" text-anchor="middle">采集 · PPG 算法</text>
-    <text class="n-sub" x="400" y="188" text-anchor="middle">OLED 中文 UI · 阈值报警</text>
+    <text class="n-sub" x="400" y="170" text-anchor="middle" data-i18n data-en="Sampling · PPG">采集 · PPG 算法</text>
+    <text class="n-sub" x="400" y="188" text-anchor="middle" data-i18n data-en="OLED UI · alerts">OLED 中文 UI · 阈值报警</text>
     <rect class="n-rect" x="590" y="110" width="180" height="120" rx="14"/>
     <text class="n-title" x="680" y="148" text-anchor="middle">ESP32-C3</text>
-    <text class="n-sub" x="680" y="170" text-anchor="middle">AT 固件 · 双链路</text>
-    <text class="n-sub" x="680" y="188" text-anchor="middle">AP :8266 / 云发布</text>
+    <text class="n-sub" x="680" y="170" text-anchor="middle" data-i18n data-en="AT firmware · dual-link">AT 固件 · 双链路</text>
+    <text class="n-sub" x="680" y="188" text-anchor="middle" data-i18n data-en="AP :8266 / cloud publish">AP :8266 / 云发布</text>
     <rect class="n-rect" x="880" y="30" width="250" height="80" rx="14"/>
     <text class="n-title" x="1005" y="62" text-anchor="middle">Android App</text>
-    <text class="n-sub" x="1005" y="84" text-anchor="middle">本地 AP 直连 · TCP :8266 · 2 秒/帧</text>
+    <text class="n-sub" x="1005" y="84" text-anchor="middle" data-i18n data-en="Local AP · TCP :8266 · 2 s/frame">本地 AP 直连 · TCP :8266 · 2 秒/帧</text>
     <rect class="n-rect" x="880" y="300" width="250" height="80" rx="14"/>
-    <text class="n-title" x="1005" y="332" text-anchor="middle">巴法云 → 小程序</text>
-    <text class="n-sub" x="1005" y="354" text-anchor="middle">主题发布 · 6 秒/帧 · 远程查看</text>
+    <text class="n-title" x="1005" y="332" text-anchor="middle" data-i18n data-en="Bemfa cloud → mini program">巴法云 → 小程序</text>
+    <text class="n-sub" x="1005" y="354" text-anchor="middle" data-i18n data-en="Topic publish · 6 s/frame · remote">主题发布 · 6 秒/帧 · 远程查看</text>
   </svg>
   <div class="flow-controls">
     <button class="flow-btn active" type="button" data-mode="local" data-i18n data-en="Local AP direct · 2 s/frame">本地 AP 直连 · 2 秒/帧</button>
     <button class="flow-btn" type="button" data-mode="cloud" data-i18n data-en="Cloud relay · 6 s/frame">云中转 · 6 秒/帧</button>
   </div>
   <div class="flow-ticker"><code id="flowFrame">$HR=76,SPO2=97,TEMP=25.3,STEP=4,SLEEP=0,SDUR=0,UP=3600*XX</code><span class="flow-crc" id="flowCrc">CRC ✓</span></div>
-  <p class="flow-cap" data-i18n data-en="Interactive demo — frame values update live, and the trailing byte is a real CRC-8/SMBUS checksum computed in your browser (the same algorithm as the three ends).">可交互演示：帧数值实时刷新，末尾校验字节由浏览器实时计算 CRC-8/SMBUS（与三端固件/App/小程序同一算法）。</p>
+  <p class="flow-cap" data-i18n data-en="Interactive demo — frame values update live, and the trailing byte is a real CRC-8/SMBUS checksum computed in your browser (the same algorithm as the firmware, app and mini program).">可交互演示：帧数值实时刷新，末尾校验字节由浏览器实时计算 CRC-8/SMBUS（与三端固件/App/小程序同一算法）。</p>
 </div>
     </div>
   </section>
@@ -205,7 +211,7 @@
         </div>
         <div class="impl reveal" data-delay="0.08s">
           <h3 data-i18n data-en="PPG signal chain">PPG 信号链路</h3>
-          <p data-i18n data-en="MAX30102 over bit-banged I2C at ~25 kHz. Three peak-detection strategies (peak / valley / Hamming-window smoothing) were compared over four tuning iterations to kill ±18 bpm jitter and dicrotic-wave double counts before settling the final chain.">MAX30102 走软件模拟 I2C（约 25 kHz）。心率提取对比了三种方案（找峰 / 找谷 / 汉明窗平滑），经 4 轮迭代消除 ±18 bpm 波动与重搏波重复计数后定稿。</p>
+          <p data-i18n data-en="MAX30102 over bit-banged I2C at ~25 kHz. Three peak-detection strategies (peak / valley / Hamming-window smoothing) were compared over four tuning iterations to kill ±18 bpm jitter and dicrotic-wave double counts before settling on the final chain.">MAX30102 走软件模拟 I2C（约 25 kHz）。心率提取对比了三种方案（找峰 / 找谷 / 汉明窗平滑），经 4 轮迭代消除 ±18 bpm 波动与重搏波重复计数后定稿。</p>
         </div>
         <div class="impl reveal" data-delay="0.16s">
           <h3 data-i18n data-en="Dual-link transport">双链路传输</h3>
@@ -217,7 +223,7 @@
         </div>
       </div>
       <figure class="reveal">
-        <img src="../assets/media/p1-algo.png" alt="心率三算法对比" style="max-width:720px;display:block;margin:0 auto;">
+        <img loading="lazy" src="../assets/media/p1-algo.png" alt="心率三算法对比" style="max-width:720px;display:block;margin:0 auto;">
         <figcaption data-i18n data-en="Heart-rate algorithm comparison: peak finding vs valley finding vs Hamming window">心率三算法对比：找峰 / 找谷 / 汉明窗</figcaption>
       </figure>
     </div>
@@ -245,10 +251,10 @@
           <tr><td data-i18n data-en="Body temperature max error (11 trials)">体温最大偏差（11 组）</td><td>0.5 ℃</td><td>≤ ±1 ℃</td><td class="ok">PASS</td></tr>
           <tr><td data-i18n data-en="Step counting max error (15 trials)">计步最大偏差（15 组）</td><td>15.0 %</td><td>≤ 15 %</td><td class="ok">PASS</td></tr>
           <tr><td data-i18n data-en="Firmware footprint (incl. Chinese font)">固件体积（含中文字库）</td><td>≈29 KB / 32 KB</td><td data-i18n data-en="Must fit 32 KB flash">不超 32 KB</td><td class="ok">PASS</td></tr>
-          <tr><td data-i18n data-en="Frame rate">帧率</td><td data-i18n data-en="Local 2 s · cloud 6 s">本地 2 秒/帧 · 云端 6 秒/帧</td><td>—</td><td class="ok">PASS</td></tr>
+          <tr><td data-i18n data-en="Frame rate">帧率</td><td data-i18n data-en="Local 2 s/frame · cloud 6 s/frame">本地 2 秒/帧 · 云端 6 秒/帧</td><td>—</td><td class="ok">PASS</td></tr>
         </tbody>
       </table>
-      <p class="fine" data-i18n data-en="Data source: sensor test record sheets (20 HR / 10 SpO2 / 11 temperature / 15 step trials, Nov 2026) and the three-end integration handover document.">数据出处：传感器测试记录表（心率 20 组 / 血氧 10 组 / 体温 11 组 / 计步 15 组，2026.11）与三端联调交接文档。</p>
+      <p class="fine" data-i18n data-en="Data source: sensor test record sheets (20 HR / 10 SpO2 / 11 temperature / 15 step trials, Nov 2026) and the integration handover document (firmware / app / mini program).">数据出处：传感器测试记录表（心率 20 组 / 血氧 10 组 / 体温 11 组 / 计步 15 组，2026.11）与三端联调交接文档。</p>
     </div>
   </section>
 
@@ -263,7 +269,7 @@
         <strong data-i18n data-en="I2C bus kept failing">I2C 总线反复初始化失败</strong>
         <span class="step"><b class="t1" data-i18n data-en="Symptom">现象</b>：<span data-i18n data-en="sensors re-init in loops, ACK missing.">传感器循环重启、ACK 缺失。</span></span>
         <span class="step"><b class="t2" data-i18n data-en="Root cause">根因</b>：<span data-i18n data-en="breadboard parasitic capacitance slows the rising edge.">面包板分布电容拖慢上升沿。</span></span>
-        <span class="step"><b class="t3" data-i18n data-en="Fix">修复</b>：<span data-i18n data-en="switch to bit-banged I2C at 25 kHz + 4.7 kΩ external pull-ups; verified by watching ACKs with my own serial sampling tool.">软件模拟 I2C 降速至 25kHz + 4.7kΩ 外部上拉；用自写串口采样工具看 ACK 确认。</span></span>
+        <span class="step"><b class="t3" data-i18n data-en="Fix">修复</b>：<span data-i18n data-en="switch to bit-banged I2C at 25 kHz + 4.7 kΩ external pull-ups; verified by watching ACKs with my own serial sampling tool.">软件模拟 I2C 降速至 25 kHz + 4.7 kΩ 外部上拉；用自写串口采样工具看 ACK 确认。</span></span>
       </div>
       <div class="dbg reveal">
         <strong data-i18n data-en="Mini program could not connect">小程序连不上设备</strong>
@@ -328,9 +334,9 @@
   </div>
 </footer>
 
-<script src="../assets/vendor/gsap/gsap.min.js?v=4"></script>
-<script src="../assets/vendor/gsap/ScrollTrigger.min.js?v=4"></script>
-<script src="../assets/js/app.js?v=4"></script>
-<script src="../assets/js/flow-anim.js?v=4"></script>
+<script src="../assets/vendor/gsap/gsap.min.js?v=5"></script>
+<script src="../assets/vendor/gsap/ScrollTrigger.min.js?v=5"></script>
+<script src="../assets/js/app.js?v=5"></script>
+<script src="../assets/js/flow-anim.js?v=5"></script>
 </body>
 </html>

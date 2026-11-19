@@ -4,18 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>赖振雄 · 嵌入式 / IoT 全栈作品集</title>
-<meta name="description" content="赖振雄的个人作品集：四参数健康监测终端、IoT+LLM 开源平台、输液监测装置、智能冰箱 App。从电路与固件到云端与 App，所有数据可溯源。">
+<meta name="description" content="赖振雄的个人作品集：四参数生理监测终端、IoT+LLM 开源平台、输液监测装置、智能冰箱 App。从电路与固件到云端与 App，所有数据可溯源。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zhenxiong Lai · 赖振雄">
 <meta property="og:title" content="赖振雄 · 嵌入式 / IoT 全栈作品集">
-<meta property="og:description" content="真实项目 · 可核验数据 · STM32 / ESP32 / Spring Boot / 小程序。四参数健康监测终端、IoT+LLM 平台、输液监测装置、智能冰箱 App。">
+<meta property="og:description" content="真实项目 · 可核验数据 · STM32 / ESP32 / Spring Boot / 小程序。四参数生理监测终端、IoT+LLM 平台、输液监测装置、智能冰箱 App。">
 <meta property="og:image" content="https://beiyiovo.github.io/assets/media/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://beiyiovo.github.io/assets/media/og.jpg">
 <link rel="canonical" href="https://beiyiovo.github.io/">
+<meta property="og:url" content="https://beiyiovo.github.io/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#070b12">
 <link rel="preload" as="image" href="assets/media/p1-device.jpg">
-<link rel="stylesheet" href="assets/css/main.css?v=4">
+<link rel="stylesheet" href="assets/css/main.css?v=5">
 <script>document.documentElement.classList.add('js');try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
 </head>
 <body>
@@ -91,7 +93,7 @@
         <a class="pcard reveal" href="projects/health-assistant.html">
           <img class="pcard-cover" src="assets/media/p1-device.jpg" alt="整机实物照片" loading="lazy">
           <div class="pcard-body">
-            <div class="tags"><span class="tag">STM32F103</span><span class="tag">ESP32-C3</span><span class="tag">Android</span><span class="tag">微信小程序</span></div>
+            <div class="tags"><span class="tag">STM32F103</span><span class="tag">ESP32-C3</span><span class="tag">Android</span><span class="tag" data-i18n data-en="WeChat Mini Program">微信小程序</span></div>
             <h3 data-i18n data-en="Four-parameter Health Monitor + Mini Program">四参数生理监测终端 + 微信小程序</h3>
             <p data-i18n data-en="One carrier board, two uplinks, two clients written from scratch.">一块底板、两条链路、两个从零手写的客户端。</p>
             <span class="more" data-i18n data-en="Read the breakdown">查看完整拆解</span>
@@ -102,14 +104,14 @@
           <div class="pcard-body">
             <div class="tags"><span class="tag">Java 21</span><span class="tag">Spring Boot 3</span><span class="tag">MQTT</span><span class="tag">LLM</span></div>
             <h3 data-i18n data-en="IoT Access and AI Diagnosis Platform">IoT 设备接入与智能诊断平台</h3>
-            <p data-i18n data-en="Devices in, no false alarms, and a diagnosis that always answers.">设备进来，告警不误报，诊断永远有答案。</p>
+            <p data-i18n data-en="Devices onboard, debounced alerts, diagnosis with a graceful fallback.">设备接入、告警防抖、诊断带降级。</p>
             <span class="more" data-i18n data-en="Read the breakdown">查看完整拆解</span>
           </div>
         </a>
         <a class="pcard reveal" data-delay="0.16s" href="projects/infusion-monitor.html">
           <img class="pcard-cover" src="assets/media/p2-schematic.jpg" alt="输液监测装置接线原理图" loading="lazy">
           <div class="pcard-body">
-            <div class="tags"><span class="tag">STM32</span><span class="tag">HX711 称重</span><span class="tag">红外滴速</span><span class="tag">Android</span></div>
+            <div class="tags"><span class="tag">STM32</span><span class="tag" data-i18n data-en="HX711 weighing">HX711 称重</span><span class="tag" data-i18n data-en="IR drop-rate sensing">红外滴速</span><span class="tag">Android</span></div>
             <h3 data-i18n data-en="Infusion Status Monitor (commissioned)">输液状态无线监测装置（受托开发）</h3>
             <p data-i18n data-en="Weighing re-checked to ±0.1 g — twenty times tighter than spec.">称重复核到 ±0.1 g——比指标严二十倍。</p>
             <span class="more" data-i18n data-en="Read the breakdown">查看完整拆解</span>
@@ -120,7 +122,7 @@
           <div class="pcard-body">
             <div class="tags"><span class="tag">Android</span><span class="tag">Java</span><span class="tag">VibeCoding</span></div>
             <h3 data-i18n data-en="SmartFridge — Food Management App">SmartFridge 智能冰箱 App</h3>
-            <p data-i18n data-en="Ninety seconds to watch a full AI-pairing build.">九十秒，看完一次完整的 AI 结对开发。</p>
+            <p data-i18n data-en="Ninety-two seconds to watch a full AI pair-programming session.">92 秒，看完一次完整的 AI 结对开发。</p>
             <span class="more" data-i18n data-en="Read the breakdown">查看完整拆解</span>
           </div>
         </a>
@@ -129,16 +131,16 @@
           <div class="pcard-body">
             <div class="tags"><span class="tag">Java 21</span><span class="tag">Spring Boot 3</span><span class="tag">MySQL</span></div>
             <h3 data-i18n data-en="OA Leave Management System (internship)">OA 请假管理系统（实习）</h3>
-            <p data-i18n data-en="Four weeks, one person, end to end: schema, layered APIs, integration, closed with 15 test cases.">四周实习，一个人交付：表设计、分层接口、联调，15 条用例收尾。</p>
+            <p data-i18n data-en="Four weeks, one person, end to end: schema, layered APIs, integration, verified by 15 test cases.">四周实习，一个人交付：表设计、分层接口、联调，15 条用例收尾。</p>
             <span class="more" data-i18n data-en="View on GitHub">GitHub 查看</span>
           </div>
         </a>
         <a class="pcard reveal" data-delay="0.4s" href="lab.html">
-          <img class="pcard-cover" src="assets/media/nm/nm-cover.jpg" alt="萘斯医美品牌视觉" loading="lazy">
+          <div class="pcard-cover text-cover"><span>AI&nbsp;/&nbsp;AGENTS</span></div>
           <div class="pcard-body">
-            <div class="tags"><span class="tag">AIGC</span><span class="tag">Moss</span><span class="tag">PIL 排版</span></div>
-            <h3 data-i18n data-en="Naisi Medical — Brand Visuals">萘斯医美 · 品牌视觉全套</h3>
-            <p data-i18n data-en="33 finished pieces: AI base imagery, program-drawn type, compliance built into the template.">33 张成套物料：AI 底图，程序排版，合规焊进模板。</p>
+            <div class="tags"><span class="tag">Claude</span><span class="tag">DeepSeek</span><span class="tag">GPT · Grok · Gemini</span><span class="tag">Agent</span></div>
+            <h3 data-i18n data-en="AI Toolchain &amp; Agent Fleet">AI 工具链与 Agent 车队</h3>
+            <p data-i18n data-en="Models split by strength, agents in the pipeline — this site itself is one of the artifacts.">模型按场景分工，Agent 常驻流程——本站本身就是产物之一。</p>
             <span class="more" data-i18n data-en="Enter the lab">进入实验室</span>
           </div>
         </a>
@@ -162,6 +164,8 @@
         <span class="chip">Android (Java)</span><span class="chip" data-i18n data-en="WeChat Mini Program">微信小程序</span>
         <span class="chip">SQLite</span><span class="chip">Git / GitHub Actions</span><span class="chip">Wireshark</span>
         <span class="chip" data-i18n data-en="Embedded Linux (Buildroot)">嵌入式 Linux（Buildroot）</span>
+        <span class="chip">AI · Claude / DeepSeek / GPT / Grok / Gemini</span>
+        <span class="chip" data-i18n data-en="Agents: Claude Code · AutoClaw · DSH · WorkBuddy">Agent · Claude Code / AutoClaw / DSH / WorkBuddy</span>
       </div>
     </div>
   </section>
@@ -208,7 +212,7 @@
         </div>
         <div class="tl-item reveal">
           <span class="tl-date">2026.11</span>
-          <h3 data-i18n data-en="Open-sourced iot-llm-platform; mini program full-stack; ACA (Alibaba Cloud LLM Engineer)">iot-llm-platform 开源 · 小程序全栈 · 阿里云大模型工程师 ACA</h3>
+          <h3 data-i18n data-en="Open-sourced iot-llm-platform; mini program full-stack">iot-llm-platform 开源 · 小程序全栈</h3>
         </div>
       </div>
     </div>
@@ -230,8 +234,8 @@
   </div>
 </footer>
 
-<script src="assets/vendor/gsap/gsap.min.js?v=4"></script>
-<script src="assets/vendor/gsap/ScrollTrigger.min.js?v=4"></script>
-<script src="assets/js/app.js?v=4"></script>
+<script src="assets/vendor/gsap/gsap.min.js?v=5"></script>
+<script src="assets/vendor/gsap/ScrollTrigger.min.js?v=5"></script>
+<script src="assets/js/app.js?v=5"></script>
 </body>
 </html>

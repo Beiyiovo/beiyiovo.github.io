@@ -6,14 +6,16 @@
 <title>输液状态无线监测装置（受托开发） · 赖振雄的作品集</title>
 <meta name="description" content="STM32F103C8T6 + ESP32-C3 输液多参数监测：HX711 称重复核 ±0.1 g（指标 ±2 g）、红外对射滴速、DS18B20 测温、黄/红两级声光报警、Android 客户端。">
 <link rel="canonical" href="https://beiyiovo.github.io/projects/infusion-monitor.html">
+<meta property="og:url" content="https://beiyiovo.github.io/projects/infusion-monitor.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zhenxiong Lai · 赖振雄">
-<meta property="og:title" content="输液状态无线监测装置（受托开发）· 赖振雄的作品集">
+<meta property="og:title" content="输液状态无线监测装置（受托开发） · 赖振雄的作品集">
 <meta property="og:description" content="HX711 称重复核 ±0.1 g（指标 ±2 g）、红外对射滴速、DS18B20 测温、黄/红两级声光报警、Android 客户端。">
 <meta property="og:image" content="https://beiyiovo.github.io/assets/media/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://beiyiovo.github.io/assets/media/og.jpg">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/css/main.css?v=4">
+<link rel="stylesheet" href="../assets/css/main.css?v=5">
 <script>document.documentElement.classList.add('js');try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
 </head>
 <body>
@@ -36,12 +38,12 @@
 <main>
   <section class="p-hero container">
     <p class="crumb"><a href="../index.html" data-i18n data-en="Home">首页</a> / <a href="../index.html#projects" data-i18n data-en="Projects">项目</a> / <span data-i18n data-en="Infusion monitor">输液监测装置</span></p>
-    <h1 data-i18n data-en="Infusion Status WiFi Monitor (commissioned)">输液状态无线监测装置（受托开发）</h1>
-    <p class="lead" data-i18n data-en="A commissioned build that shares its engineering method with the health monitor — applied to a harsher sensing scene: weight, temperature and drop rate, with calibration re-checked to ±0.1 g, twenty times tighter than spec.">与毕设一同源的工程方法，换到一个更苛刻的传感场景：称重、测温、滴速三路信号，标定复核到 ±0.1 g——比指标严二十倍。</p>
+    <h1 data-i18n data-en="Wireless Infusion Status Monitor (commissioned)">输液状态无线监测装置（受托开发）</h1>
+    <p class="lead" data-i18n data-en="A commissioned build that shares its engineering method with the health monitor — applied to a harsher sensing scene: weight, temperature and drop rate, with calibration re-checked to ±0.1 g, twenty times tighter than spec.">与毕设①同源的工程方法，换到一个更苛刻的传感场景：称重、测温、滴速三路信号，标定复核到 ±0.1 g——比指标严二十倍。</p>
     <div class="meta-chips">
-      <span class="tag">2026.10 – 至今</span>
+      <span class="tag" data-i18n data-en="2026.10 – present">2026.10 – 至今</span>
       <span class="tag" data-i18n data-en="Commissioned build · implementation lead">受托开发 · 实现主力</span>
-      <span class="tag">STM32F103C8T6</span><span class="tag">HX711 · 1 kg 悬臂梁</span><span class="tag" data-i18n data-en="IR drop sensor">红外对射滴速</span>
+      <span class="tag">STM32F103C8T6</span><span class="tag" data-i18n data-en="HX711 · 1 kg load cell">HX711 · 1 kg 悬臂梁</span><span class="tag" data-i18n data-en="IR through-beam drop-rate sensor">红外对射滴速</span>
       <span class="tag">ESP32-C3 · AP+TCP</span><span class="tag">Android</span>
     </div>
     <div class="cta-row">
@@ -55,7 +57,7 @@
   </div>
 
   <div class="container">
-    <div class="note" data-i18n data-en="Commissioned project: the client owns topic selection and real-world validation; this page shows the implementation side. A brief entry — the method is the same as the health monitor, details live in the repo.">受托项目：课题与实机验证由委托方负责，本页展示实现侧工作；简要呈现——方法与毕设一相通，完整细节在仓库。</div>
+    <div class="note" data-i18n data-en="Commissioned project: the client owns topic selection and real-world validation; this page shows the implementation side. A brief entry — the method mirrors the health monitor's; details live in the repo.">受托项目：课题与实机验证由委托方负责，本页展示实现侧工作；简要呈现——方法与毕设①相通，完整细节在仓库。</div>
   </div>
 
   <!-- 这台装置 -->
@@ -71,7 +73,7 @@
         <li data-i18n data-en="13 staged firmware builds (0 errors / 0 warnings) with a one-power-up wiring self-check.">13 段分阶段固件（0 错 0 警），含一次上电验证全部接线的「接线自检」工程。</li>
         <li data-i18n data-en="Android client with hand-drawn controls: big remaining-weight figure, temperature gauge and 2-minute trend.">Android 客户端自绘控件：克重主视觉、温度表盘、2 分钟趋势图。</li>
       </ul>
-      <p class="reveal" data-i18n data-en="The method — staged builds, honest verification tiers, CHANGELOG retros — is the same one behind the health monitor; the full stories live in the repo.">分阶段验证、诚实的分级口径、CHANGELOG 复盘——这套方法与「<a href="health-assistant.html">四参数生理监测终端</a>」同源，完整故事都在仓库里。</p>
+      <p class="reveal" data-i18n data-en="The method — staged builds, honest verification tiers, CHANGELOG retros — is the same one behind the health monitor; the full stories live in the repo.">分阶段验证、如实标注的验证等级、CHANGELOG 复盘——这套方法与「<a href="health-assistant.html">四参数生理监测终端</a>」同源，完整故事都在仓库里。</p>
     </div>
   </section>
 
@@ -113,7 +115,7 @@
         <tbody>
           <tr><td data-i18n data-en="Weighing accuracy">称重精度</td><td data-i18n data-en="re-check max deviation ±0.1 g (spec ±2 g)">复核最大偏差 ±0.1 g（指标 ±2 g）</td><td class="ok">PASS</td></tr>
           <tr><td data-i18n data-en="Liquid temperature">液体温度</td><td data-i18n data-en="DS18B20 waterproof probe, verified on board">DS18B20 防水探头，上板验证</td><td class="ok">PASS</td></tr>
-          <tr><td data-i18n data-en="Drop rate">滴速</td><td data-i18n data-en="principle verified; full-machine data pending final integration">原理验证通过；整机联调数据待最终采集</td><td class="pending">PENDING</td></tr>
+          <tr><td data-i18n data-en="Drop rate">滴速</td><td data-i18n data-en="principle verified; full-system data pending final integration">原理验证通过；整机联调数据待最终采集</td><td class="pending">PENDING</td></tr>
           <tr><td data-i18n data-en="Two-level alerts">两级声光报警</td><td data-i18n data-en="7-condition matrix, yellow/red, buzzer + LEDs">7 工况矩阵，黄/红，蜂鸣器 + 双 LED</td><td class="ok">PASS</td></tr>
           <tr><td data-i18n data-en="Wireless">无线传输</td><td data-i18n data-en="AP + TCP, app v3 connected and rendering">AP + TCP，App v3 已连通渲染</td><td class="ok">PASS</td></tr>
         </tbody>
@@ -158,8 +160,8 @@
   </div>
 </footer>
 
-<script src="../assets/vendor/gsap/gsap.min.js?v=4"></script>
-<script src="../assets/vendor/gsap/ScrollTrigger.min.js?v=4"></script>
-<script src="../assets/js/app.js?v=4"></script>
+<script src="../assets/vendor/gsap/gsap.min.js?v=5"></script>
+<script src="../assets/vendor/gsap/ScrollTrigger.min.js?v=5"></script>
+<script src="../assets/js/app.js?v=5"></script>
 </body>
 </html>
