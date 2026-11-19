@@ -17,7 +17,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#05070c">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-sc-vf.woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/main.css?v=17">
+<link rel="stylesheet" href="assets/css/main.css?v=18">
 <script>document.documentElement.classList.add('js');try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
 </head>
 <body>
@@ -51,11 +51,11 @@
     <div class="hero-bg" aria-hidden="true"><span class="glow g1"></span><span class="glow g2"></span></div>
     <div class="container sh-grid">
       <div class="sh-copy">
-        <p class="kicker reveal"><span class="k-dot"></span><span data-i18n data-en="Shorts — two clips, one concept film">短片 · 两支</span></p>
-        <h1 class="reveal" data-delay="0.04s" data-i18n data-en='One generated.<br><span class="grad-text">One recorded.</span>'>一支是生成的，<br><span class="grad-text">一支是录的。</span></h1>
-        <p class="lead reveal" data-delay="0.1s" data-i18n data-en="The 30-second one below is generated: I wrote the beats, the model shot the frames, I cut it, captioned it and signed it. The 92-second one underneath is a plain screen recording — nothing staged.">下面这 30 秒是生成的：我定分镜，模型出画面，我剪、我上字幕、我署名。再往下那 92 秒是纯录屏，没有演的成分。</p>
+        <p class="kicker reveal"><span class="k-dot"></span><span data-i18n data-en="Shorts — three clips, three methods">短片 · 三支</span></p>
+        <h1 class="reveal" data-delay="0.04s" data-i18n data-en='Two generated.<br><span class="grad-text">One recorded.</span>'>两支是生成的，<br><span class="grad-text">一支是录的。</span></h1>
+        <p class="lead reveal" data-delay="0.1s" data-i18n data-en="Two are generated — one live-action look, one 2D anime. I wrote both scripts shot by shot: camera, dialogue, sound, score. The third is a plain screen recording, nothing staged.">两支是生成的：一支写实，一支二维动画；分镜、台词、声音、配乐都由我写死，模型照着拍。第三支是纯录屏，没有演的成分。</p>
         <div class="cta-row reveal" data-delay="0.16s">
-          <a class="btn primary" href="#screening"><span data-i18n data-en="Watch both">看这两支</span><i>↓</i></a>
+          <a class="btn primary" href="#screening"><span data-i18n data-en="Watch all three">看这三支</span><i>↓</i></a>
           <a class="btn ghost" href="lab.html" data-i18n data-en="Back to the lab">回到 AI 实验室</a>
         </div>
         <p class="sh-note reveal" data-delay="0.2s" data-i18n data-en="Every frame here is either recorded or generated — and labelled as such.">这里的每一帧，要么是录的，要么是生成的——都标清楚了。</p>
@@ -81,9 +81,9 @@
   <section class="sec" id="screening">
     <div class="container">
       <div class="sec-head reveal">
-        <p class="kicker"><b>01</b><span data-i18n data-en="The other one">另一支 · 92 秒</span></p>
-        <h2 data-i18n data-en="A screen recording. Nothing staged.">一支录屏，没有演的成分。</h2>
-        <p class="sub" data-i18n data-en="From an empty repo to a running app, recorded in one take. This is the version of “making things” I can actually prove.">从空仓库到应用跑通，一镜到底录下来。这才是我能拿出证据的「做东西」。</p>
+        <p class="kicker"><b>01</b><span data-i18n data-en="The other two">另外两支</span></p>
+        <h2 data-i18n data-en="One anime, one screen recording.">一支动画，一支录屏。</h2>
+        <p class="sub" data-i18n data-en="The anime one took one prompt and thirty seconds — no actor, no set, no second face to keep consistent. The recording took a repo, a terminal and no cuts.">动画那支用一条提示词、三十秒生成，没有演员、没有布景，也不用担心第二张脸；录屏那支是一个仓库加一个终端，一刀未剪。</p>
       </div>
 
       <div class="vwall">
@@ -100,6 +100,19 @@
             <div class="tags"><span class="tag">Claude Code</span><span class="tag">Android</span><span class="tag" data-i18n data-en="No cuts">无剪辑</span></div>
           </div>
         </article>
+        <article class="vcard reveal" data-src="assets/media/loading-30.mp4" data-dur="00:30" data-ratio="720/1140">
+          <button class="vcard-hit" type="button" aria-label="播放：加载中 · 30 秒动画短剧">
+            <img src="assets/media/loading-30.jpg" alt="动画短剧封面：面试间里，全息屏上的加载环停在 12%" loading="lazy">
+            <span class="vplay" aria-hidden="true"><i></i></span>
+            <span class="vdur">00:30</span>
+            <span class="vep">EP.04</span>
+          </button>
+          <div class="vmeta">
+            <h3 data-i18n data-en="Loading — a 30-second anime short">加载中 · 30 秒动画短剧</h3>
+            <p data-i18n data-en="The interviewer is a loading ring. One human, one voice-over, one punchline: the network was never the problem.">面试官是一个加载环。一个角色、一句台词、一句旁白，最后抖个包袱：卡住的从来不是网。</p>
+            <div class="tags"><span class="tag" data-i18n data-en="2D anime">二维动画</span><span class="tag" data-i18n data-en="Generated">AI 生成</span><span class="tag">9:16</span></div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -108,9 +121,9 @@
   <section class="sec">
     <div class="container">
       <div class="sec-head reveal">
-        <p class="kicker"><b>02</b><span data-i18n data-en="Scripts, unshot">两个本子 · 未拍</span></p>
-        <h2 data-i18n data-en="Two scripts, still on paper.">还有两个本子，写在纸上。</h2>
-        <p class="sub" data-i18n data-en="Written down while they were fresh. No schedule, no promise — just the ideas, kept in public.">趁记得清楚先记下来。没有排期，也不算承诺，就是把想法摊在这儿。</p>
+        <p class="kicker"><b>02</b><span data-i18n data-en="Script, unshot">一个本子 · 未拍</span></p>
+        <h2 data-i18n data-en="One script still on paper.">还有一个本子，写在纸上。</h2>
+        <p class="sub" data-i18n data-en="Written down while it was fresh. No schedule, no promise — just the idea, kept in public.">趁记得清楚先记下来。没有排期，也不算承诺，就是把想法摊在这儿。</p>
       </div>
 
       <div class="slate">
@@ -121,15 +134,6 @@
             <p data-i18n data-en="Hometown, hobbies, and the timer going off while he is still talking.">从家乡讲到爱好，计时器响了他还在讲。</p>
           </div>
           <span class="slate-meta">45 s</span>
-          <span class="slate-state" data-i18n data-en="Script only">只有剧本</span>
-        </div>
-        <div class="slate-item reveal">
-          <span class="slate-ep">EP.04</span>
-          <div class="slate-main">
-            <h3 data-i18n data-en="Deleted commits: read straight, no acting">《删掉的提交》· 照着念，不加戏</h3>
-            <p data-i18n data-en="Real commit messages from the repo, read out loud. The joke is that they are real.">把仓库里真实的 commit message 一条条念出来。好笑的地方在于它们是真的。</p>
-          </div>
-          <span class="slate-meta">90 s</span>
           <span class="slate-state" data-i18n data-en="Script only">只有剧本</span>
         </div>
       </div>
@@ -201,9 +205,9 @@
   </div>
 </footer>
 
-<script src="assets/vendor/gsap/gsap.min.js?v=17"></script>
-<script src="assets/vendor/gsap/ScrollTrigger.min.js?v=17"></script>
-<script src="assets/js/app.js?v=17"></script>
-<script src="assets/js/shorts.js?v=17"></script>
+<script src="assets/vendor/gsap/gsap.min.js?v=18"></script>
+<script src="assets/vendor/gsap/ScrollTrigger.min.js?v=18"></script>
+<script src="assets/js/app.js?v=18"></script>
+<script src="assets/js/shorts.js?v=18"></script>
 </body>
 </html>
