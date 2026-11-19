@@ -1,0 +1,23 @@
+Webfonts in this folder are subsets, generated from the original releases.
+
+1) noto-sans-sc-vf.woff2
+   Derived from "Noto Sans SC" (variable, wght 100–900).
+   Copyright 2014-2025 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'.
+   Licensed under the SIL Open Font License, Version 1.1.
+   https://openfontlicense.org
+
+2) cascadia-code.woff2
+   Derived from "Cascadia Code" (Regular).
+   Copyright (c) Microsoft Corporation.
+   Licensed under the SIL Open Font License, Version 1.1.
+   https://openfontlicense.org
+
+Both files were subset with fontTools/pyftsubset to the glyphs used by this site
+(Latin + the Chinese characters present in the pages). If new copy introduces
+characters outside the subset, regenerate:
+
+  pyftsubset NotoSansSC-VF.ttf --text-file=<all site text> --flavor=woff2 \
+    --output-file=assets/fonts/noto-sans-sc-vf.woff2 --no-hinting
+
+The fonts may not be sold on their own; they are embedded here only to render
+this website.

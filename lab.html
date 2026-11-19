@@ -3,150 +3,321 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>实验室 · AI 工具链与 Agent 车队 · 赖振雄的作品集</title>
-<meta name="description" content="赖振雄的 AI 工具链：Claude、DeepSeek、GPT、Grok、Gemini、GLM·通义千问按场景分工；Claude Code、DeepSeek Harness、AutoClaw 等 Agent 常驻流程；Seedream/Seedance 生成管线；每一步都有产物可查。">
+<title>AI 实验室 · 模型、Agent 与实验 · 赖振雄</title>
+<meta name="description" content="赖振雄的 AI 实验室：Claude、DeepSeek、GPT、Grok、Gemini、GLM·通义千问按场景分工；Claude Code、DeepSeek Harness、AutoClaw 常驻流程；五项实验记录与可查产物。">
 <link rel="canonical" href="https://beiyiovo.github.io/lab.html">
 <meta property="og:url" content="https://beiyiovo.github.io/lab.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zhenxiong Lai · 赖振雄">
-<meta property="og:title" content="实验室 · AI 工具链与 Agent 车队 · 赖振雄的作品集">
+<meta property="og:title" content="AI 实验室 · 模型、Agent 与实验 · 赖振雄">
 <meta property="og:description" content="模型按场景分工，Agent 常驻流程——每一步都有产物可查，包括这个网站本身。">
 <meta property="og:image" content="https://beiyiovo.github.io/assets/media/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://beiyiovo.github.io/assets/media/og.jpg">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#070b12">
-<link rel="stylesheet" href="assets/css/main.css?v=5">
+<meta name="theme-color" content="#05070c">
+<link rel="stylesheet" href="assets/css/main.css?v=6">
 <script>document.documentElement.classList.add('js');try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
 </head>
 <body>
 
 <header class="nav">
   <div class="container nav-inner">
-    <a class="logo" href="index.html"><span class="logo-mark">L</span><span class="logo-text" data-i18n data-en="Zhenxiong Lai">赖振雄</span></a>
+    <a class="logo" href="index.html" aria-label="赖振雄 · 首页">
+      <span class="logo-mark">L</span>
+      <span class="logo-text"><b data-i18n data-en="Zhenxiong Lai">赖振雄</b><i data-i18n data-en="Embedded / IoT">嵌入式 / IoT</i></span>
+    </a>
     <nav class="nav-links" id="menu">
       <a href="index.html" data-i18n data-en="Home">首页</a>
-      <a href="index.html#projects" data-i18n data-en="Projects">项目</a>
-      <a href="lab.html" class="active" data-i18n data-en="Lab">实验室</a>
+      <a href="index.html#projects" data-i18n data-en="Work">作品</a>
+      <a href="lab.html" class="active" data-i18n data-en="AI Lab">AI 实验室</a>
       <a href="about.html" data-i18n data-en="About">关于</a>
-      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener" class="nav-ext">GitHub<i>↗</i></a>
       <button class="lang-switch" type="button" aria-label="Switch language">EN</button>
     </nav>
-    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
   </div>
 </header>
 
 <main>
-  <section class="p-hero container">
-    <p class="crumb"><a href="index.html" data-i18n data-en="Home">首页</a> / <span data-i18n data-en="Lab">实验室</span></p>
-    <h1 data-i18n data-en='One person, <span class="grad-text">a fleet of agents.</span>'>一个人，<span class="grad-text">一支 Agent 车队。</span></h1>
-    <p class="lead" data-i18n data-en="Models split by strength, agents live in the pipeline: code, papers, imagery, diagnosis, deployment — every step leaves artifacts you can check. This page maps my AI toolchain, including how this very site was built.">模型按场景分工，Agent 常驻流程：代码、论文、出图、诊断、部署——每一步都有产物可查。这一页记录我的 AI 工具链，也包括这个网站本身是怎么被做出来的。</p>
-    <div class="meta-chips">
-      <span class="tag">Claude</span><span class="tag">DeepSeek</span><span class="tag">GPT</span>
-      <span class="tag">Grok</span><span class="tag">Gemini</span><span class="tag" data-i18n data-en="GLM · Tongyi Qianwen">GLM · 通义千问</span>
-      <span class="tag" data-i18n data-en="Agents">Agent</span><span class="tag">Claude Code</span><span class="tag">DeepSeek Harness</span><span class="tag">AutoClaw</span>
-      <span class="tag">Seedream · Seedance</span><span class="tag" data-i18n data-en="ACA certified">阿里云大模型工程师 ACA</span>
+  <!-- ============ 实验室 Hero ============ -->
+  <section class="lab-hero">
+    <div class="hero-bg" aria-hidden="true"><span class="glow g1"></span><span class="glow g2"></span></div>
+    <div class="container lab-hero-grid">
+      <div class="lab-copy">
+        <p class="kicker reveal"><span class="k-dot"></span><span data-i18n data-en="AI Lab — exploration space">AI 实验室 · 探索空间</span></p>
+        <h1 class="reveal" data-delay="0.04s" data-i18n data-en='One person,<br><span class="grad-text">a fleet of agents.</span>'>一个人，<br><span class="grad-text">一支 Agent 车队。</span></h1>
+        <p class="lead reveal" data-delay="0.1s" data-i18n data-en="Not a toy stack: models split by strength, agents sit in the pipeline, and every experiment below leaves an artifact you can open, clone or replay.">不是玩具堆栈：模型按场景分工，Agent 常驻流程；下面每个实验都留下可打开、可克隆、可回放的产物。</p>
+        <div class="cta-row reveal" data-delay="0.16s">
+          <a class="btn primary" href="#experiments"><span data-i18n data-en="See the experiments">查看实验记录</span><i>↓</i></a>
+          <a class="btn ghost" href="#router"><span data-i18n data-en="Try the router">试试模型路由</span></a>
+        </div>
+      </div>
+
+      <div class="orb-stage reveal" data-delay="0.12s" aria-hidden="true">
+        <span class="orb-glow"></span>
+        <span class="orb-core"></span>
+        <span class="orb-ring r1"></span>
+        <span class="orb-ring r2"></span>
+        <span class="orb-ring r3"></span>
+        <span class="orb-sat s1"></span>
+        <span class="orb-sat s2"></span>
+        <span class="orb-sat s3"></span>
+        <span class="orb-label l1">MODEL</span>
+        <span class="orb-label l2">AGENT</span>
+        <span class="orb-label l3">ARTIFACT</span>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="lab-stats reveal" data-delay="0.2s">
+        <div class="ls"><b>06</b><span data-i18n data-en="Models in rotation">在用的模型</span></div>
+        <div class="ls"><b>04</b><span data-i18n data-en="Agents in the pipeline">常驻 Agent</span></div>
+        <div class="ls"><b>05</b><span data-i18n data-en="Logged experiments">已记录实验</span></div>
+        <div class="ls"><b>01</b><span data-i18n data-en="Cloud LLM certification">大模型认证（ACA）</span></div>
+      </div>
     </div>
   </section>
 
-  <!-- 模型矩阵 -->
-  <section class="sec">
+  <!-- ============ 01 能力栈 ============ -->
+  <section class="sec" id="skills">
     <div class="container">
       <div class="sec-head reveal">
-        <p class="kicker">01 — MODELS</p>
-        <h2 data-i18n data-en="Models, split by strength">模型矩阵：按场景分工</h2>
-        <p class="sub" data-i18n data-en="No single-model loyalty — the same question goes to several models, and only conclusions that survive cross-checking get written down.">不忠于任何单一模型：同一问题多模型互查，能对上的结论才写进文档。</p>
+        <p class="kicker"><b>01</b><span data-i18n data-en="AI skills">AI 能力栈</span></p>
+        <h2 data-i18n data-en="What is actually being operated here.">这里真正在运转的东西。</h2>
+        <p class="sub" data-i18n data-en="Four layers: route the models, run the agents, produce the assets, verify the output.">四层：调度模型、驱动 Agent、产出素材、验证结果。</p>
       </div>
-      <div class="impl-grid">
-        <div class="impl reveal">
-          <h3 data-i18n data-en="Code &amp; engineering — Claude">代码与工程 · Claude</h3>
-          <p data-i18n data-en="Claude Code pairs on implementation, refactors and tests: the SmartFridge session was recorded end to end, and this site's build ran the same way.">Claude Code 结对实现、重构、写测试：SmartFridge 全程实录可回放，本站的构建也是同一条路。</p>
+
+      <div class="skill-matrix">
+        <div class="sk-col reveal">
+          <div class="sk-head"><span class="sk-no">01</span><h3 data-i18n data-en="Model routing">模型调度</h3><span class="sk-en">Routing</span></div>
+          <ul>
+            <li data-i18n data-en="Task split: code / long-form / diagnosis"><span>任务分流：代码 / 长文 / 诊断</span></li>
+            <li data-i18n data-en="Cross-checking across 3+ models"><span>多模型交叉验证（3 个以上）</span></li>
+            <li data-i18n data-en="Long context: thesis-level documents"><span>长上下文：论文级文档</span></li>
+            <li data-i18n data-en="Structured prompts · JSON contracts"><span>结构化提示 · JSON 约定</span></li>
+            <li data-i18n data-en="Timeout + local-rule fallback"><span>超时降级 · 本地规则兜底</span></li>
+          </ul>
         </div>
-        <div class="impl reveal" data-delay="0.08s">
-          <h3 data-i18n data-en="Long documents &amp; reasoning — GPT &amp; Gemini">长文档与推理 · GPT / Gemini</h3>
-          <p data-i18n data-en="Thesis-level review and option comparison: the graduation thesis went through three rounds of AI review plus blind-review checks, all logged.">论文级长文与方案对比：毕设论文走过三轮 AI 复审加盲审检查，全程留痕。</p>
+        <div class="sk-col reveal" data-delay="0.06s">
+          <div class="sk-head"><span class="sk-no">02</span><h3 data-i18n data-en="Agent engineering">Agent 工程</h3><span class="sk-en">Agents</span></div>
+          <ul>
+            <li><span>Claude Code · DeepSeek Harness</span></li>
+            <li><span>AutoClaw · WorkBuddy</span></li>
+            <li data-i18n data-en="Repo reading, patch, run, verify"><span>读仓库 → 打补丁 → 跑通 → 自检</span></li>
+            <li data-i18n data-en="Skill packs · reusable workflows"><span>技能包 · 可复用工作流</span></li>
+            <li data-i18n data-en="Session replay and audit trail"><span>会话回放 · 操作留痕</span></li>
+          </ul>
         </div>
-        <div class="impl reveal" data-delay="0.16s">
-          <h3 data-i18n data-en="Diagnosis &amp; ops — GLM / Qwen">诊断与运维 · 通义千问</h3>
-          <p data-i18n data-en="Tongyi Qianwen (DashScope) is wired into iot-llm-platform for root-cause diagnosis, with a 12-second timeout that degrades to local rules — the LLM is an accelerator, not a dependency.">通义千问（DashScope）接进 iot-llm 平台做根因诊断，12 秒超时自动降级本地规则——LLM 是加速器，不是依赖项。</p>
+        <div class="sk-col reveal" data-delay="0.12s">
+          <div class="sk-head"><span class="sk-no">03</span><h3 data-i18n data-en="Generation">生成管线</h3><span class="sk-en">Generation</span></div>
+          <ul>
+            <li data-i18n data-en="Seedream base imagery"><span>Seedream 底图生成</span></li>
+            <li data-i18n data-en="Seedance video, shot by shot"><span>Seedance 视频分镜</span></li>
+            <li data-i18n data-en="Program-drawn typography"><span>程序排版 · 文字不出错</span></li>
+            <li data-i18n data-en="Brand sets from one grid system"><span>一套栅格出整套物料</span></li>
+            <li data-i18n data-en="Human review before it ships"><span>上线前人工审核</span></li>
+          </ul>
         </div>
-        <div class="impl reveal" data-delay="0.24s">
-          <h3 data-i18n data-en="Everything else — DeepSeek &amp; Grok">其余场景 · DeepSeek / Grok</h3>
-          <p data-i18n data-en="DeepSeek carries long-context tasks in its own harness; Grok covers fast lookups and cross-checking. Different seats, one team.">DeepSeek 在自家 Harness 里扛长上下文任务；Grok 负责快查与交叉验证。座位不同，一个团队。</p>
+        <div class="sk-col reveal" data-delay="0.18s">
+          <div class="sk-head"><span class="sk-no">04</span><h3 data-i18n data-en="Verification">验证与留痕</h3><span class="sk-en">Evidence</span></div>
+          <ul>
+            <li data-i18n data-en="Unit tests before claims"><span>先跑用例，再写结论</span></li>
+            <li data-i18n data-en="Numbers traced to lab records"><span>数字回到实验记录</span></li>
+            <li data-i18n data-en="Deploy check on the live site"><span>线上部署后逐项复核</span></li>
+            <li data-i18n data-en="Facts double-checked, not assumed"><span>事实复核，而非假定</span></li>
+            <li data-i18n data-en="Known limits written down"><span>已知限制写清楚</span></li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Agent 车队 -->
-  <section class="sec">
+  <!-- ============ 02 实验记录 ============ -->
+  <section class="sec" id="experiments">
     <div class="container">
       <div class="sec-head reveal">
-        <p class="kicker">02 — AGENTS</p>
-        <h2 data-i18n data-en="The resident fleet">常驻的 Agent 车队</h2>
+        <p class="kicker"><b>02</b><span data-i18n data-en="Experiment log">实验记录</span></p>
+        <h2 data-i18n data-en="Five runs, five artifacts.">五次实验，五件产物。</h2>
+        <p class="sub" data-i18n data-en="Each entry states what was run, what came out, and where you can check it yourself.">每条都写清楚：跑了什么、产出了什么、在哪儿能自己核对。</p>
       </div>
-      <div class="impl-grid">
-        <div class="impl reveal">
-          <h3>Claude Code / WorkBuddy</h3>
-          <p data-i18n data-en="Daily pairing for code and documents: features, refactors, unit tests — all with a replayable trail.">代码与文档的日常结对：功能实现、重构、单测，全程留痕可回放。</p>
+
+      <div class="exp-list">
+        <a class="exp reveal" href="projects/iot-llm-platform.html">
+          <span class="exp-id">EXP-01</span>
+          <div class="exp-main">
+            <h3 data-i18n data-en="Root-cause diagnosis with a hard timeout">根因诊断 · 带硬超时</h3>
+            <p data-i18n data-en="Tongyi Qianwen (DashScope) is wired into the IoT platform; after 12 s it degrades to local rules. The LLM accelerates, it never blocks.">通义千问（DashScope）接进 IoT 平台做根因诊断，12 秒拿不到就降级本地规则——LLM 是加速器，不是依赖项。</p>
+            <div class="tags"><span class="tag">Spring Boot 3</span><span class="tag">DashScope</span><span class="tag" data-i18n data-en="Fallback path">降级路径</span></div>
+          </div>
+          <span class="exp-state live" data-i18n data-en="Open source">已开源</span>
+          <span class="exp-go">→</span>
+        </a>
+
+        <a class="exp reveal" href="projects/smart-fridge.html">
+          <span class="exp-id">EXP-02</span>
+          <div class="exp-main">
+            <h3 data-i18n data-en="A recorded AI pairing session">一次被完整录下的 AI 结对</h3>
+            <p data-i18n data-en="SmartFridge was built end to end with Claude Code in front of the camera — 92 seconds of unedited session, on the project page.">SmartFridge 从零到跑通，全程用 Claude Code 在镜头前完成——92 秒未剪辑实录，就在项目页。</p>
+            <div class="tags"><span class="tag">Android</span><span class="tag">Java</span><span class="tag">Claude Code</span></div>
+          </div>
+          <span class="exp-state" data-i18n data-en="Replayable">可回放</span>
+          <span class="exp-go">→</span>
+        </a>
+
+        <a class="exp reveal" href="projects/health-assistant.html">
+          <span class="exp-id">EXP-03</span>
+          <div class="exp-main">
+            <h3 data-i18n data-en="Rebuilding a mini-program UI from source">按源码重建小程序界面</h3>
+            <p data-i18n data-en="The live and history screens were rebuilt pixel-first from the actual WXSS and Canvas code — a UI study, not a mockup.">实时页与历史页按真实 WXSS 与 Canvas 代码重建——是对着源码做的界面还原，不是画出来的效果图。</p>
+            <div class="tags"><span class="tag" data-i18n data-en="Native mini program">原生小程序</span><span class="tag">Canvas 2D</span></div>
+          </div>
+          <span class="exp-state live" data-i18n data-en="Shipped">已上线</span>
+          <span class="exp-go">→</span>
+        </a>
+
+        <div class="exp reveal">
+          <span class="exp-id">EXP-04</span>
+          <div class="exp-main">
+            <h3 data-i18n data-en="A 33-piece brand set, zero garbled type">33 张成套物料 · 文字零乱码</h3>
+            <p data-i18n data-en="Naisi Medical: AI base imagery plus program-drawn Chinese type. Four layout systems, one grid — generated images are never asked to spell anything.">萘斯医美：AI 出底图，程序排中文。四套版式共用一个栅格——从不指望生成模型把字写对。</p>
+            <div class="tags"><span class="tag">Seedream</span><span class="tag" data-i18n data-en="Program layout">程序排版</span><span class="tag" data-i18n data-en="33 pieces">33 张</span></div>
+          </div>
+          <span class="exp-state" data-i18n data-en="Delivered">已交付</span>
         </div>
-        <div class="impl reveal" data-delay="0.08s">
-          <h3>DeepSeek Harness (DSH)</h3>
-          <p data-i18n data-en="Long tasks on a skill-pack workflow: document engineering, batch processing, reverse-engineering runs.">长任务与技能包工作流：文档工程、批量处理、逆向分析。</p>
-        </div>
-        <div class="impl reveal" data-delay="0.16s">
-          <h3 data-i18n data-en="AutoClaw (zwork)">AutoClaw (zwork)</h3>
-          <p data-i18n data-en="This site's full production line: inventory, build, motion, deployment verification — all in one agent session.">本站的完整生产线：素材盘点、页面构建、动效、部署验证，都在一个 Agent 会话里跑完。</p>
-        </div>
-        <div class="impl reveal" data-delay="0.24s">
-          <h3 data-i18n data-en="Generation pipeline — Seedream &amp; Seedance">生成管线 · Seedream / Seedance</h3>
-          <p data-i18n data-en="Seedream for imagery, Seedance for video, Moss for brand layout — the base-image and demo-asset sources, always human-reviewed before shipping.">Seedream 出图、Seedance 出视频、Moss 管品牌排版——底图与演示素材的来源，上线前一律人工审核。</p>
+
+        <div class="exp reveal">
+          <span class="exp-id">EXP-05</span>
+          <div class="exp-main">
+            <h3 data-i18n data-en="This site, built in one session">这个站点，一个会话建成</h3>
+            <p data-i18n data-en="Inventory → build → motion → deploy verification, run by an agent under review. You are reading the output right now.">盘点 → 构建 → 动效 → 部署验证，由 Agent 在人工复核下跑完。你现在读的就是产物。</p>
+            <div class="tags"><span class="tag">HTML / CSS / JS</span><span class="tag">GSAP</span><span class="tag">GitHub Pages</span></div>
+          </div>
+          <span class="exp-state live" data-i18n data-en="Live">在线</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 产物背书 -->
-  <section class="sec">
+  <!-- ============ 03 产物 ============ -->
+  <section class="sec" id="artifacts">
     <div class="container">
       <div class="sec-head reveal">
-        <p class="kicker">03 — EVIDENCE</p>
-        <h2 data-i18n data-en="Artifacts, not claims">产物可查，不止会说</h2>
+        <p class="kicker"><b>03</b><span data-i18n data-en="Artifacts">成果展示</span></p>
+        <h2 data-i18n data-en="Pictures taken from running systems.">从跑着的系统里截下来的。</h2>
+        <p class="sub" data-i18n data-en="Click any frame to enlarge. Each one maps to a project you can open.">点任意一张放大；每张都对应一个能点开的项目。</p>
       </div>
-      <ul class="checks reveal">
-        <li data-i18n data-en="iot-llm-platform — Tongyi Qianwen root-cause diagnosis with 12 s fallback, watched by 45 tests.">iot-llm-platform：通义千问根因诊断 + 12 秒降级，45 个单测盯着。</li>
-        <li data-i18n data-en="SmartFridge — a 92-second AI pair-programming session, recorded and on this site.">SmartFridge：92 秒 AI 结对开发实录，本站可看。</li>
-        <li data-i18n data-en="Naisi Medical — 33-piece brand set: AI base imagery + program-drawn type, zero garbled characters.">萘斯医美：33 张成套物料——AI 底图 + 程序排版，文字零乱码。</li>
-        <li data-i18n data-en="This site — inventory → build → motion → deploy, one agent session, now live.">本站：盘点 → 构建 → 动效 → 部署，一个 Agent 会话，现在就在线上。</li>
-        <li data-i18n data-en="Alibaba Cloud ACA — LLM Engineer certification.">阿里云大模型工程师 ACA 认证。</li>
-      </ul>
-      <div class="note" data-i18n data-en="Model names are listed as actually used, in no particular ranking; generated content is human-reviewed before it ships.">模型名按真实使用列出，不排座次；生成内容一律人工审核后才使用。</div>
+
+      <div class="gallery artifact-gallery reveal">
+        <figure>
+          <img src="assets/media/iot-dashboard.jpg" alt="IoT 平台仪表盘实机界面" loading="lazy">
+          <figcaption data-i18n data-en="IoT platform — device board and alert stream">IoT 平台 · 设备看板与告警流</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/media/iot-ai.jpg" alt="IoT 平台 AI 诊断结果界面" loading="lazy">
+          <figcaption data-i18n data-en="LLM diagnosis — 12 s budget, then fallback">LLM 诊断 · 12 秒预算与降级</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/media/sf-1.png" alt="SmartFridge 应用界面" loading="lazy">
+          <figcaption data-i18n data-en="SmartFridge — inventory screen">SmartFridge · 食材清单</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/media/mp-live.jpg" alt="健康助手小程序实时页面" loading="lazy">
+          <figcaption data-i18n data-en="Mini program — live data page">小程序 · 实时数据页</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
-  <nav class="p-nav container">
-    <a href="smart-fridge.html"><span class="dir">← <span data-i18n data-en="Previous">上一个</span></span><span data-i18n data-en="SmartFridge App">智能冰箱 App</span></a>
-    <a class="next" href="health-assistant.html"><span class="dir"><span data-i18n data-en="Next">下一个</span> →</span><span data-i18n data-en="Four-parameter Health Monitor">四参数生理监测终端</span></a>
+  <!-- ============ 04 互动：模型路由 ============ -->
+  <section class="sec" id="router">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker"><b>04</b><span data-i18n data-en="Interactive">互动说明</span></p>
+        <h2 data-i18n data-en="Pick a task. See who gets it.">选一个任务，看它交给谁。</h2>
+        <p class="sub" data-i18n data-en="This is the routing table I actually work by — not a leaderboard. Click through the five task types.">这是我实际在用的分工表，不是排行榜。五个任务类型，点开看理由。</p>
+      </div>
+
+      <div class="router reveal" id="routerBox">
+        <div class="router-tasks" role="tablist" aria-label="Task types">
+          <button class="rt-btn active" type="button" role="tab" aria-selected="true" data-task="code"><span class="rt-i">01</span><span data-i18n data-en="Write / refactor code">写代码 · 重构</span></button>
+          <button class="rt-btn" type="button" role="tab" aria-selected="false" data-task="long"><span class="rt-i">02</span><span data-i18n data-en="Long documents">长文与方案</span></button>
+          <button class="rt-btn" type="button" role="tab" aria-selected="false" data-task="diag"><span class="rt-i">03</span><span data-i18n data-en="Diagnosis / ops">诊断与运维</span></button>
+          <button class="rt-btn" type="button" role="tab" aria-selected="false" data-task="check"><span class="rt-i">04</span><span data-i18n data-en="Cross-checking">交叉验证</span></button>
+          <button class="rt-btn" type="button" role="tab" aria-selected="false" data-task="gen"><span class="rt-i">05</span><span data-i18n data-en="Image / video">出图与视频</span></button>
+        </div>
+
+        <div class="router-out">
+          <div class="ro-top">
+            <span class="ro-k">ROUTE</span>
+            <b class="ro-model" id="roModel">Claude Code</b>
+            <span class="ro-live"><i></i>READY</span>
+          </div>
+          <p class="ro-why" id="roWhy"></p>
+          <div class="ro-log"><span class="ro-prompt">$</span><code id="roLog"></code><span class="ro-caret">▌</span></div>
+          <div class="ro-meta">
+            <span id="roArt"></span>
+            <span class="ro-note" data-i18n data-en="Routing is a habit, not a rule — the task decides.">分工是习惯，不是规定——任务说了算。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 怎么读这一页 ============ -->
+  <section class="sec" id="howto">
+    <div class="container">
+      <div class="howto-grid">
+        <div class="sec-head reveal">
+          <p class="kicker"><b>05</b><span data-i18n data-en="How to read this">怎么读这一页</span></p>
+          <h2 data-i18n data-en="Claims come with a way to check them.">每条说法，都留了核对方式。</h2>
+          <p class="sub" data-i18n data-en="Three labels appear across the lab. Here is what each one promises.">实验室里会出现三种标签，各自代表什么，写在这里。</p>
+        </div>
+        <ul class="legend reveal" data-delay="0.08s">
+          <li><b data-i18n data-en="Replayable">可回放</b><span data-i18n data-en="There is a recording or a session log — watch the work happen, not just the result.">有录像或会话日志：看得到过程，不只看结果。</span></li>
+          <li><b data-i18n data-en="Clonable">可克隆</b><span data-i18n data-en="The repo is public — pull it, build it, run the tests yourself.">仓库公开：拉下来、编起来、用例自己跑。</span></li>
+          <li><b data-i18n data-en="Checkable">可复核</b><span data-i18n data-en="Numbers trace back to lab records, and the limits are written down too.">数字能回到实验记录；限制条件也一并写明。</span></li>
+        </ul>
+      </div>
+      <div class="note neutral reveal" data-i18n data-en="Model names are listed as actually used, in no particular ranking. Generated content is human-reviewed before it ships — and AI-generated imagery is kept off the project pages on purpose.">模型名按真实使用列出，不排座次；生成内容一律人工审核后才使用；AI 生成的示意图不上项目页。</div>
+    </div>
+  </section>
+
+  <nav class="p-nav">
+    <a href="index.html#projects"><span class="dir">← <span data-i18n data-en="Back">返回</span></span><span data-i18n data-en="All work">全部作品</span></a>
+    <a class="next" href="about.html"><span class="dir"><span data-i18n data-en="Next">下一个</span> →</span><span data-i18n data-en="About me">关于我</span></a>
   </nav>
 </main>
 
 <footer class="footer">
   <div class="container footer-inner">
-    <div style="display:flex;align-items:center;gap:10px;">
+    <div class="f-brand">
       <span class="logo-mark">L</span>
-      <strong>Zhenxiong Lai · 赖振雄</strong>
+      <div>
+        <strong>Zhenxiong Lai · 赖振雄</strong>
+        <p data-i18n data-en="Embedded / IoT · Class of 2027 · Guilin, China">嵌入式 / IoT · 2027 届 · 桂林</p>
+      </div>
     </div>
-    <p data-i18n data-en="Every number on this site has a paper trail.">每个数字，都能在项目记录里找到出处。</p>
-    <div class="footer-links">
-      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub</a>
+    <nav class="f-col">
+      <h4 data-i18n data-en="Site">站内</h4>
       <a href="index.html" data-i18n data-en="Home">首页</a>
-    </div>
-    <p class="fine">© <span class="year">2026</span> 赖振雄 · Built with plain HTML/CSS/JS · <span data-i18n data-en="Deployed on GitHub Pages">托管于 GitHub Pages</span></p>
+      <a href="index.html#projects" data-i18n data-en="Work">作品</a>
+      <a href="lab.html" data-i18n data-en="AI Lab">AI 实验室</a>
+      <a href="about.html" data-i18n data-en="About">关于</a>
+    </nav>
+    <nav class="f-col">
+      <h4 data-i18n data-en="Contact">联系</h4>
+      <a href="mailto:2804627817@qq.com">2804627817@qq.com</a>
+      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">github.com/Beiyiovo</a>
+      <span class="f-note" data-i18n data-en="Phone stays off this site.">手机号不上站</span>
+    </nav>
+    <p class="fine">© <span class="year">2026</span> 赖振雄 · <span data-i18n data-en="Hand-written HTML / CSS / JS · Hosted on GitHub Pages">手写 HTML / CSS / JS · 托管于 GitHub Pages</span></p>
   </div>
 </footer>
 
-<script src="assets/vendor/gsap/gsap.min.js?v=5"></script>
-<script src="assets/vendor/gsap/ScrollTrigger.min.js?v=5"></script>
-<script src="assets/js/app.js?v=5"></script>
+<script src="assets/vendor/gsap/gsap.min.js?v=6"></script>
+<script src="assets/vendor/gsap/ScrollTrigger.min.js?v=6"></script>
+<script src="assets/js/app.js?v=6"></script>
+<script src="assets/js/lab.js?v=6"></script>
 </body>
 </html>

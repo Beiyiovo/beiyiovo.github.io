@@ -15,23 +15,27 @@
 <link rel="canonical" href="https://beiyiovo.github.io/projects/iot-llm-platform.html">
 <meta property="og:url" content="https://beiyiovo.github.io/projects/iot-llm-platform.html">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/css/main.css?v=5">
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/noto-sans-sc-vf.woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/main.css?v=6">
 <script>document.documentElement.classList.add('js');try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
 </head>
 <body>
 
 <header class="nav">
   <div class="container nav-inner">
-    <a class="logo" href="../index.html"><span class="logo-mark">L</span><span class="logo-text" data-i18n data-en="Zhenxiong Lai">赖振雄</span></a>
+    <a class="logo" href="../index.html" aria-label="赖振雄 · 首页">
+      <span class="logo-mark">L</span>
+      <span class="logo-text"><b data-i18n data-en="Zhenxiong Lai">赖振雄</b><i data-i18n data-en="Embedded / IoT">嵌入式 / IoT</i></span>
+    </a>
     <nav class="nav-links" id="menu">
       <a href="../index.html" data-i18n data-en="Home">首页</a>
-      <a href="../index.html#projects" class="active" data-i18n data-en="Projects">项目</a>
-      <a href="../lab.html" data-i18n data-en="Lab">实验室</a>
+      <a href="../index.html#projects" class="active" data-i18n data-en="Work">作品</a>
+      <a href="../lab.html" data-i18n data-en="AI Lab">AI 实验室</a>
       <a href="../about.html" data-i18n data-en="About">关于</a>
-      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener" class="nav-ext">GitHub<i>↗</i></a>
       <button class="lang-switch" type="button" aria-label="Switch language">EN</button>
     </nav>
-    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
   </div>
 </header>
 
@@ -174,21 +178,32 @@
 
 <footer class="footer">
   <div class="container footer-inner">
-    <div style="display:flex;align-items:center;gap:10px;">
+    <div class="f-brand">
       <span class="logo-mark">L</span>
-      <strong>Zhenxiong Lai · 赖振雄</strong>
+      <div>
+        <strong>Zhenxiong Lai · 赖振雄</strong>
+        <p data-i18n data-en="Embedded / IoT · Class of 2027 · Guilin, China">嵌入式 / IoT · 2027 届 · 桂林</p>
+      </div>
     </div>
-    <p data-i18n data-en="Every number on this site has a paper trail.">每个数字，都能在项目记录里找到出处。</p>
-    <div class="footer-links">
-      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub</a>
+    <nav class="f-col">
+      <h4 data-i18n data-en="Site">站内</h4>
       <a href="../index.html" data-i18n data-en="Home">首页</a>
-    </div>
-    <p class="fine">© <span class="year">2026</span> 赖振雄 · Built with plain HTML/CSS/JS · <span data-i18n data-en="Deployed on GitHub Pages">托管于 GitHub Pages</span></p>
+      <a href="../index.html#projects" data-i18n data-en="Work">作品</a>
+      <a href="../lab.html" data-i18n data-en="AI Lab">AI 实验室</a>
+      <a href="../about.html" data-i18n data-en="About">关于</a>
+    </nav>
+    <nav class="f-col">
+      <h4 data-i18n data-en="Contact">联系</h4>
+      <a href="mailto:2804627817@qq.com">2804627817@qq.com</a>
+      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">github.com/Beiyiovo</a>
+      <span class="f-note" data-i18n data-en="Phone stays off this site.">手机号不上站</span>
+    </nav>
+    <p class="fine">© <span class="year">2026</span> 赖振雄 · <span data-i18n data-en="Hand-written HTML / CSS / JS · Hosted on GitHub Pages">手写 HTML / CSS / JS · 托管于 GitHub Pages</span></p>
   </div>
 </footer>
 
-<script src="../assets/vendor/gsap/gsap.min.js?v=5"></script>
-<script src="../assets/vendor/gsap/ScrollTrigger.min.js?v=5"></script>
-<script src="../assets/js/app.js?v=5"></script>
+<script src="../assets/vendor/gsap/gsap.min.js?v=6"></script>
+<script src="../assets/vendor/gsap/ScrollTrigger.min.js?v=6"></script>
+<script src="../assets/js/app.js?v=6"></script>
 </body>
 </html>

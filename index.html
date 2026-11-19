@@ -15,204 +15,365 @@
 <link rel="canonical" href="https://beiyiovo.github.io/">
 <meta property="og:url" content="https://beiyiovo.github.io/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#070b12">
-<link rel="preload" as="image" href="assets/media/p1-device.jpg">
-<link rel="stylesheet" href="assets/css/main.css?v=5">
+<meta name="theme-color" content="#05070c">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-sc-vf.woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/main.css?v=6">
 <script>document.documentElement.classList.add('js');try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
 </head>
 <body>
 
 <header class="nav">
   <div class="container nav-inner">
-    <a class="logo" href="index.html"><span class="logo-mark">L</span><span class="logo-text" data-i18n data-en="Zhenxiong Lai">赖振雄</span></a>
+    <a class="logo" href="index.html" aria-label="赖振雄 · 首页">
+      <span class="logo-mark">L</span>
+      <span class="logo-text"><b data-i18n data-en="Zhenxiong Lai">赖振雄</b><i data-i18n data-en="Embedded / IoT">嵌入式 / IoT</i></span>
+    </a>
     <nav class="nav-links" id="menu">
       <a href="index.html" class="active" data-i18n data-en="Home">首页</a>
-      <a href="#projects" data-i18n data-en="Projects">项目</a>
-      <a href="lab.html" data-i18n data-en="Lab">实验室</a>
+      <a href="#projects" data-i18n data-en="Work">作品</a>
+      <a href="lab.html" data-i18n data-en="AI Lab">AI 实验室</a>
       <a href="about.html" data-i18n data-en="About">关于</a>
-      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener" class="nav-ext">GitHub<i>↗</i></a>
       <button class="lang-switch" type="button" aria-label="Switch language">EN</button>
     </nav>
-    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
   </div>
 </header>
 
 <main>
-  <!-- Hero -->
+  <!-- ================= HERO ================= -->
   <section class="hero">
-    <div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
+    <div class="hero-bg" aria-hidden="true">
+      <span class="glow g1"></span><span class="glow g2"></span><span class="glow g3"></span>
+      <span class="hero-grid-lines"></span>
+    </div>
+
     <div class="container hero-grid">
-      <div class="hero-inner">
-      <p class="kicker reveal" data-i18n data-en="Embedded / IoT — Class of 2027">嵌入式 / IoT · 2027</p>
-      <h1 class="reveal" data-delay="0.05s" data-i18n data-en='Accurate.<br>Reliable.<br><span class="grad-text">Verifiable.</span>'>测得准。<br>传得稳。<br><span class="grad-text">可复现。</span></h1>
-      <p class="lead reveal" data-delay="0.12s" data-i18n data-en="No buzzwords — just working devices. One person carries the pipeline from schematic to app, with lab records behind every number.">不追概念，只做实物：电路、固件、云端、App，一条链路走通；每个数字，都有实验记录背书。</p>
-      <div class="cta-row reveal" data-delay="0.18s">
-        <a class="btn primary" href="#projects" data-i18n data-en="Browse projects">浏览项目</a>
-        <a class="btn ghost" href="about.html" data-i18n data-en="About me">关于我</a>
-        <a class="btn ghost" href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub ↗</a>
-      </div>
-      <p class="status reveal" data-delay="0.22s"><span class="dot"></span><span data-i18n data-en="Class of 2027 — open to opportunities">2027 届 · 求职进行中</span></p>
+      <div class="hero-copy">
+        <p class="kicker reveal"><span class="k-dot"></span><span data-i18n data-en="Embedded / IoT — Class of 2027">嵌入式 / IoT · 2027 届</span></p>
+        <h1 class="reveal" data-delay="0.04s" data-i18n data-en='Measured.<br>Delivered.<br><span class="grad-text">Reproducible.</span>'>测得准。<br>传得稳。<br><span class="grad-text">可复现。</span></h1>
+        <p class="lead reveal" data-delay="0.1s" data-i18n data-en="No buzzwords — just working devices. One person carries the pipeline from schematic to app, with lab records behind every number.">不追概念，只做实物：电路、固件、云端、App，一条链路走通；每个数字，都有实验记录背书。</p>
+        <div class="cta-row reveal" data-delay="0.16s">
+          <a class="btn primary" href="#projects"><span data-i18n data-en="Browse work">浏览作品</span><i>↓</i></a>
+          <a class="btn ghost" href="about.html" data-i18n data-en="About me">关于我</a>
+          <a class="btn ghost" href="https://github.com/Beiyiovo" target="_blank" rel="noopener" data-i18n data-en="GitHub ↗">GitHub ↗</a>
+        </div>
+        <p class="status reveal" data-delay="0.2s"><span class="dot"></span><span data-i18n data-en="Class of 2027 — open to opportunities">2027 届 · 求职进行中</span></p>
 
-      <div class="stats reveal" data-delay="0.24s">
-        <div class="stat">
-          <div class="num"><span data-count="37">37</span><small>/37</small></div>
-          <div class="lbl" data-i18n data-en="Frame-parser unit tests, all passing">帧协议容错解析 · 单元测试全过</div>
+        <div class="stats reveal" data-delay="0.24s">
+          <div class="stat">
+            <div class="num"><span data-count="37">37</span><small>/37</small></div>
+            <div class="lbl" data-i18n data-en="Frame-parser unit tests, all passing">帧协议容错解析 · 单测全过</div>
+          </div>
+          <div class="stat">
+            <div class="num"><span data-count="0.95" data-dec="2">0.95</span><small>bpm</small></div>
+            <div class="lbl" data-i18n data-en="Heart-rate MAE, 20 real trials">心率 MAE · 真机二十轮</div>
+          </div>
+          <div class="stat">
+            <div class="num">±<span data-count="0.1" data-dec="1">0.1</span><small>g</small></div>
+            <div class="lbl" data-i18n data-en="Weighing re-check vs ±2 g spec">称重复核（指标 ±2 g）</div>
+          </div>
+          <div class="stat">
+            <div class="num"><span data-count="69">69</span><small>%</small></div>
+            <div class="lbl" data-i18n data-en="Core line coverage, 45 tests">核心行覆盖 · 45 用例</div>
+          </div>
         </div>
-        <div class="stat">
-          <div class="num"><span data-count="0.95" data-dec="2">0.95</span><small> bpm</small></div>
-          <div class="lbl" data-i18n data-en="Heart-rate MAE, 20 real trials">心率 MAE · 真机二十轮实测</div>
-        </div>
-        <div class="stat">
-          <div class="num">±<span data-count="0.1" data-dec="1">0.1</span><small> g</small></div>
-          <div class="lbl" data-i18n data-en="Weighing re-check vs ±2 g spec">称重复核偏差（指标 ±2 g）</div>
-        </div>
-        <div class="stat">
-          <div class="num"><span data-count="69">69</span><small>%</small></div>
-          <div class="lbl" data-i18n data-en="Core line coverage, 45 tests">核心行覆盖 · 45 个用例</div>
-        </div>
-      </div>
       </div>
 
-      <div class="hero-visual">
-        <div class="hv-photo"><img src="assets/media/p1-device.jpg" alt="整机实物照片"></div>
-        <div class="hv-phone"><img src="assets/media/p1-app-main.png" alt="Android App 实机截图"></div>
-        <div class="hv-chip" data-i18n data-en="Real-device link: local 2 s/frame · cloud 6 s/frame">实机联动：本地 2 秒/帧 · 云端 6 秒/帧</div>
+      <!-- 主视觉：实机仪表 -->
+      <div class="hero-visual reveal" data-delay="0.14s">
+        <div class="hv-stage" id="hvStage">
+          <div class="hv-rings" aria-hidden="true">
+            <span class="ring r1"></span>
+            <span class="ring r2"></span>
+            <span class="ring r3"></span>
+            <span class="ring-tick"></span>
+          </div>
+          <div class="hv-panel" id="hvPanel">
+            <div class="hp-top">
+              <span class="hp-live"><i></i>LIVE</span>
+              <span class="hp-id">STM32F103 · ESP32-C3</span>
+              <span class="hp-time">22:39</span>
+            </div>
+            <div class="hp-metrics">
+              <div class="hp-m"><span class="hp-k" data-i18n data-en="Heart rate">心率</span><span class="hp-v">73<em>bpm</em></span></div>
+              <div class="hp-m"><span class="hp-k" data-i18n data-en="SpO₂">血氧</span><span class="hp-v">98<em>%</em></span></div>
+              <div class="hp-m"><span class="hp-k" data-i18n data-en="Temp">体温</span><span class="hp-v">36.3<em>°C</em></span></div>
+              <div class="hp-m"><span class="hp-k" data-i18n data-en="Steps">步数</span><span class="hp-v">52<em>st</em></span></div>
+            </div>
+            <div class="hp-wave">
+              <canvas id="hvWave" aria-hidden="true"></canvas>
+              <span class="hp-wave-lbl">PPG · 60 s</span>
+            </div>
+            <div class="hp-foot">
+              <span data-i18n data-en="Local 2 s/frame">本地 2 s/帧</span>
+              <span data-i18n data-en="Cloud 6 s/frame">云端 6 s/帧</span>
+              <span>CRC-8 ✓ 37/37</span>
+            </div>
+          </div>
+
+          <div class="hv-phone"><img src="assets/media/p1-app-hero.png" alt="个人健康助手 Android App 实机界面" width="480" height="1067"></div>
+        </div>
+        <p class="hv-cap"><i></i><span data-i18n data-en="Panel values from the real device screenshots — no mock data.">面板数值取自真机截图，无演示数据</span></p>
       </div>
     </div>
   </section>
 
-  <!-- 项目 -->
+  <!-- ================= 技术带 ================= -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>STM32F103</span><i>·</i><span>ESP32-C3</span><i>·</i><span>CRC-8 / SMBUS</span><i>·</i><span>Spring Boot 3</span><i>·</i><span>MQTT</span><i>·</i><span>Android · Java</span><i>·</i><span data-i18n data-en="WeChat Mini Program">微信小程序</span><i>·</i><span>HX711</span><i>·</i><span>MAX30102</span><i>·</i><span>Claude Code</span><i>·</i><span>DeepSeek</span><i>·</i><span>GitHub Actions</span><i>·</i>
+      <span>STM32F103</span><i>·</i><span>ESP32-C3</span><i>·</i><span>CRC-8 / SMBUS</span><i>·</i><span>Spring Boot 3</span><i>·</i><span>MQTT</span><i>·</i><span>Android · Java</span><i>·</i><span data-i18n data-en="WeChat Mini Program">微信小程序</span><i>·</i><span>HX711</span><i>·</i><span>MAX30102</span><i>·</i><span>Claude Code</span><i>·</i><span>DeepSeek</span><i>·</i><span>GitHub Actions</span><i>·</i>
+    </div>
+  </div>
+
+  <!-- ================= 作品 ================= -->
   <section class="sec" id="projects">
     <div class="container">
       <div class="sec-head reveal">
-        <p class="kicker">01 — WORK</p>
-        <h2 data-i18n data-en="Work">作品</h2>
-        <p class="sub" data-i18n data-en="Four projects — each one reaches real hardware and real data.">四个项目，每一个都通到实物与数据。</p>
+        <p class="kicker"><b>01</b><span data-i18n data-en="Selected work">作品</span></p>
+        <h2 data-i18n data-en="Six things, built end to end.">六件事，都做到了实物。</h2>
+        <p class="sub" data-i18n data-en="Four projects, one internship delivery, one AI toolchain — each opens into a full breakdown.">四个项目、一次实习交付、一条 AI 工具链——每一件都能点开看完整拆解。</p>
       </div>
+
       <div class="cards">
-        <a class="pcard reveal" href="projects/health-assistant.html">
-          <img class="pcard-cover" src="assets/media/p1-device.jpg" alt="整机实物照片" loading="lazy">
+        <a class="pcard featured reveal" href="projects/health-assistant.html">
+          <div class="pcard-media plate">
+            <img class="pcard-cover" src="assets/media/p1-device-grade.jpg" alt="四参数生理监测终端整机实物照片" loading="lazy">
+            <span class="plate-cap">PCB-01 · 100×100 mm · 5 MODULES</span>
+            <span class="pc-badge"><i></i><span data-i18n data-en="Thesis project">毕业设计</span></span>
+          </div>
           <div class="pcard-body">
-            <div class="tags"><span class="tag">STM32F103</span><span class="tag">ESP32-C3</span><span class="tag">Android</span><span class="tag" data-i18n data-en="WeChat Mini Program">微信小程序</span></div>
-            <h3 data-i18n data-en="Four-parameter Health Monitor + Mini Program">四参数生理监测终端 + 微信小程序</h3>
+            <div class="pc-index">01</div>
+            <div class="tags"><span class="tag">STM32F103</span><span class="tag">ESP32-C3</span><span class="tag">Android</span><span class="tag" data-i18n data-en="Mini Program">小程序</span></div>
+            <h3 data-i18n data-en="Four-parameter Health Monitor + WeChat Mini Program">四参数生理监测终端 + 微信小程序</h3>
             <p data-i18n data-en="One carrier board, two uplinks, two clients written from scratch.">一块底板、两条链路、两个从零手写的客户端。</p>
-            <span class="more" data-i18n data-en="Read the breakdown">查看完整拆解</span>
+            <span class="more" data-i18n data-en="Read the breakdown"><span>查看完整拆解</span><i>→</i></span>
           </div>
         </a>
-        <a class="pcard reveal" data-delay="0.08s" href="projects/iot-llm-platform.html">
-          <img class="pcard-cover" src="assets/media/iot-dashboard.jpg" alt="IoT 平台仪表盘" loading="lazy">
+
+        <a class="pcard reveal" href="projects/iot-llm-platform.html">
+          <div class="pcard-media frame">
+            <div class="browser">
+              <div class="browser-bar"><i></i><i></i><i></i><span>iot-llm · dashboard</span></div>
+              <img class="pcard-cover" src="assets/media/iot-dashboard.jpg" alt="IoT 平台仪表盘" loading="lazy">
+            </div>
+            <span class="pc-badge"><i></i><span data-i18n data-en="Open source">开源</span></span>
+          </div>
           <div class="pcard-body">
+            <div class="pc-index">02</div>
             <div class="tags"><span class="tag">Java 21</span><span class="tag">Spring Boot 3</span><span class="tag">MQTT</span><span class="tag">LLM</span></div>
             <h3 data-i18n data-en="IoT Access and AI Diagnosis Platform">IoT 设备接入与智能诊断平台</h3>
             <p data-i18n data-en="Devices onboard, debounced alerts, diagnosis with a graceful fallback.">设备接入、告警防抖、诊断带降级。</p>
-            <span class="more" data-i18n data-en="Read the breakdown">查看完整拆解</span>
+            <span class="more" data-i18n data-en="Read the breakdown"><span>查看完整拆解</span><i>→</i></span>
           </div>
         </a>
-        <a class="pcard reveal" data-delay="0.16s" href="projects/infusion-monitor.html">
-          <img class="pcard-cover" src="assets/media/p2-schematic.jpg" alt="输液监测装置接线原理图" loading="lazy">
+
+        <a class="pcard reveal" href="projects/infusion-monitor.html">
+          <div class="pcard-media plate screen">
+            <img class="pcard-cover" src="assets/media/p2-screen.jpg" alt="输液监测装置 OLED 界面特写" loading="lazy">
+            <span class="plate-cap">OLED 0.96″ · 450.0 g · 60 /min</span>
+            <span class="pc-badge"><i></i><span data-i18n data-en="Commissioned">受托开发</span></span>
+          </div>
           <div class="pcard-body">
-            <div class="tags"><span class="tag">STM32</span><span class="tag" data-i18n data-en="HX711 weighing">HX711 称重</span><span class="tag" data-i18n data-en="IR drop-rate sensing">红外滴速</span><span class="tag">Android</span></div>
-            <h3 data-i18n data-en="Infusion Status Monitor (commissioned)">输液状态无线监测装置（受托开发）</h3>
+            <div class="pc-index">03</div>
+            <div class="tags"><span class="tag">STM32</span><span class="tag" data-i18n data-en="HX711 weighing">HX711 称重</span><span class="tag" data-i18n data-en="IR drop rate">红外滴速</span></div>
+            <h3 data-i18n data-en="Infusion Status Monitor">输液状态无线监测装置</h3>
             <p data-i18n data-en="Weighing re-checked to ±0.1 g — twenty times tighter than spec.">称重复核到 ±0.1 g——比指标严二十倍。</p>
-            <span class="more" data-i18n data-en="Read the breakdown">查看完整拆解</span>
+            <span class="more" data-i18n data-en="Read the breakdown"><span>查看完整拆解</span><i>→</i></span>
           </div>
         </a>
-        <a class="pcard reveal" data-delay="0.24s" href="projects/smart-fridge.html">
-          <img class="pcard-cover" src="assets/media/sf-cover.jpg" alt="SmartFridge App" loading="lazy">
+
+        <a class="pcard reveal" href="projects/smart-fridge.html">
+          <div class="pcard-media">
+            <img class="pcard-cover" src="assets/media/sf-cover.jpg" alt="SmartFridge App" loading="lazy">
+            <span class="pc-badge"><i></i><span data-i18n data-en="AI pairing · video">AI 结对 · 有实录</span></span>
+          </div>
           <div class="pcard-body">
+            <div class="pc-index">04</div>
             <div class="tags"><span class="tag">Android</span><span class="tag">Java</span><span class="tag">VibeCoding</span></div>
             <h3 data-i18n data-en="SmartFridge — Food Management App">SmartFridge 智能冰箱 App</h3>
             <p data-i18n data-en="Ninety-two seconds to watch a full AI pair-programming session.">92 秒，看完一次完整的 AI 结对开发。</p>
-            <span class="more" data-i18n data-en="Read the breakdown">查看完整拆解</span>
+            <span class="more" data-i18n data-en="Read the breakdown"><span>查看完整拆解</span><i>→</i></span>
           </div>
         </a>
-        <a class="pcard reveal" data-delay="0.32s" href="https://github.com/Beiyiovo/leave-management" target="_blank" rel="noopener">
-          <div class="pcard-cover text-cover"><span>Spring&nbsp;Boot&nbsp;/&nbsp;OA</span></div>
+
+        <a class="pcard reveal" href="https://github.com/Beiyiovo/leave-management" target="_blank" rel="noopener">
+          <div class="pcard-media">
+            <div class="pcard-cover text-cover"><span>Spring&nbsp;Boot&nbsp;/&nbsp;OA</span><i class="tc-line"></i></div>
+            <span class="pc-badge"><i></i><span data-i18n data-en="Internship">实习交付</span></span>
+          </div>
           <div class="pcard-body">
+            <div class="pc-index">05</div>
             <div class="tags"><span class="tag">Java 21</span><span class="tag">Spring Boot 3</span><span class="tag">MySQL</span></div>
-            <h3 data-i18n data-en="OA Leave Management System (internship)">OA 请假管理系统（实习）</h3>
-            <p data-i18n data-en="Four weeks, one person, end to end: schema, layered APIs, integration, verified by 15 test cases.">四周实习，一个人交付：表设计、分层接口、联调，15 条用例收尾。</p>
-            <span class="more" data-i18n data-en="View on GitHub">GitHub 查看</span>
+            <h3 data-i18n data-en="OA Leave Management System">OA 请假管理系统</h3>
+            <p data-i18n data-en="Four weeks, one person, end to end — verified by 15 test cases.">四周实习，一个人交付；15 条用例收尾。</p>
+            <span class="more" data-i18n data-en="View on GitHub"><span>GitHub 查看</span><i>→</i></span>
           </div>
         </a>
-        <a class="pcard reveal" data-delay="0.4s" href="lab.html">
-          <div class="pcard-cover text-cover"><span>AI&nbsp;/&nbsp;AGENTS</span></div>
+
+        <a class="pcard wide lab-card reveal" href="lab.html">
           <div class="pcard-body">
-            <div class="tags"><span class="tag">Claude</span><span class="tag">DeepSeek</span><span class="tag">GPT · Grok · Gemini</span><span class="tag">Agent</span></div>
-            <h3 data-i18n data-en="AI Toolchain &amp; Agent Fleet">AI 工具链与 Agent 车队</h3>
+            <div class="pc-index">06</div>
+            <div class="tags"><span class="tag">Claude</span><span class="tag">DeepSeek</span><span class="tag">GPT · Gemini · Grok</span><span class="tag">Agent</span></div>
+            <h3 data-i18n data-en="AI Lab — models, agents, experiments">AI 实验室 · 模型、Agent 与实验</h3>
             <p data-i18n data-en="Models split by strength, agents in the pipeline — this site itself is one of the artifacts.">模型按场景分工，Agent 常驻流程——本站本身就是产物之一。</p>
-            <span class="more" data-i18n data-en="Enter the lab">进入实验室</span>
+            <span class="more" data-i18n data-en="Enter the lab"><span>进入实验室</span><i>→</i></span>
+          </div>
+          <div class="lab-visual" aria-hidden="true">
+            <span class="lv-core"></span><span class="lv-ring a"></span><span class="lv-ring b"></span>
+            <span class="lv-dot d1"></span><span class="lv-dot d2"></span><span class="lv-dot d3"></span>
           </div>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- 技能 -->
-  <section class="sec">
+  <!-- ================= 技能 ================= -->
+  <section class="sec sec-skills" id="skills">
     <div class="container">
       <div class="sec-head reveal">
-        <p class="kicker">02 — CRAFT</p>
-        <h2 data-i18n data-en="Craft">手艺</h2>
+        <p class="kicker"><b>02</b><span data-i18n data-en="Skills">技能</span></p>
+        <h2 data-i18n data-en="No percentages. Point at the project.">不列百分比，只列落点。</h2>
+        <p class="sub" data-i18n data-en="Every line below appears in a shipped project — the links are the proof, not a bar chart.">下面每一条都在成品里用过；证据在项目页，不在一根进度条里。</p>
       </div>
-      <div class="chips reveal">
-        <span class="chip">C</span><span class="chip">Python</span><span class="chip">Java 21</span><span class="chip">SQL</span>
-        <span class="chip">STM32F103 · Cortex-M3</span><span class="chip">ESP32-C3 · RISC-V</span>
-        <span class="chip" data-i18n data-en="Bit-banged I2C">软件模拟 I2C</span><span class="chip">UART / 1-Wire</span>
-        <span class="chip">Keil MDK</span><span class="chip" data-i18n data-en="EasyEDA (schematic / PCB)">立创 EDA</span>
-        <span class="chip">Spring Boot 3</span><span class="chip">MySQL</span><span class="chip">MQTT</span>
-        <span class="chip">Android (Java)</span><span class="chip" data-i18n data-en="WeChat Mini Program">微信小程序</span>
-        <span class="chip">SQLite</span><span class="chip">Git / GitHub Actions</span><span class="chip">Wireshark</span>
-        <span class="chip" data-i18n data-en="Embedded Linux (Buildroot)">嵌入式 Linux（Buildroot）</span>
-        <span class="chip">AI · Claude / DeepSeek / GPT / Grok / Gemini</span>
-        <span class="chip" data-i18n data-en="Agents: Claude Code · AutoClaw · DSH · WorkBuddy">Agent · Claude Code / AutoClaw / DSH / WorkBuddy</span>
+
+      <div class="skill-matrix">
+        <div class="sk-col reveal">
+          <div class="sk-head"><span class="sk-no">01</span><h3 data-i18n data-en="Embedded">嵌入式</h3><span class="sk-en">Embedded</span></div>
+          <ul>
+            <li><span>STM32F103 · Cortex-M3</span></li>
+            <li><span>ESP32-C3 · RISC-V</span></li>
+            <li data-i18n data-en="Bit-banged I2C · UART · 1-Wire"><span>软件模拟 I2C · UART · 1-Wire</span></li>
+            <li><span>MAX30102 · DS18B20 · MPU6050 · HX711</span></li>
+            <li><span>Keil MDK · <span data-i18n data-en="EasyEDA">立创 EDA</span></span></li>
+            <li data-i18n data-en="Soldering 0805/0603 · scope · multimeter"><span>焊接 0805/0603 · 示波器 · 万用表</span></li>
+          </ul>
+        </div>
+        <div class="sk-col reveal" data-delay="0.06s">
+          <div class="sk-head"><span class="sk-no">02</span><h3 data-i18n data-en="Software">软件</h3><span class="sk-en">Software</span></div>
+          <ul>
+            <li><span>C · Python · Java 21 · SQL</span></li>
+            <li><span>Spring Boot 3 · MyBatis-Plus</span></li>
+            <li><span>MySQL · SQLite</span></li>
+            <li><span>MQTT · REST</span></li>
+            <li><span>JUnit5 · 45 <span data-i18n data-en="test cases">用例</span></span></li>
+            <li data-i18n data-en="CRC-8 framing · protocol tolerance"><span>CRC-8 帧协议 · 容错解析</span></li>
+          </ul>
+        </div>
+        <div class="sk-col reveal" data-delay="0.12s">
+          <div class="sk-head"><span class="sk-no">03</span><h3 data-i18n data-en="Client">端侧</h3><span class="sk-en">Client</span></div>
+          <ul>
+            <li data-i18n data-en="Android (Java) · foreground service"><span>Android（Java）· 前台服务</span></li>
+            <li data-i18n data-en="Native WeChat Mini Program"><span>微信小程序（原生）</span></li>
+            <li data-i18n data-en="Canvas 2D dual-axis charts"><span>Canvas 2D 双轴自绘图表</span></li>
+            <li data-i18n data-en="MPAndroidChart · SQLite history"><span>MPAndroidChart · SQLite 历史库</span></li>
+            <li data-i18n data-en="Downsampling · day-keyed storage"><span>降采样 · 按天分键存储</span></li>
+            <li data-i18n data-en="Responsive layout · motion"><span>响应式布局 · 动效实现</span></li>
+          </ul>
+        </div>
+        <div class="sk-col reveal" data-delay="0.18s">
+          <div class="sk-head"><span class="sk-no">04</span><h3 data-i18n data-en="AI &amp; Ops">AI 与工程</h3><span class="sk-en">AI &amp; Ops</span></div>
+          <ul>
+            <li><span>Claude Code · DeepSeek Harness</span></li>
+            <li><span>AutoClaw · WorkBuddy</span></li>
+            <li><span>GPT · Gemini · Grok · GLM</span></li>
+            <li data-i18n data-en="Prompt orchestration · review loop"><span>提示编排 · 多模型互查</span></li>
+            <li><span>Git · GitHub Actions</span></li>
+            <li><span>Wireshark · Postman</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 时间线 -->
-  <section class="sec">
+  <!-- ================= 轨迹 ================= -->
+  <section class="sec sec-trace" id="trace">
     <div class="container">
-      <div class="sec-head reveal">
-        <p class="kicker">03 — TRACE</p>
-        <h2 data-i18n data-en="Trace">轨迹</h2>
+      <div class="trace-head">
+        <div class="sec-head reveal">
+          <p class="kicker"><b>03</b><span data-i18n data-en="Trace">轨迹</span></p>
+          <h2 data-i18n data-en="Every point left a light.">每一步，都留了一点光。</h2>
+          <p class="sub" data-i18n data-en="Scroll to travel the path — each milestone lights up as the light passes it.">向下滚动，光点沿轨迹前行；经过的节点会亮起来。</p>
+        </div>
+
+        <div class="trace-reader reveal" data-delay="0.08s" id="traceReader">
+          <div class="tr-meta"><span class="tr-count"><b>01</b> / 07</span><span class="tr-flag" data-i18n data-en="Milestone">节点</span></div>
+          <div class="tr-panel">
+            <span class="tr-date">2023.09</span>
+            <h3 data-i18n data-en="Enrolled — IoT Engineering">入学 · 物联网工程</h3>
+            <p data-i18n data-en="Guilin University of Information Technology, School of Electronic Engineering. Four years begin here.">桂林信息科技学院 · 电子工程学院。四年从这里开始。</p>
+          </div>
+        </div>
       </div>
-      <div class="timeline">
-        <div class="tl-item reveal">
-          <span class="tl-date">2023.09</span>
-          <h3 data-i18n data-en="Enrolled — IoT Engineering, GUIT">入学 · 桂林信息科技学院 · 物联网工程</h3>
+    </div>
+
+    <div class="trace-stage" id="traceStage">
+      <canvas id="traceCanvas" aria-hidden="true"></canvas>
+      <div class="trace-nodes" id="traceNodes">
+        <article class="tr-node" style="left:8%;top:79%" data-t="0.045" data-x="8" data-y="79" data-side="up">
+          <span class="tr-year">2023.09</span>
+          <h3 data-i18n data-en="Enrolled — IoT Engineering">入学 · 物联网工程</h3>
+          <p data-i18n data-en="Guilin University of Information Technology, School of Electronic Engineering. Four years begin here.">桂林信息科技学院 · 电子工程学院。四年从这里开始。</p>
+        </article>
+        <article class="tr-node" style="left:21%;top:66%" data-t="0.19" data-x="21" data-y="66" data-side="down">
+          <span class="tr-year">2024.01 – 11</span>
+          <h3 data-i18n data-en="Sensor nodes &amp; line-test scripts">低功耗传感节点与产线测试脚本</h3>
+          <p data-i18n data-en="Python/PySerial automated test scripts; MQTT uplink frames verified packet by packet in Wireshark.">Python/PySerial 自动化测试脚本；用 Wireshark 逐包核对 MQTT 上行报文。</p>
+        </article>
+        <article class="tr-node" style="left:34%;top:71%" data-t="0.33" data-x="34" data-y="71" data-side="up">
+          <span class="tr-year">2025.06 – 2026.02</span>
+          <h3 data-i18n data-en="Multi-protocol edge gateway">多协议物联网边缘网关</h3>
+          <p data-i18n data-en="ESP8266 and ZigBee CC2530 access, power design and bring-up on embedded Linux.">ESP8266 与 ZigBee CC2530 接入、供电设计，在嵌入式 Linux 上跑通。</p>
+        </article>
+        <article class="tr-node" style="left:47%;top:52%" data-t="0.47" data-x="47" data-y="52" data-side="down">
+          <span class="tr-year">2026.07</span>
+          <h3 data-i18n data-en="Java intern — Dihua, 4 weeks">江西迪华 · Java 开发实习</h3>
+          <p data-i18n data-en="Delivered an OA leave-management system solo; fixed 5 defect classes; 15 test cases executed.">独立交付 OA 请假系统；修 5 类缺陷；15 条用例全部执行。</p>
+        </article>
+        <article class="tr-node" style="left:60%;top:58%" data-t="0.61" data-x="60" data-y="58" data-side="up">
+          <span class="tr-year">2026.09 – 11</span>
+          <h3 data-i18n data-en="Thesis — health monitor">毕业设计 · 四参数终端</h3>
+          <p data-i18n data-en="Hardware, firmware, cloud link, Android app and mini program — all verified on real devices.">硬件 → 固件 → 云端 → Android + 小程序，全部实机跑通并实测验证。</p>
+        </article>
+        <article class="tr-node" style="left:73%;top:37%" data-t="0.75" data-x="73" data-y="37" data-side="down">
+          <span class="tr-year">2026.10</span>
+          <h3 data-i18n data-en="Commissioned — infusion monitor">受托开发 · 输液监测</h3>
+          <p data-i18n data-en="Weighing plus drop-rate sensing; calibration re-checked to ±0.1 g across 13 firmware builds.">称重加滴速检测；13 段固件迭代后，标定复核到 ±0.1 g。</p>
+        </article>
+        <article class="tr-node" style="left:88%;top:21%" data-t="0.9" data-x="88" data-y="21" data-side="up">
+          <span class="tr-year">2026.11</span>
+          <h3 data-i18n data-en="Open source &amp; this site">开源 · 与这个站点</h3>
+          <p data-i18n data-en="iot-llm-platform goes open source; the portfolio you are reading ships in the same session.">iot-llm-platform 开源；你正在读的这个站点，也在同一条流水线里上线。</p>
+        </article>
+      </div>
+      <span class="trace-tag" aria-hidden="true"><i></i>07 NODES · 2023—2026</span>
+      <div class="trace-axis" aria-hidden="true"><span>2023</span><span>2024</span><span>2025</span><span>2026</span></div>
+    </div>
+  </section>
+
+  <!-- ================= 联系 ================= -->
+  <section class="sec sec-contact" id="contact">
+    <div class="container">
+      <div class="contact-card reveal">
+        <span class="cc-glow" aria-hidden="true"></span>
+        <div class="cc-main">
+          <p class="kicker"><b>04</b><span data-i18n data-en="Contact">联系</span></p>
+          <h2 data-i18n data-en="The next device could be ours.">下一台设备，<br>也许我们一起做。</h2>
+          <p class="sub" data-i18n data-en="Open to embedded / IoT / full-stack roles from 2027. Mail is the fastest way to reach me.">2027 年毕业，寻找嵌入式 / IoT / 全栈方向的机会。邮件是最快的方式。</p>
         </div>
-        <div class="tl-item reveal">
-          <span class="tl-date">2024.01 – 2024.11</span>
-          <h3 data-i18n data-en="Low-power sensor nodes and production-line test scripts">低功耗传感节点与产线测试脚本</h3>
-          <p data-i18n data-en="Python/PySerial automated test scripts; MQTT packet verification with Wireshark.">Python/PySerial 自动化测试脚本；Wireshark 核对 MQTT 上行报文。</p>
-        </div>
-        <div class="tl-item reveal">
-          <span class="tl-date">2025.06</span>
-          <h3 data-i18n data-en="CET-4 · 453">CET-4 · 453 分</h3>
-        </div>
-        <div class="tl-item reveal">
-          <span class="tl-date">2025.06 – 2026.02</span>
-          <h3 data-i18n data-en="Multi-protocol IoT edge gateway (course practicum)">多协议物联网边缘网关（课程实训）</h3>
-          <p data-i18n data-en="ESP8266 / ZigBee CC2530 access and power design on embedded Linux.">ESP8266 / ZigBee CC2530 接入与供电设计（嵌入式 Linux）。</p>
-        </div>
-        <div class="tl-item reveal">
-          <span class="tl-date">2026.07</span>
-          <h3 data-i18n data-en="Java developer intern — Dihua Computer (4 weeks)">江西迪华 · Java 开发实习（4 周）</h3>
-          <p data-i18n data-en="Delivered an OA leave-management system solo (Spring Boot 3 + MyBatis + MySQL); fixed 5 defect classes; 15 test cases.">独立交付 OA 请假系统（Spring Boot 3 + MyBatis + MySQL）；修 5 类缺陷；15 条用例。</p>
-        </div>
-        <div class="tl-item reveal">
-          <span class="tl-date">2026.09 – 2026.11</span>
-          <h3 data-i18n data-en="Graduation project — Four-parameter health monitor">毕业设计 · 四参数生理监测终端</h3>
-          <p data-i18n data-en="Hardware, firmware, cloud link, Android app and WeChat mini program — all built and verified on real devices.">硬件 → 固件 → 云端 → Android + 小程序，全部实机跑通并实测验证。</p>
-        </div>
-        <div class="tl-item reveal">
-          <span class="tl-date">2026.10</span>
-          <h3 data-i18n data-en="Commissioned build — Infusion status monitor">受托开发 · 输液状态无线监测装置</h3>
-        </div>
-        <div class="tl-item reveal">
-          <span class="tl-date">2026.11</span>
-          <h3 data-i18n data-en="Open-sourced iot-llm-platform; mini program full-stack">iot-llm-platform 开源 · 小程序全栈</h3>
+        <div class="cc-links">
+          <a class="cc-mail" href="mailto:2804627817@qq.com?subject=Hello%20from%20your%20portfolio">
+            <span class="cc-ico" aria-hidden="true">@</span>
+            <span class="cc-txt"><i data-i18n data-en="QQ Mail — click to write">QQ 邮箱 · 点击写信</i><b>2804627817@qq.com</b></span>
+            <span class="cc-arrow" aria-hidden="true">→</span>
+          </a>
+          <button class="cc-copy" type="button" data-copy="2804627817@qq.com"><span data-i18n data-en="Copy address">复制邮箱地址</span></button>
+          <div class="cc-alt">
+            <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener"><span class="cc-ico sm" aria-hidden="true">⌘</span><span>github.com/Beiyiovo</span></a>
+            <a href="about.html"><span class="cc-ico sm" aria-hidden="true">i</span><span data-i18n data-en="More about me">更多关于我</span></a>
+          </div>
+          <p class="cc-note" data-i18n data-en="Full resume (with phone) available on request — phone numbers stay off this site.">含手机号的完整简历可邮件索取；手机号不上站。</p>
         </div>
       </div>
     </div>
@@ -221,21 +382,33 @@
 
 <footer class="footer">
   <div class="container footer-inner">
-    <div style="display:flex;align-items:center;gap:10px;">
+    <div class="f-brand">
       <span class="logo-mark">L</span>
-      <strong>Zhenxiong Lai · 赖振雄</strong>
+      <div>
+        <strong>Zhenxiong Lai · 赖振雄</strong>
+        <p data-i18n data-en="Embedded / IoT · Class of 2027 · Guilin, China">嵌入式 / IoT · 2027 届 · 桂林</p>
+      </div>
     </div>
-    <p data-i18n data-en="Every number on this site has a paper trail.">每个数字，都能在项目记录里找到出处。</p>
-    <div class="footer-links">
-      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">GitHub</a>
-      <a href="about.html" data-i18n data-en="About me">关于我</a>
-    </div>
-    <p class="fine">© <span class="year">2026</span> 赖振雄 · Built with plain HTML/CSS/JS · <span data-i18n data-en="Deployed on GitHub Pages">托管于 GitHub Pages</span></p>
+    <nav class="f-col">
+      <h4 data-i18n data-en="Site">站内</h4>
+      <a href="index.html" data-i18n data-en="Home">首页</a>
+      <a href="index.html#projects" data-i18n data-en="Work">作品</a>
+      <a href="lab.html" data-i18n data-en="AI Lab">AI 实验室</a>
+      <a href="about.html" data-i18n data-en="About">关于</a>
+    </nav>
+    <nav class="f-col">
+      <h4 data-i18n data-en="Contact">联系</h4>
+      <a href="mailto:2804627817@qq.com">2804627817@qq.com</a>
+      <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">github.com/Beiyiovo</a>
+      <span class="f-note" data-i18n data-en="Phone stays off this site.">手机号不上站</span>
+    </nav>
+    <p class="fine">© <span class="year">2026</span> 赖振雄 · <span data-i18n data-en="Hand-written HTML / CSS / JS · Hosted on GitHub Pages">手写 HTML / CSS / JS · 托管于 GitHub Pages</span></p>
   </div>
 </footer>
 
-<script src="assets/vendor/gsap/gsap.min.js?v=5"></script>
-<script src="assets/vendor/gsap/ScrollTrigger.min.js?v=5"></script>
-<script src="assets/js/app.js?v=5"></script>
+<script src="assets/vendor/gsap/gsap.min.js?v=6"></script>
+<script src="assets/vendor/gsap/ScrollTrigger.min.js?v=6"></script>
+<script src="assets/js/app.js?v=6"></script>
+<script src="assets/js/visuals.js?v=6"></script>
 </body>
 </html>
