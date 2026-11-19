@@ -1987,7 +1987,7 @@ a.exp:hover .exp-go { transform: translateX(5px); color: var(--acc); }
 .pcard-media.frame .pcard-cover {
   width: 100%;
   aspect-ratio: auto;
-  filter: brightness(0.8) contrast(1.06) saturate(0.9);
+  filter: brightness(0.86) contrast(1.05) saturate(0.94);
   transition: filter 0.5s;
 }
 .pcard:hover .pcard-media.frame .pcard-cover { filter: brightness(0.94) contrast(1.05) saturate(0.98); }
