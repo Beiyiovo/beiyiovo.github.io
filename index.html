@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>赖振雄 · 嵌入式 / IoT 全栈作品集</title>
-<meta name="description" content="赖振雄的个人作品集：四参数生理监测终端、IoT+LLM 开源平台、输液监测装置、智能冰箱 App。从电路与固件到云端与 App，所有数据可溯源。">
+<meta name="description" content="赖振雄的个人作品集：四参数生理监测终端、IoT+LLM 开源平台、输液监测装置、智能冰箱 App。2027 届，求职杭州。从电路与固件到云端与 App，所有数据可溯源。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zhenxiong Lai · 赖振雄">
 <meta property="og:title" content="赖振雄 · 嵌入式 / IoT 全栈作品集">
@@ -17,7 +17,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#05070c">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-sc-vf.woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/main.css?v=6">
+<link rel="stylesheet" href="assets/css/main.css?v=7">
 <script>document.documentElement.classList.add('js');try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
 </head>
 <body>
@@ -34,7 +34,11 @@
       <a href="lab.html" data-i18n data-en="AI Lab">AI 实验室</a>
       <a href="about.html" data-i18n data-en="About">关于</a>
       <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener" class="nav-ext">GitHub<i>↗</i></a>
-      <button class="lang-switch" type="button" aria-label="Switch language">EN</button>
+      <div class="lang-switch" role="group" aria-label="Language / 语言">
+        <button class="ls-btn" type="button" data-lang-set="zh" aria-pressed="true">中</button>
+        <button class="ls-btn" type="button" data-lang-set="en" aria-pressed="false">EN</button>
+        <span class="ls-pill" aria-hidden="true"></span>
+      </div>
     </nav>
     <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
   </div>
@@ -50,7 +54,7 @@
 
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="kicker reveal"><span class="k-dot"></span><span data-i18n data-en="Embedded / IoT — Class of 2027">嵌入式 / IoT · 2027 届</span></p>
+        <p class="kicker reveal"><span class="k-dot"></span><span data-i18n data-en="Hangzhou · Embedded / IoT · Class of 2027">杭州 · 嵌入式 / IoT · 2027 届</span></p>
         <h1 class="reveal" data-delay="0.04s" data-i18n data-en='Measured.<br>Delivered.<br><span class="grad-text">Reproducible.</span>'>测得准。<br>传得稳。<br><span class="grad-text">可复现。</span></h1>
         <p class="lead reveal" data-delay="0.1s" data-i18n data-en="No buzzwords — just working devices. One person carries the pipeline from schematic to app, with lab records behind every number.">不追概念，只做实物：电路、固件、云端、App，一条链路走通；每个数字，都有实验记录背书。</p>
         <div class="cta-row reveal" data-delay="0.16s">
@@ -58,7 +62,7 @@
           <a class="btn ghost" href="about.html" data-i18n data-en="About me">关于我</a>
           <a class="btn ghost" href="https://github.com/Beiyiovo" target="_blank" rel="noopener" data-i18n data-en="GitHub ↗">GitHub ↗</a>
         </div>
-        <p class="status reveal" data-delay="0.2s"><span class="dot"></span><span data-i18n data-en="Class of 2027 — open to opportunities">2027 届 · 求职进行中</span></p>
+        <p class="status reveal" data-delay="0.2s"><span class="dot"></span><span data-i18n data-en="Class of 2027 — job hunting in Hangzhou">2027 届 · 在杭州找工作</span></p>
 
         <div class="stats reveal" data-delay="0.24s">
           <div class="stat">
@@ -360,20 +364,20 @@
         <div class="cc-main">
           <p class="kicker"><b>04</b><span data-i18n data-en="Contact">联系</span></p>
           <h2 data-i18n data-en="The next device could be ours.">下一台设备，<br>也许我们一起做。</h2>
-          <p class="sub" data-i18n data-en="Open to embedded / IoT / full-stack roles from 2027. Mail is the fastest way to reach me.">2027 年毕业，寻找嵌入式 / IoT / 全栈方向的机会。邮件是最快的方式。</p>
+          <p class="sub" data-i18n data-en="Graduating in 2027, looking for embedded / IoT / full-stack roles in Hangzhou. One click copies my mail address.">2027 年毕业，在杭州找嵌入式 / IoT / 全栈的岗位。点一下，邮箱直接进剪贴板。</p>
         </div>
         <div class="cc-links">
-          <a class="cc-mail" href="mailto:2804627817@qq.com?subject=Hello%20from%20your%20portfolio">
+          <button class="cc-mail" type="button" data-copy="2804627817@qq.com">
             <span class="cc-ico" aria-hidden="true">@</span>
-            <span class="cc-txt"><i data-i18n data-en="QQ Mail — click to write">QQ 邮箱 · 点击写信</i><b>2804627817@qq.com</b></span>
-            <span class="cc-arrow" aria-hidden="true">→</span>
-          </a>
-          <button class="cc-copy" type="button" data-copy="2804627817@qq.com"><span data-i18n data-en="Copy address">复制邮箱地址</span></button>
+            <span class="cc-txt"><i data-i18n data-en="QQ Mail — click to copy">QQ 邮箱 · 点击即复制</i><b>2804627817@qq.com</b></span>
+            <span class="cc-arrow" aria-hidden="true">⊕</span>
+          </button>
+          <a class="cc-copy" href="mailto:2804627817@qq.com?subject=Hello%20from%20your%20portfolio" data-i18n data-en="Open in mail app ↗">在邮件客户端打开 ↗</a>
           <div class="cc-alt">
             <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener"><span class="cc-ico sm" aria-hidden="true">⌘</span><span>github.com/Beiyiovo</span></a>
             <a href="about.html"><span class="cc-ico sm" aria-hidden="true">i</span><span data-i18n data-en="More about me">更多关于我</span></a>
           </div>
-          <p class="cc-note" data-i18n data-en="Full resume (with phone) available on request — phone numbers stay off this site.">含手机号的完整简历可邮件索取；手机号不上站。</p>
+          <p class="cc-note" data-i18n data-en="A full resume is one reply away — just say hello.">完整简历，来信即回。</p>
         </div>
       </div>
     </div>
@@ -386,7 +390,7 @@
       <span class="logo-mark">L</span>
       <div>
         <strong>Zhenxiong Lai · 赖振雄</strong>
-        <p data-i18n data-en="Embedded / IoT · Class of 2027 · Guilin, China">嵌入式 / IoT · 2027 届 · 桂林</p>
+        <p data-i18n data-en="Embedded / IoT · Class of 2027 · Hangzhou, China">嵌入式 / IoT · 2027 届 · 杭州</p>
       </div>
     </div>
     <nav class="f-col">
@@ -400,15 +404,14 @@
       <h4 data-i18n data-en="Contact">联系</h4>
       <a href="mailto:2804627817@qq.com">2804627817@qq.com</a>
       <a href="https://github.com/Beiyiovo" target="_blank" rel="noopener">github.com/Beiyiovo</a>
-      <span class="f-note" data-i18n data-en="Phone stays off this site.">手机号不上站</span>
     </nav>
-    <p class="fine">© <span class="year">2026</span> 赖振雄 · <span data-i18n data-en="Hand-written HTML / CSS / JS · Hosted on GitHub Pages">手写 HTML / CSS / JS · 托管于 GitHub Pages</span></p>
+    <p class="fine">© 2027 赖振雄 · <span data-i18n data-en="Hand-written HTML / CSS / JS · Hosted on GitHub Pages">手写 HTML / CSS / JS · 托管于 GitHub Pages</span></p>
   </div>
 </footer>
 
-<script src="assets/vendor/gsap/gsap.min.js?v=6"></script>
-<script src="assets/vendor/gsap/ScrollTrigger.min.js?v=6"></script>
-<script src="assets/js/app.js?v=6"></script>
-<script src="assets/js/visuals.js?v=6"></script>
+<script src="assets/vendor/gsap/gsap.min.js?v=7"></script>
+<script src="assets/vendor/gsap/ScrollTrigger.min.js?v=7"></script>
+<script src="assets/js/app.js?v=7"></script>
+<script src="assets/js/visuals.js?v=7"></script>
 </body>
 </html>

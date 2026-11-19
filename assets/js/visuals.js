@@ -306,20 +306,37 @@
     }
 
     function drawPath(limit) {
-      if (limit <= 0.001) return;
-      var end = Math.floor(limit * (pts.length - 1));
-      var g = ctx.createLinearGradient(0, 0, W, 0);
-      g.addColorStop(0, 'rgba(95,216,245,0.15)');
-      g.addColorStop(0.45, 'rgba(95,216,245,0.55)');
-      g.addColorStop(1, 'rgba(120,190,255,1)');
+      var total = pts.length - 1;
+      var end = Math.floor(limit * total);
+      var grad = ctx.createLinearGradient(0, 0, W, 0);
+      grad.addColorStop(0, 'rgba(95,216,245,0.30)');
+      grad.addColorStop(0.5, 'rgba(110,220,255,0.85)');
+      grad.addColorStop(1, 'rgba(150,205,255,1)');
+
+      /* 未走到的部分：虚线，保证整条轨迹随时可读 */
+      if (limit < 0.999) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.setLineDash([3, 7]);
+        ctx.lineDashOffset = 0;
+        var from = Math.max(0, end);
+        ctx.moveTo(pts[from].x, pts[from].y);
+        for (var k = from + 1; k <= total; k++) ctx.lineTo(pts[k].x, pts[k].y);
+        ctx.strokeStyle = 'rgba(140,190,235,0.22)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      if (limit <= 0.002) return;
 
       ctx.beginPath();
       ctx.moveTo(pts[0].x, pts[0].y);
       for (var i = 1; i <= end; i++) ctx.lineTo(pts[i].x, pts[i].y);
       var lastP = pointAt(limit);
       ctx.lineTo(lastP.x, lastP.y);
-      ctx.strokeStyle = g;
-      ctx.lineWidth = 1.1;
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1.25;
       ctx.stroke();
 
       ctx.save();
@@ -328,15 +345,15 @@
       ctx.moveTo(pts[0].x, pts[0].y);
       for (var j = 1; j <= end; j++) ctx.lineTo(pts[j].x, pts[j].y);
       ctx.lineTo(lastP.x, lastP.y);
-      ctx.strokeStyle = 'rgba(95,216,245,0.16)';
-      ctx.lineWidth = 6;
+      ctx.strokeStyle = 'rgba(95,216,245,0.14)';
+      ctx.lineWidth = 7;
       ctx.stroke();
       ctx.restore();
     }
 
-    function drawComet(c, time) {
+    function drawComet(c, time, dt) {
       if (!animated) return;
-      c.p += c.speed * 16.7;
+      c.p += c.speed * dt;
       if (c.p > 1.06) c.p = -0.02;
       if (c.p < 0) return;
 
@@ -416,7 +433,7 @@
       last = time;
 
       // 平滑逼近目标进度
-      progress += (target - progress) * (animated ? 0.06 : 1);
+      progress += (target - progress) * (animated ? Math.min(1, dt / 110) : 1);
       if (Math.abs(target - progress) < 0.0005) progress = target;
 
       ctx.clearRect(0, 0, W, H);
@@ -443,7 +460,7 @@
       ctx.stroke();
 
       drawPath(progress);
-      comets.forEach(function (c) { drawComet(c, time); });
+      comets.forEach(function (c) { drawComet(c, time, dt); });
       drawDots(time);
 
       // 进度光头
@@ -512,9 +529,11 @@
     function scrollProgress() {
       var r = stage.getBoundingClientRect();
       var vh = window.innerHeight || 800;
-      var total = r.height + vh * 0.42;
-      var travel = vh * 0.9 - r.top;
-      target = clamp(travel / total, 0, 1);
+      /* p=0 舞台顶部到 88% 视高；p=1 在舞台仍完整可见时（底部 28% 视高）就走完，
+         让整条轨迹的形状一定被看完，而不是滑出去才勉强画完 */
+      var startLine = vh * 0.88;
+      var span = Math.max(300, r.height * 0.72 + vh * 0.26);
+      target = clamp((startLine - r.top) / span, 0, 1);
       if (!animated) { progress = 1; target = 1; }
     }
 

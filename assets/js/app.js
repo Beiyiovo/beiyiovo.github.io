@@ -26,8 +26,11 @@
       var v = el.getAttribute(lang === 'en' ? 'data-en' : 'data-zh');
       if (v !== null) el.innerHTML = v;
     });
-    d.querySelectorAll('.lang-switch').forEach(function (b) {
-      b.textContent = lang === 'en' ? '中文' : 'EN';
+    d.querySelectorAll('.lang-switch').forEach(function (box) {
+      box.dataset.mode = lang;
+      box.querySelectorAll('.ls-btn').forEach(function (b) {
+        b.setAttribute('aria-pressed', b.getAttribute('data-lang-set') === lang ? 'true' : 'false');
+      });
     });
     if (typeof window.__onLangChange === 'function') {
       try { window.__onLangChange(lang); } catch (e) {}
@@ -38,12 +41,27 @@
   try { lang = localStorage.getItem(KEY) || 'zh'; } catch (e) {}
   apply(lang);
 
-  d.querySelectorAll('.lang-switch').forEach(function (b) {
-    b.addEventListener('click', function () {
-      lang = lang === 'zh' ? 'en' : 'zh';
+  var switching = false;
+  function setLang(next) {
+    if (next === lang || switching) return;
+    var run = function () {
+      lang = next;
       try { localStorage.setItem(KEY, lang); } catch (e) {}
       apply(lang);
-    });
+    };
+    if (!STATIC && !reduced && typeof d.startViewTransition === 'function') {
+      switching = true;
+      var vt = d.startViewTransition(run);
+      var done = function () { switching = false; };
+      if (vt && vt.finished && vt.finished.then) vt.finished.then(done, done);
+      else setTimeout(done, 400);
+    } else {
+      run();
+    }
+  }
+
+  d.querySelectorAll('.ls-btn').forEach(function (b) {
+    b.addEventListener('click', function () { setLang(b.getAttribute('data-lang-set')); });
   });
 
   /* ---------- 进场 ---------- */
@@ -229,17 +247,20 @@
     btn.addEventListener('click', function () {
       var text = btn.getAttribute('data-copy');
       var shown = false;
-      function done() {
+      function done(ok) {
         if (shown) return;
         shown = true;
-        showToast(lang === 'en' ? 'Copied — ' + text : '已复制 · ' + text);
+        if (ok === false) {
+          showToast(lang === 'en' ? 'Copy failed — ' + text : '复制失败，请手动复制：' + text);
+        } else {
+          showToast(lang === 'en' ? 'Copied — ' + text : '已复制 · ' + text);
+        }
       }
       if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(text).then(done, function () { legacyCopy(text); done(); });
-        setTimeout(function () { if (!shown) { legacyCopy(text); done(); } }, 800);
+        navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(legacyCopy(text)); });
+        setTimeout(function () { if (!shown) done(legacyCopy(text)); }, 600);
       } else {
-        legacyCopy(text);
-        done();
+        done(legacyCopy(text));
       }
     });
   });
