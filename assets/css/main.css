@@ -177,6 +177,27 @@ h1 {
 .more::after { content: " →"; display: inline-block; transition: transform 0.25s; }
 .pcard:hover .more::after { transform: translateX(4px); }
 
+/* 文字型封面（无图项目的极简封面） */
+.pcard-cover.text-cover {
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--card-2), var(--card));
+}
+.pcard-cover.text-cover span {
+  font-family: var(--mono); font-size: 1.5rem; color: var(--acc-2); letter-spacing: 0.12em;
+}
+
+/* 求职状态徽标 */
+.status {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 0.85rem; color: var(--muted); margin-top: 20px;
+}
+.status .dot {
+  width: 8px; height: 8px; border-radius: 50%; background: #3ddc84;
+  box-shadow: 0 0 10px rgba(61, 220, 132, 0.8);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+@keyframes pulse { 50% { opacity: 0.35; } }
+
 /* ---------- 技能 ---------- */
 .chips { display: flex; flex-wrap: wrap; gap: 10px; }
 .chip {

@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>输液状态无线监测装置（受托开发） · 赖振雄的作品集</title>
-<meta name="description" content="STM32F103C8T6 + ESP32-C3 输液多参数监测：HX711 称重复核 ±0.1 g（指标 ±2 g）、红外对射滴速、DS18B20 测温、OLED 中文界面、黄/红两级声光报警、Android 客户端。">
+<meta name="description" content="STM32F103C8T6 + ESP32-C3 输液多参数监测：HX711 称重复核 ±0.1 g（指标 ±2 g）、红外对射滴速、DS18B20 测温、黄/红两级声光报警、Android 客户端。">
+<link rel="canonical" href="https://beiyiovo.github.io/projects/infusion-monitor.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zhenxiong Lai · 赖振雄">
 <meta property="og:title" content="输液状态无线监测装置（受托开发）· 赖振雄的作品集">
-<meta property="og:description" content="HX711 称重复核 ±0.1 g（指标 ±2 g）、红外对射滴速、DS18B20 测温、OLED 中文界面、黄/红两级声光报警、Android 客户端。">
+<meta property="og:description" content="HX711 称重复核 ±0.1 g（指标 ±2 g）、红外对射滴速、DS18B20 测温、黄/红两级声光报警、Android 客户端。">
 <meta property="og:image" content="https://beiyiovo.github.io/assets/media/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://beiyiovo.github.io/projects/infusion-monitor.html">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/css/main.css?v=3">
+<link rel="stylesheet" href="../assets/css/main.css?v=4">
 <script>document.documentElement.classList.add('js');try{var l=localStorage.getItem('site-lang');if(l){document.documentElement.dataset.lang=l;}}catch(e){}</script>
 </head>
 <body>
@@ -36,7 +36,7 @@
   <section class="p-hero container">
     <p class="crumb"><a href="../index.html" data-i18n data-en="Home">首页</a> / <a href="../index.html#projects" data-i18n data-en="Projects">项目</a> / <span data-i18n data-en="Infusion monitor">输液监测装置</span></p>
     <h1 data-i18n data-en="Infusion Status WiFi Monitor (commissioned)">输液状态无线监测装置（受托开发）</h1>
-    <p class="lead" data-i18n data-en="Three sensing chains — weight, temperature, drop rate — with two-level alerts and a live Android client; calibration re-checked to ±0.1 g, twenty times tighter than spec.">称重、测温、滴速三路传感，黄红两级报警，App 实时可看；标定复核做到 ±0.1 g——比指标严二十倍。</p>
+    <p class="lead" data-i18n data-en="A commissioned build that shares its engineering method with the health monitor — applied to a harsher sensing scene: weight, temperature and drop rate, with calibration re-checked to ±0.1 g, twenty times tighter than spec.">与毕设一同源的工程方法，换到一个更苛刻的传感场景：称重、测温、滴速三路信号，标定复核到 ±0.1 g——比指标严二十倍。</p>
     <div class="meta-chips">
       <span class="tag">2026.10 – 至今</span>
       <span class="tag" data-i18n data-en="Commissioned build · implementation lead">受托开发 · 实现主力</span>
@@ -54,10 +54,10 @@
   </div>
 
   <div class="container">
-    <div class="note" data-i18n data-en="Scope note: this is a commissioned project. The client owns topic selection and real-world validation; this page presents the implementation side (firmware, sensing chains, app) which I led.">口径说明：本项目为受托开发。课题方向与实机验证由委托方负责，本页展示由我主导的实现侧工作（固件、传感链路、App）。</div>
+    <div class="note" data-i18n data-en="Commissioned project: the client owns topic selection and real-world validation; this page shows the implementation side. A brief entry — the method is the same as the health monitor, details live in the repo.">受托项目：课题与实机验证由委托方负责，本页展示实现侧工作；简要呈现——方法与毕设一相通，完整细节在仓库。</div>
   </div>
 
-  <!-- 概述 -->
+  <!-- 这台装置 -->
   <section class="sec">
     <div class="container">
       <div class="sec-head reveal">
@@ -65,31 +65,16 @@
         <h2 data-i18n data-en="The device">这台装置</h2>
       </div>
       <ul class="checks reveal">
-        <li data-i18n data-en="Weighing chain calibrated with certified weights: SCALE = 741.6 counts/g, linearity 0.14%, five-point re-check max deviation ±0.1 g — against a ±2 g spec, a 20× margin.">称重链路用标准砝码组标定：SCALE = 741.6 counts/g、线性度 0.14%、五点复核最大偏差 ±0.1 g——对照 ±2 g 指标余量 20 倍。</li>
-        <li data-i18n data-en="13 staged firmware builds (01 serial heartbeat → 13 integrated v2), each independently compilable and flashable; build 10 is a wiring self-check that verifies every connection in one power-up. All 13 builds: 0 errors, 0 warnings.">13 段分阶段固件（01 串口心跳 → 13 整机 v2），每段独立可编译可烧录；其中 10 号工程「接线自检」可一次上电验证全部接线。13 个工程 0 错 0 警。</li>
-        <li data-i18n data-en="7-condition alert matrix with R-bitmask reporting (1/2/4/8/16/32); yellow = early warning, red = alarm, buzzer + dual LEDs.">7 种工况报警矩阵 + R 位掩码上报（1/2/4/8/16/32）；黄预警 / 红报警，蜂鸣器 + 双 LED。</li>
-        <li data-i18n data-en="Android client with hand-drawn controls (GaugeView / LevelBarView / TrendView): big remaining-weight figure, temperature dial, drop-rate card and a 2-minute trend chart.">Android 客户端自绘控件（GaugeView / LevelBarView / TrendView）：剩余克重大数字主视觉、温度表盘、滴速卡与 2 分钟趋势图。</li>
-        <li data-i18n data-en="Uplink isolated in report_tcp.c — the whole transport layer can be swapped to MQTT without touching business logic.">上报层隔离在 report_tcp.c——可整体替换为 MQTT 而不动业务逻辑。</li>
+        <li data-i18n data-en="Weighing re-checked to ±0.1 g against a ±2 g spec — a 20× margin (SCALE = 741.6 counts/g, linearity 0.14%).">称重复核 ±0.1 g（指标 ±2 g，余量二十倍；SCALE = 741.6 counts/g、线性度 0.14%）。</li>
+        <li data-i18n data-en="Temperature, drop rate and a 7-condition yellow/red alert matrix with bitmask reporting.">温度、滴速与 7 工况黄/红报警矩阵 + R 位掩码上报。</li>
+        <li data-i18n data-en="13 staged firmware builds (0 errors / 0 warnings) with a one-power-up wiring self-check.">13 段分阶段固件（0 错 0 警），含一次上电验证全部接线的「接线自检」工程。</li>
+        <li data-i18n data-en="Android client with hand-drawn controls: big remaining-weight figure, temperature gauge and 2-minute trend.">Android 客户端自绘控件：克重主视觉、温度表盘、2 分钟趋势图。</li>
       </ul>
+      <p class="reveal" data-i18n data-en="The method — staged builds, honest verification tiers, CHANGELOG retros — is the same one behind the health monitor; the full stories live in the repo.">分阶段验证、诚实的分级口径、CHANGELOG 复盘——这套方法与「<a href="health-assistant.html">四参数生理监测终端</a>」同源，完整故事都在仓库里。</p>
     </div>
   </section>
 
-  <!-- 硬件方案 -->
-  <section class="sec">
-    <div class="container">
-      <div class="sec-head reveal">
-        <p class="kicker">Hardware</p>
-        <h2 data-i18n data-en="Trade-offs">选型的取舍</h2>
-      </div>
-      <p class="reveal" data-i18n data-en="Load cell range was chosen backwards from accuracy: at 0.05%FS, a 5 kg cell resolves ~2.5 g — which would eat the entire ±2 g budget. A 1 kg cell resolves ~0.5 g, leaving real headroom. The OLED needed 4.7 kΩ pull-ups on I2C and the buzzer had to move to 3.3 V supply before the board was stable.">量程从精度反推：0.05%FS 下 5 kg 传感器分辨率约 2.5 g——会把 ±2 g 指标吃光；1 kg 传感器分辨率约 0.5 g，留出真实余量，因此定 1 kg。调试中还发现 OLED 的 I2C 需要 4.7 kΩ 上拉、蜂鸣器须改 3.3 V 供电，整机才稳定。</p>
-      <figure class="reveal">
-        <img src="../assets/media/p2-pcb.jpg" alt="PCB 布局参考" style="max-width:760px;display:block;margin:0 auto;">
-        <figcaption data-i18n data-en="100 × 80 mm two-layer PCB layout reference (socket headers, antenna keep-out, ISP port)">100 × 80 mm 双层板布局参考（排母座、天线禁铺区、ISP 口）</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- 演示 -->
+  <!-- App 与屏幕 -->
   <section class="sec">
     <div class="container">
       <div class="sec-head reveal">
@@ -106,39 +91,10 @@
           <figcaption data-i18n data-en="OLED Chinese UI preview (88-character custom font library)">OLED 中文界面预览（自建 88 字中文字库）</figcaption>
         </figure>
       </div>
-      <div class="note" data-i18n data-en="TODO (next round): finished-unit photos and demo video per the planned shot list (P1–P8 / V1–V5); PCB silkscreen containing personal identifiers will be cropped before publishing.">待补（下一轮）：成品实物照片与演示视频按既定拍摄清单（P1–P8 / V1–V5）补拍；含个人标识的 PCB 丝印将在上站前裁除。</div>
     </div>
   </section>
 
-  <!-- 关键实现 -->
-  <section class="sec">
-    <div class="container">
-      <div class="sec-head reveal">
-        <p class="kicker">Implementation</p>
-        <h2 data-i18n data-en="How it works">怎么实现的</h2>
-      </div>
-      <div class="impl-grid">
-        <div class="impl reveal">
-          <h3 data-i18n data-en="Calibration methodology">标定方法论</h3>
-          <p data-i18n data-en="Certified weight set (5/10/20/20/50 g) → SCALE = 741.6 counts/g, linearity 0.14%. A real-world lesson is documented: water-based first calibration gave 802.0, re-measuring after re-mounting the bracket gave 742 — an 8% drift — so the rule is: always re-calibrate after re-assembly.">标准砝码组（5/10/20/20/50 g）标定 → SCALE = 741.6 counts/g、线性度 0.14%。并如实记录了真实教训：用水初标 802.0，秤架重装后实测 742，差 8%——由此定下铁律「装盒后必须重标」。</p>
-        </div>
-        <div class="impl reveal" data-delay="0.08s">
-          <h3 data-i18n data-en="Staged firmware">分阶段固件</h3>
-          <p data-i18n data-en="13 builds from serial heartbeat to integrated v2, each one small and independently verifiable; a dedicated wiring self-check build validates all connections in one power-up. Integrated firmware: 29,480 B / 32 KB (90%).">从串口心跳到整机 v2 的 13 段递进固件，每段保持小而独立可验证；专用「接线自检」工程一次上电验证全部接线。整机固件 29,480 B / 32 KB（90%）。</p>
-        </div>
-        <div class="impl reveal" data-delay="0.16s">
-          <h3 data-i18n data-en="Swappable transport">可替换上报层</h3>
-          <p data-i18n data-en="All networking lives in report_tcp.c behind a narrow interface — LAN TCP today, MQTT in about 2–3 days if the client needs cloud access; the rest of the codebase would not change.">全部联网逻辑收在 report_tcp.c 一层之后——今天是局域网 TCP，若需要云平台，约 2–3 天可整体切换 MQTT，业务代码不动。</p>
-        </div>
-        <div class="impl reveal" data-delay="0.24s">
-          <h3 data-i18n data-en="Honest verification tiers">诚实的验证分级</h3>
-          <p data-i18n data-en="The delivery docs distinguish verified-on-board / compiles-only / pending-integration, and state known limits up front: LAN direct is not cloud; optical drop detection distorts when drops merge into a stream; tare leaves ±0.x g residual. Nothing unverified is ever marked as passed.">交付文档明确区分「上板验证 / 编译通过 / 待联调」，并主动写明局限：局域网直连 ≠ 云平台；液滴成线时光学测滴速存在原理性失真；开机去皮有 ±0.x g 残差。未验证的一律不写「已达标」。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 指标 -->
+  <!-- 数字 -->
   <section class="sec">
     <div class="container">
       <div class="sec-head reveal">
@@ -157,42 +113,10 @@
           <tr><td data-i18n data-en="Weighing accuracy">称重精度</td><td data-i18n data-en="re-check max deviation ±0.1 g (spec ±2 g)">复核最大偏差 ±0.1 g（指标 ±2 g）</td><td class="ok">PASS</td></tr>
           <tr><td data-i18n data-en="Liquid temperature">液体温度</td><td data-i18n data-en="DS18B20 waterproof probe, verified on board">DS18B20 防水探头，上板验证</td><td class="ok">PASS</td></tr>
           <tr><td data-i18n data-en="Drop rate">滴速</td><td data-i18n data-en="principle verified; full-machine data pending final integration">原理验证通过；整机联调数据待最终采集</td><td class="pending">PENDING</td></tr>
-          <tr><td data-i18n data-en="OLED Chinese UI">OLED 中文界面</td><td data-i18n data-en="88-character font library, page-flip refresh">88 字字库，逐页轮转刷新</td><td class="ok">PASS</td></tr>
           <tr><td data-i18n data-en="Two-level alerts">两级声光报警</td><td data-i18n data-en="7-condition matrix, yellow/red, buzzer + LEDs">7 工况矩阵，黄/红，蜂鸣器 + 双 LED</td><td class="ok">PASS</td></tr>
           <tr><td data-i18n data-en="Wireless">无线传输</td><td data-i18n data-en="AP + TCP, app v3 connected and rendering">AP + TCP，App v3 已连通渲染</td><td class="ok">PASS</td></tr>
         </tbody>
       </table>
-      <p class="fine" data-i18n data-en="Status values follow the project's own verification tiers (verified on board / pending). Drop-rate integration data will be added when the final joint test completes.">状态口径遵循项目自身的验证分级（上板验证 / 待联调）；滴速整机数据将在最终联调完成后更新。</p>
-    </div>
-  </section>
-
-  <!-- 踩坑复盘 -->
-  <section class="sec">
-    <div class="container">
-      <div class="sec-head reveal">
-        <p class="kicker">Debug log</p>
-        <h2 data-i18n data-en="War stories">踩过的坑</h2>
-      </div>
-      <div class="dbg reveal">
-        <strong data-i18n data-en="Full-screen OLED refresh starved the main loop">OLED 整屏刷新饿死主循环</strong>
-        <span class="step"><b class="t1" data-i18n data-en="Symptom">现象</b>：<span data-i18n data-en="keys unresponsive for 374 ms per full refresh.">每次整屏刷新 374 ms，按键无响应。</span></span>
-        <span class="step"><b class="t3" data-i18n data-en="Fix">修复</b>：<span data-i18n data-en="page-by-page rotating refresh — UI stays live.">改为逐页轮转刷新，界面全程保活。</span></span>
-      </div>
-      <div class="dbg reveal">
-        <strong data-i18n data-en="Flash almost full">Flash 接近上限</strong>
-        <span class="step"><b class="t2" data-i18n data-en="Root cause">根因</b>：<span data-i18n data-en="float printf pulled in heavy library code.">浮点 printf 拉入重型库代码。</span></span>
-        <span class="step"><b class="t3" data-i18n data-en="Fix">修复</b>：<span data-i18n data-en="switched to integer output, saving 2 KB+ of flash.">改整数输出，节省 2 KB 以上空间。</span></span>
-      </div>
-      <div class="dbg reveal">
-        <strong data-i18n data-en="1-Wire reads corrupted">1-Wire 读数被干扰</strong>
-        <span class="step"><b class="t2" data-i18n data-en="Root cause">根因</b>：<span data-i18n data-en="EXTI interrupts during timing-critical slots.">时序关键段被 EXTI 中断打断。</span></span>
-        <span class="step"><b class="t3" data-i18n data-en="Fix">修复</b>：<span data-i18n data-en="disable interrupts for the whole 1-Wire transaction.">1-Wire 全程关中断保护时序。</span></span>
-      </div>
-      <div class="dbg reveal">
-        <strong data-i18n data-en="HX711 showed a fake 1130 g">HX711 显示假数 1130 g</strong>
-        <span class="step"><b class="t2" data-i18n data-en="Root cause">根因</b>：<span data-i18n data-en="driver read before zero-point was fed.">零点未喂就读取驱动。</span></span>
-        <span class="step"><b class="t3" data-i18n data-en="Fix">修复</b>：<span data-i18n data-en="enforced zero-point init before first read; documented in the changelog.">首次读取前强制零点初始化，并记入 CHANGELOG。</span></span>
-      </div>
     </div>
   </section>
 
@@ -233,8 +157,8 @@
   </div>
 </footer>
 
-<script src="../assets/vendor/gsap/gsap.min.js?v=3"></script>
-<script src="../assets/vendor/gsap/ScrollTrigger.min.js?v=3"></script>
-<script src="../assets/js/app.js?v=3"></script>
+<script src="../assets/vendor/gsap/gsap.min.js?v=4"></script>
+<script src="../assets/vendor/gsap/ScrollTrigger.min.js?v=4"></script>
+<script src="../assets/js/app.js?v=4"></script>
 </body>
 </html>
