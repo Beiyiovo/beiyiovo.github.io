@@ -2449,3 +2449,25 @@ body.vm-open { overflow: hidden; }
   max-height: 72vh;
   object-fit: contain;
 }
+
+/* 主推卡：整幅产品图 */
+.pcard-media.photo { background: #05080d; }
+.pcard-media.photo .pcard-cover { aspect-ratio: 16 / 10; }
+.plate-cap.on-photo {
+  left: 20px;
+  bottom: 16px;
+  color: rgba(226, 242, 255, 0.66);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.9);
+  z-index: 2;
+}
+
+/* 主推卡图片撑满左栏 */
+.pcard.featured .pcard-media.photo .pcard-cover {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+  min-height: 340px;
+}
+.pcard.featured .pcard-media.photo { min-height: 340px; }
+
