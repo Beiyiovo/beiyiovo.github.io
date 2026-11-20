@@ -2309,50 +2309,41 @@ section[id], div[id] { scroll-margin-top: 96px; }
 .vmeta p { color: var(--ink-2); font-size: 0.86rem; line-height: 1.7; }
 .vmeta .tags { margin-top: 12px; }
 
-/* 片单 */
-.slate { border-bottom: 1px solid var(--line); }
-.slate-item {
+/* 制作全流程：六步纵向清单 */
+.steps { list-style: none; margin-top: 34px; border-top: 1px solid var(--line); }
+.steps li {
   display: grid;
-  grid-template-columns: 78px 1fr auto auto;
-  gap: 20px;
-  align-items: center;
+  grid-template-columns: 64px 190px 1fr;
+  gap: 26px;
+  align-items: start;
   padding: 24px 0;
-  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
-.slate-ep { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; color: var(--acc); }
-.slate-main h3 { font-size: 1.02rem; margin-bottom: 6px; }
-.slate-main p { color: var(--ink-2); font-size: 0.85rem; line-height: 1.7; max-width: 620px; }
-.slate-meta { font-family: var(--mono); font-size: 0.64rem; color: var(--ink-3); letter-spacing: 0.04em; white-space: nowrap; }
-.slate-state {
+.st-no { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; color: var(--acc); padding-top: 5px; }
+.steps b { font-size: 1.08rem; font-weight: 600; line-height: 1.5; }
+.steps b em {
+  display: block;
   font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.06em;
-  color: var(--amber);
-  border: 1px solid rgba(255, 196, 107, 0.3);
-  border-radius: 999px;
-  padding: 4px 11px;
-  white-space: nowrap;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-3);
+  margin-top: 5px;
 }
+.st-d { color: var(--ink-2); font-size: 0.88rem; line-height: 1.85; }
 
-/* 流程 */
-.pipe {
-  list-style: none;
+/* 边界：四条原则 */
+.rule-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  border-top: 1px solid var(--line);
-  counter-reset: p;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 56px;
+  margin-top: 34px;
 }
-.pipe li {
-  padding: 22px 20px 8px;
-  border-left: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.pipe li:first-child { border-left: 0; padding-left: 0; }
-.pipe-no { font-family: var(--mono); font-size: 0.6rem; color: var(--acc); letter-spacing: 0.1em; }
-.pipe b { font-size: 0.98rem; font-weight: 600; }
-.pipe li span:last-child { color: var(--ink-2); font-size: 0.82rem; line-height: 1.7; }
+.rule { padding: 22px 0 24px; border-top: 1px solid var(--line); }
+.rule b { display: flex; align-items: baseline; gap: 13px; font-size: 1rem; font-weight: 600; margin-bottom: 9px; }
+.rule b i { font-family: var(--mono); font-style: normal; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--acc); }
+.rule p { color: var(--ink-2); font-size: 0.85rem; line-height: 1.8; }
 
 /* 播放器弹层 */
 .vmodal {
@@ -2401,19 +2392,15 @@ body.vm-open { overflow: hidden; }
 @media (max-width: 1100px) {
   .sh-grid { grid-template-columns: 1fr; gap: 40px; }
   .sh-copy { max-width: 620px; }
-  .pipe { grid-template-columns: repeat(2, 1fr); }
-  .pipe li { padding: 20px 16px 6px; }
-  .pipe li:nth-child(odd) { border-left: 0; padding-left: 0; }
-  .pipe li:nth-child(n + 3) { border-top: 1px solid var(--line); }
+  .steps li { grid-template-columns: 52px 150px 1fr; gap: 18px; }
+  .rule-grid { gap: 0 34px; }
 }
 @media (max-width: 760px) {
   .sh-hero { padding-top: 56px; }
-  .slate-item { grid-template-columns: 62px 1fr; gap: 12px; }
-  .slate-meta { grid-column: 2; }
-  .slate-state { grid-column: 2; justify-self: start; }
-  .pipe { grid-template-columns: 1fr; }
-  .pipe li { border-left: 0; padding-left: 0; }
-  .pipe li + li { border-top: 1px solid var(--line); }
+  .steps li { grid-template-columns: 40px 1fr; gap: 6px 14px; padding: 20px 0; }
+  .steps b { grid-column: 2; }
+  .st-d { grid-column: 2; }
+  .rule-grid { grid-template-columns: 1fr; gap: 0; }
   .vplay { width: 52px; height: 52px; margin: -26px 0 0 -26px; }
   .vplay i { border-left-width: 12px; border-top-width: 7px; border-bottom-width: 7px; }
   .vmodal { padding: 14px; }
