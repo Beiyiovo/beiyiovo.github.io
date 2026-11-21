@@ -10,14 +10,14 @@
      endpoint : 自定义上报地址（支持 sendBeacon，可空）
      debug    : true 或 URL 加 ?track-debug=1，事件打印到控制台并写入 window.__trackLog
 
-   三个接收端都留空 = 纯静态零请求；填入其一即可看到聚合访问数据。
+   当前已启用：百度统计（baiduId），后台看 PV/UV/地域/设备/来源/停留/事件。
    ============================================================ */
 (function () {
   'use strict';
   var D = document, W = window;
 
   var CONFIG = {
-    baiduId: '',
+    baiduId: '393ff6473192b2e45f8393059de52e67',
     gaId: '',
     endpoint: '',
     debug: false
