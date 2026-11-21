@@ -44,13 +44,11 @@
     lsSet(VID_KEY, vid);
   }
 
-  /* ---------- 接收端注入（仅在配置后） ---------- */
-  if (CONFIG.baiduId) {
-    W._hmt = W._hmt || [];
-    var hm = D.createElement('script');
-    hm.async = 1; hm.src = 'https://hm.baidu.com/hm.js?' + CONFIG.baiduId;
-    D.head.appendChild(hm);
-  }
+  /* ---------- 接收端注入 ----------
+     百度统计：标准代码已直接写在每个页面 <head>（百度校验要求源码可见），
+     这里不再重复注入 hm.js，只用 _hmt 上报自定义事件。
+     GA4 / endpoint 仍按需动态注入。 */
+  if (CONFIG.baiduId) W._hmt = W._hmt || [];
   if (CONFIG.gaId) {
     W.dataLayer = W.dataLayer || [];
     W.gtag = function () { W.dataLayer.push(arguments); };
