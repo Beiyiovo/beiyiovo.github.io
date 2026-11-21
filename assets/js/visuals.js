@@ -116,32 +116,7 @@
           es.forEach(function (e) { e.isIntersecting ? start() : stop(); });
         }, { threshold: 0.05 }).observe(cv);
       } else { start(); }
-      window.addEventListener('scroll', function () {
-      if (mq.matches) return;
-      scrollProgress();
-      var r = stage.getBoundingClientRect();
-      var near = r.bottom > -120 && r.top < (window.innerHeight || 800) + 120;
-      if (near) {
-        visible = true;
-        if (!raf) { last = 0; raf = requestAnimationFrame(frame); }
-      }
-    }, { passive: true });
-
-    window.addEventListener('resize', function () { resize(); draw(performance.now()); });
-    } else {
-      draw(0);
-      window.addEventListener('scroll', function () {
-      if (mq.matches) return;
-      scrollProgress();
-      var r = stage.getBoundingClientRect();
-      var near = r.bottom > -120 && r.top < (window.innerHeight || 800) + 120;
-      if (near) {
-        visible = true;
-        if (!raf) { last = 0; raf = requestAnimationFrame(frame); }
-      }
-    }, { passive: true });
-
-    window.addEventListener('resize', function () { resize(); draw(0); });
+    window.addEventListener('resize', function () { resize(); draw(animated ? performance.now() : 0); });
     }
   })();
 
